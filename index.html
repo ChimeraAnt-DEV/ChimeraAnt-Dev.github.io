@@ -243,6 +243,57 @@
     .faq-item[open] summary::after { transform: rotate(45deg); }
     .faq-item p { margin-top: 16px; color: var(--muted); font-size: 15px; line-height: 1.7; }
 
+    .trust-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 18px; max-width: 1000px; margin: 0 auto;
+    }
+    .trust-card {
+      background: var(--card-bg); border: 1px solid var(--border);
+      border-radius: 20px; padding: 26px;
+      transition: all 0.3s ease;
+      opacity: 0; transform: translateY(30px);
+    }
+    .trust-card.visible { opacity: 1; transform: translateY(0); }
+    .trust-card:hover {
+      background: var(--card-bg-hover);
+      border-color: rgba(201,166,255,0.3);
+      transform: translateY(-4px);
+    }
+    .trust-icon {
+      width: 44px; height: 44px; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(245,166,35,0.12); border: 1px solid rgba(245,166,35,0.25);
+      color: var(--gold); font-size: 22px; margin-bottom: 14px;
+    }
+    .trust-card h4 { font-size: 16px; font-weight: 800; margin-bottom: 8px; }
+    .trust-card p { font-size: 13.5px; color: var(--muted); line-height: 1.6; }
+    .trust-card p strong { color: var(--text); font-weight: 700; }
+    .trust-note {
+      max-width: 900px; margin: 40px auto 0; padding: 28px 32px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, rgba(59,165,93,0.12), rgba(91,43,168,0.15));
+      border: 1px solid rgba(59,165,93,0.3);
+      text-align: center;
+    }
+    .trust-note p { color: var(--muted); font-size: 14.5px; margin-bottom: 12px; line-height: 1.7; }
+    .trust-note p strong { color: var(--text); }
+    .trust-note a {
+      color: var(--gold); text-decoration: none; font-weight: 700; font-size: 14px;
+      transition: opacity 0.2s;
+    }
+    .trust-note a:hover { opacity: 0.8; }
+
+    .checksum {
+      margin-top: 16px; padding: 12px 14px;
+      background: rgba(0,0,0,0.3); border: 1px solid var(--border);
+      border-radius: 12px; font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+      font-size: 11px; color: var(--muted);
+      word-break: break-all; line-height: 1.5;
+      display: none;
+    }
+    .checksum.visible { display: block; }
+    .checksum strong { color: var(--gold); display: block; margin-bottom: 4px; font-family: 'Inter', sans-serif; font-size: 11px; letter-spacing: 1px; text-transform: uppercase; }
+
     .discord-card {
       max-width: 720px; margin: 0 auto; padding: 56px 40px;
       border-radius: 32px; text-align: center; position: relative; overflow: hidden;
@@ -369,9 +420,9 @@
         <a href="#features">Features</a>
         <a href="#showcase">Showcase</a>
         <a href="#download">Download</a>
+        <a href="#trust">Security</a>
         <a href="#faq">FAQ</a>
         <a href="#discord">Discord</a>
-        <a href="https://github.com/ChimeraAnt-DEV/GlowberryClient">GitHub</a>
       </nav>
     </div>
   </header>
@@ -401,7 +452,7 @@
       <div class="stat"><div class="num">6+</div><div class="label">Core Features</div></div>
       <div class="stat"><div class="num">100%</div><div class="label">Free Forever</div></div>
       <div class="stat"><div class="num">4</div><div class="label">Mod Languages</div></div>
-      <div class="stat"><div class="num">∞</div><div class="label">Possibilities</div></div>
+      <div class="stat"><div class="num">0</div><div class="label">Data Collected</div></div>
     </div>
   </div>
 
@@ -559,6 +610,7 @@
           <a class="btn btn-primary" id="download-stable" href="https://github.com/ChimeraAnt-DEV/GlowberryClient/releases/latest">
             Download APK
           </a>
+          <div class="checksum" id="checksum-display"></div>
         </div>
 
         <div class="dl-card reveal">
@@ -572,6 +624,58 @@
           </a>
         </div>
 
+      </div>
+    </div>
+  </section>
+
+  <section class="sect" id="trust">
+    <div class="container">
+      <h2 class="reveal">Trust &amp; Security</h2>
+      <p class="sub reveal">Sideloading an APK requires trust. Here's exactly what GlowberryClient asks for and why.</p>
+
+      <div class="trust-grid">
+
+        <div class="trust-card reveal">
+          <div class="trust-icon">🎬</div>
+          <h4>Screen Recording</h4>
+          <p>Used <strong>only</strong> when you tap Record. Powers the Replay system. Stops the instant you stop recording. Never runs in the background.</p>
+        </div>
+
+        <div class="trust-card reveal">
+          <div class="trust-icon">🎙️</div>
+          <h4>Microphone</h4>
+          <p>Used <strong>only</strong> when you enable Proximity Voice Chat. Audio flows peer-to-peer directly between devices. Never touches our servers.</p>
+        </div>
+
+        <div class="trust-card reveal">
+          <div class="trust-icon">🪟</div>
+          <h4>Display Over Other Apps</h4>
+          <p>Required to render the in-game Mod Menu overlay. It draws on top of Minecraft — <strong>no access</strong> to other apps or their data.</p>
+        </div>
+
+        <div class="trust-card reveal">
+          <div class="trust-icon">🌐</div>
+          <h4>Network Access</h4>
+          <p>For Proximity Voice Chat connections and checking for new releases on GitHub. <strong>No analytics, no telemetry, no tracking.</strong></p>
+        </div>
+
+        <div class="trust-card reveal">
+          <div class="trust-icon">📁</div>
+          <h4>Storage / Files</h4>
+          <p>To save mods, replays, and screenshots, and to import Minecraft versions. Your files stay on your device. <strong>Nothing is uploaded.</strong></p>
+        </div>
+
+        <div class="trust-card reveal">
+          <div class="trust-icon">🔔</div>
+          <h4>Notifications</h4>
+          <p>Optional. Only used to notify you when a new release is available. You can disable it at any time in Settings.</p>
+        </div>
+
+      </div>
+
+      <div class="trust-note reveal">
+        <p><strong>We don't collect anything.</strong> No accounts, no analytics, no telemetry, no remote logging. Everything GlowberryClient does happens on your device, and nothing is ever uploaded without your action.</p>
+        <a href="privacy.html">Read the full Privacy Policy →</a>
       </div>
     </div>
   </section>
@@ -670,7 +774,7 @@
         <a href="https://github.com/ChimeraAnt-DEV">GitHub</a>
         <a href="https://github.com/ChimeraAnt-DEV/GlowberryClient/releases">Releases</a>
         <a href="https://github.com/ChimeraAnt-DEV/GlowberryClient/issues">Issues</a>
-        <a href="https://www.youtube.com/">YouTube</a>
+        <a href="privacy.html">Privacy</a>
         <a href="https://discord.gg/VMGXExhxxA">Discord</a>
       </div>
       <div class="copy">© 2026 ChimeraAnt-DEV · Built on phones. Runs on everything.</div>
@@ -678,15 +782,13 @@
   </footer>
 
   <script>
-    // Navbar shrink on scroll
     const navbar = document.getElementById('navbar');
     window.addEventListener('scroll', () => {
       if (window.scrollY > 40) navbar.classList.add('scrolled');
       else navbar.classList.remove('scrolled');
     });
 
-    // Scroll reveal
-    const reveals = document.querySelectorAll('.reveal, .card');
+    const reveals = document.querySelectorAll('.reveal, .card, .trust-card');
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry, i) => {
         if (entry.isIntersecting) {
@@ -698,7 +800,6 @@
 
     reveals.forEach(el => observer.observe(el));
 
-    // Smooth scroll for older browsers
     document.querySelectorAll('a[href^="#"]').forEach(a => {
       a.addEventListener('click', (e) => {
         const target = document.querySelector(a.getAttribute('href'));
@@ -709,12 +810,12 @@
       });
     });
 
-    // ---- Dynamic download buttons ----
     const REPO = 'ChimeraAnt-DEV/GlowberryClient';
 
     async function loadDownloadButtons() {
       const stableBtn = document.getElementById('download-stable');
       const betaBtn = document.getElementById('download-beta');
+      const checksumEl = document.getElementById('checksum-display');
       if (!stableBtn || !betaBtn) return;
 
       try {
@@ -722,15 +823,29 @@
         if (!res.ok) throw new Error('API failed');
         const releases = await res.json();
 
-        // Stable = newest release whose tag does NOT start with BETA
         const stable = releases.find(r => !r.draft && !r.tag_name.startsWith('BETA'));
-        // Beta = newest release whose tag DOES start with BETA (caps only)
         const beta = releases.find(r => !r.draft && r.tag_name.startsWith('BETA'));
 
         if (stable) {
           const apk = stable.assets.find(a => a.name.toLowerCase().endsWith('.apk'));
+          const sha = stable.assets.find(a => /\.(sha256|sha256sum|sha256\.txt)$/i.test(a.name));
+
           stableBtn.href = apk ? apk.browser_download_url : stable.html_url;
           stableBtn.textContent = `Download APK (${stable.tag_name})`;
+
+          if (sha && checksumEl) {
+            try {
+              const shaRes = await fetch(sha.browser_download_url);
+              const shaText = (await shaRes.text()).trim();
+              const hash = shaText.split(/\s+/)[0];
+              if (hash && hash.length >= 32) {
+                checksumEl.innerHTML = `<strong>SHA-256</strong>${hash}`;
+                checksumEl.classList.add('visible');
+              }
+            } catch (e) {
+              console.warn('Checksum fetch failed:', e);
+            }
+          }
         }
 
         if (beta) {
@@ -748,4 +863,4 @@
   </script>
 
 </body>
-                  </html>
+  </html>
