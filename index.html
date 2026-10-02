@@ -39,7 +39,6 @@
       position: relative;
     }
 
-    /* Animated background orbs */
     .bg-orbs { position: fixed; inset: 0; overflow: hidden; z-index: -1; pointer-events: none; }
     .orb { position: absolute; border-radius: 50%; filter: blur(100px); opacity: 0.4; will-change: transform; }
     .orb-1 { width: 500px; height: 500px; background: #5B2BA8; top: -100px; left: -100px; animation: float 18s ease-in-out infinite; }
@@ -54,7 +53,6 @@
 
     .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
 
-    /* Nav */
     header.nav {
       position: sticky; top: 0; z-index: 100;
       padding: 16px 0;
@@ -77,7 +75,6 @@
     }
     header.nav nav a:hover { color: var(--text); background: var(--card-bg); }
 
-    /* Hero */
     .hero { padding: 100px 0 120px; text-align: center; position: relative; }
     .hero .berry-wrap { position: relative; display: inline-block; margin-bottom: 40px; }
     .hero .berry-wrap img { width: 200px; height: 200px; position: relative; z-index: 2; animation: berryFloat 6s ease-in-out infinite; filter: drop-shadow(0 0 80px rgba(245,166,35,0.5)); }
@@ -127,13 +124,11 @@
     .btn-secondary { background: rgba(255,255,255,0.06); color: var(--text); border: 1px solid rgba(255,255,255,0.15); backdrop-filter: blur(10px); }
     .btn-secondary:hover { background: rgba(255,255,255,0.12); transform: translateY(-3px); border-color: rgba(201,166,255,0.4); }
 
-    /* Stats bar */
     .stats { padding: 40px 0; display: flex; justify-content: center; gap: 60px; flex-wrap: wrap; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
     .stat { text-align: center; }
     .stat .num { font-size: 36px; font-weight: 900; background: linear-gradient(135deg, #F5A623, #C9A6FF); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
     .stat .label { font-size: 12px; color: var(--muted); letter-spacing: 2px; text-transform: uppercase; margin-top: 4px; }
 
-    /* Section */
     section.sect { padding: 100px 0; }
     section.sect h2 {
       font-size: clamp(32px, 5vw, 52px); font-weight: 900; letter-spacing: -1.5px;
@@ -141,7 +136,6 @@
     }
     section.sect .sub { text-align: center; color: var(--muted); font-size: 16px; margin-bottom: 60px; max-width: 600px; margin-left: auto; margin-right: auto; }
 
-    /* Feature grid */
     .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
     .card {
       background: var(--card-bg); border: 1px solid var(--border);
@@ -171,7 +165,6 @@
     .card h3 { font-size: 20px; font-weight: 800; margin-bottom: 10px; letter-spacing: -0.3px; }
     .card p { font-size: 14px; color: var(--muted); line-height: 1.65; }
 
-    /* Features showcase */
     .showcase { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; margin-bottom: 100px; }
     .showcase:nth-child(even) .showcase-text { order: 2; }
     .showcase-img {
@@ -192,7 +185,6 @@
     .showcase-text li { display: flex; align-items: center; gap: 10px; color: var(--muted); font-size: 14px; }
     .showcase-text li svg { width: 18px; height: 18px; color: var(--gold); flex-shrink: 0; }
 
-    /* Steps */
     .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; counter-reset: step; }
     .step {
       padding: 32px 24px; border-radius: 24px;
@@ -213,7 +205,6 @@
     .step h4 { font-size: 16px; font-weight: 800; margin-bottom: 8px; margin-top: 12px; }
     .step p { font-size: 13px; color: var(--muted); }
 
-    /* Download */
     .dl-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; max-width: 800px; margin: 0 auto; }
     .dl-card {
       padding: 40px 32px; border-radius: 28px; text-align: center;
@@ -232,7 +223,6 @@
     .dl-card p { color: var(--muted); font-size: 14px; margin-bottom: 24px; }
     .dl-card .btn { width: 100%; justify-content: center; }
 
-    /* FAQ */
     .faq { max-width: 800px; margin: 0 auto; }
     .faq-item {
       border-bottom: 1px solid var(--border);
@@ -253,7 +243,6 @@
     .faq-item[open] summary::after { transform: rotate(45deg); }
     .faq-item p { margin-top: 16px; color: var(--muted); font-size: 15px; line-height: 1.7; }
 
-    /* Discord section */
     .discord-card {
       max-width: 720px; margin: 0 auto; padding: 56px 40px;
       border-radius: 32px; text-align: center; position: relative; overflow: hidden;
@@ -313,7 +302,6 @@
       50% { box-shadow: 0 0 0 8px rgba(59,165,93,0.05); }
     }
 
-    /* CTA section */
     .final-cta {
       padding: 100px 40px; text-align: center;
       border-radius: 32px; margin: 60px auto;
@@ -330,7 +318,6 @@
     .final-cta p { position: relative; color: var(--muted); margin-bottom: 32px; font-size: 16px; }
     .final-cta .btn { position: relative; }
 
-    /* Footer */
     footer {
       padding: 80px 0 40px; border-top: 1px solid var(--border);
       display: flex; flex-direction: column; align-items: center; gap: 24px;
@@ -342,7 +329,6 @@
     footer .links a:hover { color: var(--gold); }
     footer .copy { color: rgba(245,240,255,0.35); font-size: 12px; letter-spacing: 1px; }
 
-    /* Responsive */
     @media (max-width: 900px) {
       .showcase { grid-template-columns: 1fr; gap: 32px; }
       .showcase:nth-child(even) .showcase-text { order: 0; }
@@ -361,21 +347,18 @@
       .discord-icon svg { width: 38px; height: 38px; }
     }
 
-    /* Reveal animation */
     .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
     .reveal.visible { opacity: 1; transform: translateY(0); }
   </style>
 </head>
 <body>
 
-  <!-- Animated background orbs -->
   <div class="bg-orbs">
     <div class="orb orb-1"></div>
     <div class="orb orb-2"></div>
     <div class="orb orb-3"></div>
   </div>
 
-  <!-- Nav -->
   <header class="nav" id="navbar">
     <div class="container nav-inner">
       <a href="#" class="brand">
@@ -393,7 +376,6 @@
     </div>
   </header>
 
-  <!-- Hero -->
   <section class="hero">
     <div class="container">
       <div class="berry-wrap">
@@ -414,7 +396,6 @@
     </div>
   </section>
 
-  <!-- Stats -->
   <div class="container">
     <div class="stats reveal">
       <div class="stat"><div class="num">6+</div><div class="label">Core Features</div></div>
@@ -424,7 +405,6 @@
     </div>
   </div>
 
-  <!-- Features -->
   <section class="sect" id="features">
     <div class="container">
       <h2 class="reveal">Built Different</h2>
@@ -483,7 +463,6 @@
     </div>
   </section>
 
-  <!-- Showcase -->
   <section class="sect" id="showcase">
     <div class="container">
 
@@ -535,7 +514,6 @@
     </div>
   </section>
 
-  <!-- How it works -->
   <section class="sect">
     <div class="container">
       <h2 class="reveal">Get Started in Minutes</h2>
@@ -566,7 +544,6 @@
     </div>
   </section>
 
-  <!-- Download -->
   <section class="sect" id="download">
     <div class="container">
       <h2 class="reveal">Download GlowberryClient</h2>
@@ -579,7 +556,7 @@
           </div>
           <h3>Latest Stable</h3>
           <p>The newest tested build. Everything works. Everything's fast.</p>
-          <a class="btn btn-primary" href="https://github.com/ChimeraAnt-DEV/GlowberryClient/releases">
+          <a class="btn btn-primary" id="download-stable" href="https://github.com/ChimeraAnt-DEV/GlowberryClient/releases/latest">
             Download APK
           </a>
         </div>
@@ -590,7 +567,7 @@
           </div>
           <h3>Beta Builds</h3>
           <p>Early access to features before they ship. Expect rough edges.</p>
-          <a class="btn btn-secondary" href="https://github.com/ChimeraAnt-DEV/GlowberryClient/releases">
+          <a class="btn btn-secondary" id="download-beta" href="https://github.com/ChimeraAnt-DEV/GlowberryClient/releases">
             View Beta Releases
           </a>
         </div>
@@ -599,7 +576,6 @@
     </div>
   </section>
 
-  <!-- FAQ -->
   <section class="sect" id="faq">
     <div class="container">
       <h2 class="reveal">Frequently Asked</h2>
@@ -640,7 +616,6 @@
     </div>
   </section>
 
-  <!-- Discord -->
   <section class="sect" id="discord">
     <div class="container">
       <h2 class="reveal">Join the Community</h2>
@@ -674,19 +649,17 @@
     </div>
   </section>
 
-  <!-- Final CTA -->
   <div class="container">
     <div class="final-cta reveal">
       <h2>Ready to play?</h2>
       <p>Download GlowberryClient and see what Bedrock on Android can actually do.</p>
-      <a class="btn btn-primary" href="https://github.com/ChimeraAnt-DEV/GlowberryClient/releases">
+      <a class="btn btn-primary" href="https://github.com/ChimeraAnt-DEV/GlowberryClient/releases/latest">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
         Download Now
       </a>
     </div>
   </div>
 
-  <!-- Footer -->
   <footer>
     <div class="container">
       <div class="brand-row">
@@ -735,7 +708,44 @@
         }
       });
     });
+
+    // ---- Dynamic download buttons ----
+    const REPO = 'ChimeraAnt-DEV/GlowberryClient';
+
+    async function loadDownloadButtons() {
+      const stableBtn = document.getElementById('download-stable');
+      const betaBtn = document.getElementById('download-beta');
+      if (!stableBtn || !betaBtn) return;
+
+      try {
+        const res = await fetch(`https://api.github.com/repos/${REPO}/releases?per_page=30`);
+        if (!res.ok) throw new Error('API failed');
+        const releases = await res.json();
+
+        // Stable = newest release whose tag does NOT start with BETA
+        const stable = releases.find(r => !r.draft && !r.tag_name.startsWith('BETA'));
+        // Beta = newest release whose tag DOES start with BETA (caps only)
+        const beta = releases.find(r => !r.draft && r.tag_name.startsWith('BETA'));
+
+        if (stable) {
+          const apk = stable.assets.find(a => a.name.toLowerCase().endsWith('.apk'));
+          stableBtn.href = apk ? apk.browser_download_url : stable.html_url;
+          stableBtn.textContent = `Download APK (${stable.tag_name})`;
+        }
+
+        if (beta) {
+          betaBtn.href = beta.html_url;
+          betaBtn.textContent = `Latest Beta (${beta.tag_name})`;
+        } else {
+          betaBtn.style.display = 'none';
+        }
+      } catch (e) {
+        console.warn('Download buttons using fallback links:', e);
+      }
+    }
+
+    loadDownloadButtons();
   </script>
 
 </body>
-          </html>
+                  </html>
