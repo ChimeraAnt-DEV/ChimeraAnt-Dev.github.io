@@ -8,6 +8,7 @@
 <meta name="theme-color" content="#0B0518" />
 <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/ChimeraAnt-DEV/Glowberry-Client-LOGO/main/In%20Mod%20Menu%20Icon.png" />
 
+<!-- OpenGraph (Discord embed) -->
 <meta property="og:title" content="GlowberryClient — Minecraft Bedrock, Reinvented" />
 <meta property="og:description" content="Free Android launcher with Native C++ mods, Proximity Voice Chat, Replay, and a full PvP suite." />
 <meta property="og:image" content="https://raw.githubusercontent.com/ChimeraAnt-DEV/Glowberry-Client-LOGO/main/In%20Mod%20Menu%20Icon.png" />
@@ -298,11 +299,31 @@ section.sect { padding: 100px 0; position: relative; }
 .preview-bar { height: 3px; background: rgba(255,255,255,0.08); border-radius: 100px; overflow: hidden; margin-top: 5px; }
 .preview-bar span { display: block; height: 100%; background: linear-gradient(90deg, #A855F7, #FBBF24); border-radius: 100px; }
 
+/* Avatar CSS - properly crops the head from the full skin layout */
 .voice-row { display: flex; align-items: center; gap: 8px; padding: 7px 10px; border-radius: 10px; background: rgba(168,85,247,0.08); margin-bottom: 6px; border: 1px solid rgba(168,85,247,0.12); }
-.voice-row .av { width: 26px; height: 26px; border-radius: 7px; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; color: #fff; font-family: 'Space Grotesk'; object-fit: cover; image-rendering: pixelated; }
 .voice-row .nm { flex: 1; font-size: 11.5px; font-weight: 600; color: #F4EEFF; }
 .voice-row .mt { width: 90px; height: 4px; background: rgba(255,255,255,0.08); border-radius: 100px; overflow: hidden; }
 .voice-row .mt span { display: block; height: 100%; background: linear-gradient(90deg, #A855F7, #34D399); }
+
+.ui-avatar, .av {
+  object-fit: none; /* Stop standard squishing */
+  image-rendering: pixelated; /* Keeps the blocky Minecraft look */
+  transform-origin: top left; /* Scale from the top-left corner */
+  background: rgba(255,255,255,0.05); /* Fallback if image fails */
+  border: 1px solid rgba(255,255,255,0.1);
+}
+/* Phone mockup avatar sizes */
+.ui-avatar {
+  width: 34px; height: 34px; border-radius: 9px;
+  transform: scale(4.25); /* 34px ÷ 8px head = 4.25x scale */
+  clip-path: inset(0 87.5% 87.5% 0 round 9px); /* Crops the top-left 12.5% (the face) */
+}
+/* Smaller avatars (bento / showcase cards) */
+.av {
+  width: 26px; height: 26px; border-radius: 7px;
+  transform: scale(3.25); /* 26px ÷ 8px head = 3.25x scale */
+  clip-path: inset(0 87.5% 87.5% 0 round 7px); /* Crops the face and rounds it */
+}
 
 /* Showcase */
 .showcase-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
