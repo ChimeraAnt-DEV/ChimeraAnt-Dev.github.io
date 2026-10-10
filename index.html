@@ -7,6 +7,15 @@
 <meta name="description" content="The free Android launcher for Minecraft Bedrock. Native C++ mods, Proximity Voice Chat, built-in Replay, and a full PvP suite." />
 <meta name="theme-color" content="#0B0518" />
 <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/ChimeraAnt-DEV/Glowberry-Client-LOGO/main/In%20Mod%20Menu%20Icon.png" />
+
+<!-- OpenGraph (Discord embed) -->
+<meta property="og:title" content="GlowberryClient — Minecraft Bedrock, Reinvented" />
+<meta property="og:description" content="Free Android launcher with Native C++ mods, Proximity Voice Chat, Replay, and a full PvP suite." />
+<meta property="og:image" content="https://raw.githubusercontent.com/ChimeraAnt-DEV/Glowberry-Client-LOGO/main/In%20Mod%20Menu%20Icon.png" />
+<meta property="og:url" content="https://chimeraant-dev.github.io/" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary_large_image" />
+
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
@@ -81,7 +90,6 @@ body {
 h1,h2,h3,h4,.font-display { font-family: 'Space Grotesk', 'Outfit', sans-serif; letter-spacing: -0.02em; }
 .mono { font-family: 'JetBrains Mono', monospace; }
 
-/* Grain overlay */
 body::after {
   content:''; position: fixed; inset: 0; pointer-events: none; z-index: 1;
   opacity: var(--grain);
@@ -135,6 +143,31 @@ header.nav.scrolled { padding: 8px 0; box-shadow: var(--shadow-md); }
 .nav-links { display: flex; gap: 2px; align-items: center; }
 .nav-links a { color: var(--text-2); text-decoration: none; font-size: 13.5px; font-weight: 500; padding: 8px 14px; border-radius: 100px; transition: all 0.2s; }
 .nav-links a:hover { color: var(--accent); background: var(--accent-soft); }
+
+/* Discord pill in nav */
+.nav-discord {
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 7px 12px; margin-left: 6px;
+  border-radius: 100px;
+  background: rgba(88,101,242,0.12);
+  border: 1px solid rgba(88,101,242,0.3);
+  font-size: 12.5px; font-weight: 600; color: var(--text);
+  text-decoration: none; transition: all 0.25s;
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: -0.02em;
+}
+.nav-discord:hover { background: rgba(88,101,242,0.2); border-color: rgba(88,101,242,0.6); transform: translateY(-1px); }
+.nav-discord svg { width: 15px; height: 15px; color: var(--discord); flex-shrink: 0; }
+.nav-discord .live-dot-sm {
+  width: 6px; height: 6px; border-radius: 50%; background: var(--green);
+  box-shadow: 0 0 0 3px rgba(16,185,129,0.2);
+  animation: livePulse2 2s ease-in-out infinite;
+  flex-shrink: 0;
+}
+@keyframes livePulse2 { 50% { box-shadow: 0 0 0 6px rgba(16,185,129,0.05); } }
+.nav-discord .num { color: var(--green); font-weight: 700; }
+.nav-discord.loading .num { color: var(--muted); }
+
 .theme-toggle {
   width: 38px; height: 38px; border-radius: 11px; margin-left: 6px;
   background: var(--surface-solid); border: 1px solid var(--border);
@@ -205,10 +238,39 @@ header.nav.scrolled { padding: 8px 0; box-shadow: var(--shadow-md); }
   background-clip: text;
 }
 .hero p.lede { font-size: 17px; color: var(--muted); max-width: 520px; margin-bottom: 34px; line-height: 1.6; }
-.hero .cta { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 32px; }
+.hero .cta { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 24px; }
 .hero-meta { display: flex; gap: 22px; flex-wrap: wrap; font-size: 12.5px; color: var(--muted); }
 .hero-meta span { display: inline-flex; align-items: center; gap: 7px; }
 .hero-meta svg { width: 13px; height: 13px; color: var(--accent); }
+
+/* STAR PROGRESS BAR */
+.star-progress-wrap {
+  margin-top: 32px; max-width: 440px;
+  background: var(--surface-solid); padding: 14px 18px; border-radius: 16px;
+  border: 1px solid var(--border-strong); box-shadow: var(--shadow-sm);
+}
+.star-progress-info {
+  font-size: 13px; color: var(--text-2); margin-bottom: 10px;
+  display: flex; justify-content: space-between; align-items: center;
+  font-family: 'Space Grotesk', sans-serif; font-weight: 600;
+}
+.star-progress-info strong { color: var(--gold); font-family: 'JetBrains Mono'; font-size: 16px; }
+.star-progress-bar {
+  height: 8px; background: var(--bg-2); border-radius: 100px;
+  overflow: hidden; position: relative;
+}
+.star-progress-bar span {
+  display: block; height: 100%; width: 0%;
+  background: linear-gradient(90deg, var(--accent), var(--gold));
+  border-radius: 100px; transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 0 12px var(--gold);
+}
+.star-progress-bar span::after {
+  content:''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+  animation: shimmer 2s infinite;
+}
+@keyframes shimmer { 100% { transform: translateX(100%); } }
 
 /* PHONE MOCKUP */
 .hero-visual { position: relative; display: flex; justify-content: center; }
@@ -254,11 +316,16 @@ header.nav.scrolled { padding: 8px 0; box-shadow: var(--shadow-md); }
   padding: 9px 11px; border-radius: 12px;
   background: rgba(168,85,247,0.08); border: 1px solid rgba(168,85,247,0.10);
 }
-.ui-avatar {
+/* Avatar CSS - updated for images */
+.ui-avatar, .av {
   width: 34px; height: 34px; border-radius: 9px;
-  display: flex; align-items: center; justify-content: center;
-  font-family: 'Space Grotesk'; font-weight: 700; font-size: 14px; color: #fff;
+  object-fit: cover;
+  image-rendering: pixelated; /* Crucial for Minecraft skins */
+  background: rgba(255,255,255,0.05); /* Fallback if image fails */
+  border: 1px solid rgba(255,255,255,0.1);
 }
+.av { width: 26px; height: 26px; border-radius: 7px; }
+
 .ui-info { min-width: 0; }
 .ui-name { font-size: 12px; font-weight: 600; color: #F4EEFF; margin-bottom: 4px; display: flex; justify-content: space-between; }
 .ui-name .dist { font-family: 'JetBrains Mono'; font-size: 10px; color: #9181B8; }
@@ -276,7 +343,7 @@ header.nav.scrolled { padding: 8px 0; box-shadow: var(--shadow-md); }
 .ui-tab .ico { width: 22px; height: 22px; border-radius: 6px; background: rgba(168,85,247,0.1); display: flex; align-items: center; justify-content: center; font-size: 10px; }
 .ui-tab.active .ico { background: rgba(168,85,247,0.25); }
 
-/* Floating stat chips near phone */
+/* Floating stat chips */
 .float-chip {
   position: absolute; padding: 9px 13px; border-radius: 12px;
   background: var(--surface-solid); border: 1px solid var(--border-strong);
@@ -295,9 +362,7 @@ header.nav.scrolled { padding: 8px 0; box-shadow: var(--shadow-md); }
    TECH MARQUEE
    ============================================================ */
 .marquee-wrap { padding: 40px 0; overflow: hidden; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); position: relative; }
-.marquee-wrap::before, .marquee-wrap::after {
-  content:''; position: absolute; top: 0; bottom: 0; width: 120px; z-index: 3; pointer-events: none;
-}
+.marquee-wrap::before, .marquee-wrap::after { content:''; position: absolute; top: 0; bottom: 0; width: 120px; z-index: 3; pointer-events: none; }
 .marquee-wrap::before { left: 0; background: linear-gradient(90deg, var(--bg), transparent); }
 .marquee-wrap::after { right: 0; background: linear-gradient(270deg, var(--bg), transparent); }
 .marquee { display: flex; gap: 60px; animation: scroll 30s linear infinite; width: max-content; }
@@ -365,20 +430,14 @@ section.sect { padding: 100px 0; position: relative; }
 .bento-card .ico svg { width: 20px; height: 20px; }
 .bento-card h3 { font-size: 19px; font-weight: 700; margin-bottom: 8px; letter-spacing: -0.015em; }
 .bento-card p { color: var(--muted); font-size: 14px; line-height: 1.6; }
-.bento-card .feature-preview {
-  margin-top: auto; padding-top: 20px;
-}
+.bento-card .feature-preview { margin-top: auto; padding-top: 20px; }
 
-/* Mini visual previews inside bento */
 .preview-hud {
   border-radius: 12px; background: linear-gradient(160deg, #15082e, #0a0418);
   padding: 14px; position: relative; overflow: hidden;
   border: 1px solid rgba(168,85,247,0.15);
 }
-.preview-hud::before {
-  content:''; position: absolute; inset: 0;
-  background: radial-gradient(circle at 50% 50%, rgba(168,85,247,0.15), transparent 60%);
-}
+.preview-hud::before { content:''; position: absolute; inset: 0; background: radial-gradient(circle at 50% 50%, rgba(168,85,247,0.15), transparent 60%); }
 .preview-row { display: flex; justify-content: space-between; align-items: center; position: relative; font-family: 'JetBrains Mono'; font-size: 10.5px; margin-bottom: 8px; }
 .preview-row:last-child { margin-bottom: 0; }
 .preview-row .k { color: #9181B8; letter-spacing: 0.05em; }
@@ -388,14 +447,11 @@ section.sect { padding: 100px 0; position: relative; }
 .preview-bar { height: 3px; background: rgba(255,255,255,0.08); border-radius: 100px; overflow: hidden; margin-top: 5px; }
 .preview-bar span { display: block; height: 100%; background: linear-gradient(90deg, #A855F7, #FBBF24); border-radius: 100px; }
 
-/* Avatar row for voices */
 .voice-row { display: flex; align-items: center; gap: 8px; padding: 7px 10px; border-radius: 10px; background: rgba(168,85,247,0.08); margin-bottom: 6px; border: 1px solid rgba(168,85,247,0.12); }
-.voice-row .av { width: 26px; height: 26px; border-radius: 7px; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; color: #fff; font-family: 'Space Grotesk'; }
 .voice-row .nm { flex: 1; font-size: 11.5px; font-weight: 600; color: #F4EEFF; }
 .voice-row .mt { width: 90px; height: 4px; background: rgba(255,255,255,0.08); border-radius: 100px; overflow: hidden; }
 .voice-row .mt span { display: block; height: 100%; background: linear-gradient(90deg, #A855F7, #34D399); }
 
-/* Replay strip */
 .replay-strip { display: flex; gap: 6px; margin-top: 8px; }
 .replay-thumb { flex: 1; height: 42px; border-radius: 8px; background: linear-gradient(135deg, #2a1152, #15082e); border: 1px solid rgba(168,85,247,0.15); position: relative; overflow: hidden; }
 .replay-thumb::after { content:''; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 60%, rgba(0,0,0,0.5)); }
@@ -403,7 +459,7 @@ section.sect { padding: 100px 0; position: relative; }
 .replay-thumb .time { position: absolute; bottom: 4px; left: 6px; font-family: 'JetBrains Mono'; font-size: 8.5px; color: #fff; z-index: 2; }
 
 /* ============================================================
-   SHOWCASE — 3 device mockups
+   SHOWCASE
    ============================================================ */
 .showcase-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
 .showcase-card {
@@ -423,7 +479,6 @@ section.sect { padding: 100px 0; position: relative; }
 .sc-visual::before { content:''; position: absolute; inset: 0; background: radial-gradient(circle at 30% 20%, rgba(168,85,247,0.2), transparent 60%); }
 .sc-visual > * { position: relative; z-index: 1; }
 
-/* Replay visual */
 .sc-replay-video {
   flex: 1; border-radius: 12px; margin-bottom: 10px; position: relative; overflow: hidden;
   background: linear-gradient(160deg, #3a1d6e, #1a0b38);
@@ -448,7 +503,6 @@ section.sect { padding: 100px 0; position: relative; }
 .sc-timeline .bar::after { content:''; position: absolute; top: 50%; left: 55%; width: 11px; height: 11px; border-radius: 50%; background: #FBBF24; transform: translate(-50%,-50%); box-shadow: 0 0 0 3px rgba(251,191,36,0.25); }
 .sc-timeline .labels { display: flex; justify-content: space-between; font-family: 'JetBrains Mono'; font-size: 9px; color: #9181B8; margin-top: 6px; }
 
-/* PvP visual */
 .sc-pvp { flex: 1; border-radius: 12px; position: relative; overflow: hidden; background: linear-gradient(160deg, #1f0b3d, #0a0418); }
 .sc-pvp::before { content:''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 80%, rgba(251,191,36,0.15), transparent 50%); }
 .sc-crosshair { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 26px; height: 26px; }
@@ -608,8 +662,19 @@ section.sect { padding: 100px 0; position: relative; }
 .discord-icon svg { width: 40px; height: 40px; }
 .discord-card h3 { font-size: 28px; font-weight: 700; letter-spacing: -0.03em; margin-bottom: 12px; }
 .discord-card p { color: var(--muted); font-size: 15px; max-width: 460px; margin: 0 auto 28px; line-height: 1.6; }
+
+.discord-stats { display: flex; align-items: center; justify-content: center; gap: 10px; margin: 0 auto 26px; flex-wrap: wrap; }
+.discord-stat { display: inline-flex; align-items: center; gap: 9px; padding: 10px 16px; border-radius: 100px; background: rgba(88,101,242,0.12); border: 1px solid rgba(88,101,242,0.3); font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 600; transition: all 0.25s; }
+.discord-stat:hover { background: rgba(88,101,242,0.2); border-color: rgba(88,101,242,0.6); }
+.discord-stat .label { color: var(--muted); font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500; }
+.discord-stat .value { color: var(--text); font-weight: 700; font-size: 15px; font-family: 'Space Grotesk'; }
+.discord-stat .value.online { color: var(--green); }
+.discord-stat .pulse { width: 8px; height: 8px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 4px rgba(16,185,129,0.2); animation: livePulse2 2s ease-in-out infinite; flex-shrink: 0; }
+.discord-stat.loading .value { color: var(--muted); }
+.discord-stat.loading .pulse { background: var(--muted); box-shadow: none; animation: none; }
+
 .discord-meta { display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 22px; font-size: 12.5px; color: var(--muted); }
-.live-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 4px rgba(16,185,129,0.2); animation: livePulse 2s ease infinite; }
+.live-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 4px rgba(16,185,129,0.2); animation: livePulse2 2s ease infinite; }
 
 /* ============================================================
    FOOTER
@@ -649,7 +714,7 @@ footer { padding: 70px 0 40px; border-top: 1px solid var(--border); position: re
 @media (max-width: 1000px) {
   .hero-grid { grid-template-columns: 1fr; gap: 60px; text-align: center; }
   .hero p.lede { margin-left: auto; margin-right: auto; }
-  .hero .cta, .hero-meta { justify-content: center; }
+  .hero .cta, .hero-meta, .star-progress-wrap { justify-content: center; margin-left: auto; margin-right: auto; }
   .bento { grid-template-columns: repeat(4, 1fr); }
   .bento-card.span-3 { grid-column: span 4; }
   .bento-card.span-4 { grid-column: span 4; }
@@ -658,6 +723,9 @@ footer { padding: 70px 0 40px; border-top: 1px solid var(--border); position: re
   .trust-grid { grid-template-columns: repeat(3, 1fr); }
   .steps-grid { grid-template-columns: repeat(2, 1fr); }
   .foot-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 820px) {
+  .nav-discord { display: none; }
 }
 @media (max-width: 720px) {
   .nav-links a { display: none; }
@@ -675,6 +743,11 @@ footer { padding: 70px 0 40px; border-top: 1px solid var(--border); position: re
   .compare-row { grid-template-columns: 1.3fr 1fr 1fr; padding: 14px 16px; font-size: 12.5px; }
   .foot-bottom { justify-content: center; text-align: center; }
   .marquee-item { font-size: 16px; }
+  .discord-card { padding: 40px 22px; }
+  .discord-card h3 { font-size: 22px; }
+  .discord-stats { gap: 8px; }
+  .discord-stat { padding: 8px 12px; font-size: 11.5px; }
+  .discord-stat .value { font-size: 13px; }
 }
 </style>
 </head>
@@ -711,7 +784,14 @@ footer { padding: 70px 0 40px; border-top: 1px solid var(--border); position: re
       <a href="#download">Download</a>
       <a href="#trust">Security</a>
       <a href="#faq">FAQ</a>
-      <a href="#discord">Discord</a>
+
+      <a class="nav-discord loading" id="nav-discord-pill" href="https://discord.gg/VMGXExhxxA" target="_blank" rel="noopener" aria-label="Discord server">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+        <span class="live-dot-sm"></span>
+        <span class="num" data-discord-online>—</span>
+        <span style="color: var(--muted); font-weight: 500;">online</span>
+      </a>
+
       <button class="theme-toggle" id="theme-btn" aria-label="Toggle theme">
         <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
         <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
@@ -741,7 +821,19 @@ footer { padding: 70px 0 40px; border-top: 1px solid var(--border); position: re
             View on GitHub
           </a>
         </div>
-        <div class="hero-meta">
+
+        <!-- STAR PROGRESS BAR -->
+        <div class="star-progress-wrap">
+          <div class="star-progress-info">
+            <span>⭐ GitHub Stars</span>
+            <span><strong id="star-count">0</strong> / 16 to unlock the next event</span>
+          </div>
+          <div class="star-progress-bar">
+            <span id="star-progress-fill"></span>
+          </div>
+        </div>
+
+        <div class="hero-meta" style="margin-top: 24px;">
           <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> No account</span>
           <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> No telemetry</span>
           <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> 100% free</span>
@@ -758,8 +850,8 @@ footer { padding: 70px 0 40px; border-top: 1px solid var(--border); position: re
           <div>60 FPS<small>Stable on ARM64</small></div>
         </div>
         <div class="float-chip chip-3">
-          <div class="ico" style="background: rgba(168,85,247,0.15); color:#A855F7;">🧩</div>
-          <div>4 languages<small>C++ · Lua · Java · Kt</small></div>
+          <div class="ico" style="background: rgba(88,101,242,0.15); color:#5865F2;">💬</div>
+          <div>Discord<small><span data-discord-online>—</span> online now</small></div>
         </div>
 
         <div class="phone">
@@ -770,32 +862,36 @@ footer { padding: 70px 0 40px; border-top: 1px solid var(--border); position: re
               <div class="pill">LIVE</div>
             </div>
             <div class="ui-players">
+              <!-- Player 1: Using skin1.png -->
               <div class="ui-player">
-                <div class="ui-avatar" style="background: linear-gradient(135deg,#A855F7,#7C3AED)">A</div>
+                <img class="ui-avatar" src="avatars/skin1.png" alt="Alex_MC" />
                 <div class="ui-info">
                   <div class="ui-name"><span>Alex_MC</span><span class="dist">3.2m</span></div>
                   <div class="ui-meter"><span style="width:82%"></span></div>
                 </div>
                 <div class="ui-mic">🎤</div>
               </div>
+              <!-- Player 2: Using skin3.png -->
               <div class="ui-player">
-                <div class="ui-avatar" style="background: linear-gradient(135deg,#FBBF24,#F59E0B)">S</div>
+                <img class="ui-avatar" src="avatars/skin3.png" alt="Steve_B" />
                 <div class="ui-info">
                   <div class="ui-name"><span>Steve_B</span><span class="dist">7.8m</span></div>
                   <div class="ui-meter"><span style="width:55%"></span></div>
                 </div>
                 <div class="ui-mic">🎤</div>
               </div>
+              <!-- Player 3: Using skin4.png -->
               <div class="ui-player">
-                <div class="ui-avatar" style="background: linear-gradient(135deg,#34D399,#10B981)">C</div>
+                <img class="ui-avatar" src="avatars/skin4.png" alt="Creeper_X" />
                 <div class="ui-info">
                   <div class="ui-name"><span>Creeper_X</span><span class="dist">1.1m</span></div>
                   <div class="ui-meter"><span style="width:96%"></span></div>
                 </div>
                 <div class="ui-mic">🎤</div>
               </div>
+              <!-- Player 4: Using skin7.png -->
               <div class="ui-player">
-                <div class="ui-avatar" style="background: linear-gradient(135deg,#60A5FA,#3B82F6)">N</div>
+                <img class="ui-avatar" src="avatars/skin7.png" alt="Notch" />
                 <div class="ui-info">
                   <div class="ui-name"><span>Notch</span><span class="dist">14.5m</span></div>
                   <div class="ui-meter"><span style="width:22%"></span></div>
@@ -827,7 +923,6 @@ footer { padding: 70px 0 40px; border-top: 1px solid var(--border); position: re
     <div class="marquee-item"><span class="dot"></span>Lua · Java · Kotlin</div>
     <div class="marquee-item"><span class="dot"></span>ARM64</div>
     <div class="marquee-item"><span class="dot"></span>.AntEgg Mods</div>
-    <!-- duplicate for seamless loop -->
     <div class="marquee-item"><span class="dot"></span>Native C++ Mods</div>
     <div class="marquee-item"><span class="dot"></span>Proximity Voice</div>
     <div class="marquee-item"><span class="dot"></span>Replay Editor</div>
@@ -849,19 +944,26 @@ footer { padding: 70px 0 40px; border-top: 1px solid var(--border); position: re
     </div>
 
     <div class="bento">
-      <!-- Voice Chat — big -->
       <div class="bento-card span-3">
         <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg></div>
         <h3>Proximity Voice Chat</h3>
         <p>Hear players based on in-game distance. Live mic icons above every head, automatic volume falloff, zero server required.</p>
         <div class="feature-preview">
-          <div class="voice-row"><div class="av" style="background:linear-gradient(135deg,#A855F7,#7C3AED)">A</div><div class="nm">Alex_MC · 3.2m</div><div class="mt"><span style="width:82%"></span></div></div>
-          <div class="voice-row"><div class="av" style="background:linear-gradient(135deg,#34D399,#10B981)">C</div><div class="nm">Creeper_X · 1.1m</div><div class="mt"><span style="width:96%"></span></div></div>
-          <div class="voice-row" style="margin-bottom:0"><div class="av" style="background:linear-gradient(135deg,#60A5FA,#3B82F6)">N</div><div class="nm">Notch · 14.5m</div><div class="mt"><span style="width:22%"></span></div></div>
+          <div class="voice-row">
+            <img class="av" src="avatars/skin1.png" alt="Alex" />
+            <div class="nm">Alex_MC · 3.2m</div><div class="mt"><span style="width:82%"></span></div>
+          </div>
+          <div class="voice-row">
+            <img class="av" src="avatars/skin4.png" alt="Creeper" />
+            <div class="nm">Creeper_X · 1.1m</div><div class="mt"><span style="width:96%"></span></div>
+          </div>
+          <div class="voice-row" style="margin-bottom:0">
+            <img class="av" src="avatars/skin7.png" alt="Notch" />
+            <div class="nm">Notch · 14.5m</div><div class="mt"><span style="width:22%"></span></div>
+          </div>
         </div>
       </div>
 
-      <!-- PvP HUD -->
       <div class="bento-card span-3">
         <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
         <h3>PvP Suite HUD</h3>
@@ -876,7 +978,6 @@ footer { padding: 70px 0 40px; border-top: 1px solid var(--border); position: re
         </div>
       </div>
 
-      <!-- Replay -->
       <div class="bento-card span-2">
         <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg></div>
         <h3>Built-in Replay</h3>
@@ -891,7 +992,6 @@ footer { padding: 70px 0 40px; border-top: 1px solid var(--border); position: re
         </div>
       </div>
 
-      <!-- .AntEgg -->
       <div class="bento-card span-2">
         <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C8 2 5 5 5 9c0 3 2 5 2 8 0 2 1 3 2 3h6c1 0 2-1 2-3 0-3 2-5 2-8 0-4-3-7-7-7z"/><path d="M12 2v18"/></svg></div>
         <h3>.AntEgg Mods</h3>
@@ -905,14 +1005,12 @@ footer { padding: 70px 0 40px; border-top: 1px solid var(--border); position: re
         </div>
       </div>
 
-      <!-- JavaBridge -->
       <div class="bento-card span-2">
         <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
         <h3>JavaBridge</h3>
         <p>AI-assisted porting of Java Edition mods to Bedrock. Your old favorites, reborn.</p>
       </div>
 
-      <!-- Perf bar -->
       <div class="bento-card span-6">
         <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
         <h3>Powered by ApexAntLamina</h3>
@@ -939,22 +1037,32 @@ footer { padding: 70px 0 40px; border-top: 1px solid var(--border); position: re
     </div>
 
     <div class="showcase-grid">
-      <!-- Voice -->
       <div class="showcase-card">
         <div class="sc-visual">
           <div style="font-family:'Space Grotesk';font-weight:700;font-size:12px;color:#F4EEFF;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center;">Voice Chat<span style="font-size:9px;color:#34D399;background:rgba(52,211,153,0.15);padding:2px 7px;border-radius:100px;">LIVE</span></div>
           <div style="flex:1;display:flex;flex-direction:column;gap:6px;">
-            <div class="voice-row"><div class="av" style="background:linear-gradient(135deg,#A855F7,#7C3AED)">A</div><div class="nm">Alex_MC</div><div class="mt"><span style="width:82%"></span></div></div>
-            <div class="voice-row"><div class="av" style="background:linear-gradient(135deg,#34D399,#10B981)">C</div><div class="nm">Creeper_X</div><div class="mt"><span style="width:96%"></span></div></div>
-            <div class="voice-row"><div class="av" style="background:linear-gradient(135deg,#FBBF24,#F59E0B)">S</div><div class="nm">Steve_B</div><div class="mt"><span style="width:58%"></span></div></div>
-            <div class="voice-row" style="margin-bottom:0"><div class="av" style="background:linear-gradient(135deg,#60A5FA,#3B82F6)">N</div><div class="nm">Notch</div><div class="mt"><span style="width:22%"></span></div></div>
+            <div class="voice-row">
+              <img class="av" src="avatars/skin1.png" alt="Alex" />
+              <div class="nm">Alex_MC</div><div class="mt"><span style="width:82%"></span></div>
+            </div>
+            <div class="voice-row">
+              <img class="av" src="avatars/skin3.png" alt="Steve" />
+              <div class="nm">Steve_B</div><div class="mt"><span style="width:58%"></span></div>
+            </div>
+            <div class="voice-row">
+              <img class="av" src="avatars/skin4.png" alt="Creeper" />
+              <div class="nm">Creeper_X</div><div class="mt"><span style="width:96%"></span></div>
+            </div>
+            <div class="voice-row" style="margin-bottom:0">
+              <img class="av" src="avatars/skin7.png" alt="Notch" />
+              <div class="nm">Notch</div><div class="mt"><span style="width:22%"></span></div>
+            </div>
           </div>
         </div>
         <h3>Proximity Voice</h3>
         <p>Distance-based audio falloff with live mic indicators. Talk like you're actually there.</p>
       </div>
 
-      <!-- Replay -->
       <div class="showcase-card">
         <div class="sc-visual">
           <div class="sc-replay-video">
@@ -974,7 +1082,6 @@ footer { padding: 70px 0 40px; border-top: 1px solid var(--border); position: re
         <p>Record, trim, and export PvP clips straight to Discord or YouTube — no watermark, no lag.</p>
       </div>
 
-      <!-- PvP -->
       <div class="showcase-card">
         <div class="sc-visual">
           <div class="sc-pvp">
@@ -1130,6 +1237,20 @@ footer { padding: 70px 0 40px; border-top: 1px solid var(--border); position: re
       </div>
       <h3>GlowberryClient Discord</h3>
       <p>Talk to the dev team, test beta builds, share feedback, and find people to play with. No invite expiration — this link works forever.</p>
+
+      <div class="discord-stats">
+        <div class="discord-stat loading" id="stat-online">
+          <span class="pulse"></span>
+          <span class="label">Online</span>
+          <span class="value online" data-discord-online>—</span>
+        </div>
+        <div class="discord-stat loading" id="stat-members">
+          <svg style="width:14px;height:14px;color:var(--discord);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <span class="label">Members</span>
+          <span class="value" data-discord-members>—</span>
+        </div>
+      </div>
+
       <a class="btn btn-discord" href="https://discord.gg/VMGXExhxxA" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
         Join the server
@@ -1232,7 +1353,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
   });
 });
 
-// ===== 3D tilt (desktop only) =====
+// ===== 3D tilt =====
 if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
   document.querySelectorAll('.bento-card, .showcase-card').forEach(card => {
     card.addEventListener('mousemove', (e) => {
@@ -1241,30 +1362,47 @@ if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
       const y = (e.clientY - r.top) / r.height - 0.5;
       card.style.transform = `translateY(-4px) perspective(900px) rotateY(${x * 6}deg) rotateX(${-y * 6}deg)`;
     });
-    card.addEventListener('mouseleave', () => {
-      card.style.transform = '';
-    });
+    card.addEventListener('mouseleave', () => { card.style.transform = ''; });
   });
 }
 
-// ===== Dynamic downloads =====
+// ===== Dynamic GitHub downloads + Star Progress =====
 const REPO = 'ChimeraAnt-DEV/GlowberryClient';
-async function loadDownloads() {
+const STAR_GOAL = 16;
+
+async function loadGithubData() {
   const stableBtn = document.getElementById('download-stable');
   const betaBtn = document.getElementById('download-beta');
   const checksumEl = document.getElementById('checksum-display');
-  if (!stableBtn) return;
+  const starCountEl = document.getElementById('star-count');
+  const starFillEl = document.getElementById('star-progress-fill');
+
   try {
-    const res = await fetch(`https://api.github.com/repos/${REPO}/releases?per_page=30`);
-    if (!res.ok) throw new Error('API failed');
-    const releases = await res.json();
+    // Fetch repo data (stars)
+    const repoRes = await fetch(`https://api.github.com/repos/${REPO}`);
+    if (repoRes.ok) {
+      const repoData = await repoRes.json();
+      const stars = repoData.stargazers_count || 0;
+      if (starCountEl) starCountEl.textContent = stars;
+      if (starFillEl) {
+        const pct = Math.min((stars / STAR_GOAL) * 100, 100);
+        setTimeout(() => { starFillEl.style.width = pct + '%'; }, 500);
+      }
+    }
+
+    // Fetch releases (downloads)
+    const relRes = await fetch(`https://api.github.com/repos/${REPO}/releases?per_page=30`);
+    if (!relRes.ok) throw new Error('API failed');
+    const releases = await relRes.json();
     const stable = releases.find(r => !r.draft && !r.tag_name.startsWith('BETA'));
     const beta = releases.find(r => !r.draft && r.tag_name.startsWith('BETA'));
+    
     if (stable) {
       const apk = stable.assets.find(a => a.name.toLowerCase().endsWith('.apk'));
       const sha = stable.assets.find(a => /\.(sha256|sha256sum|sha256\.txt)$/i.test(a.name));
       stableBtn.href = apk ? apk.browser_download_url : stable.html_url;
       stableBtn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Download APK (${stable.tag_name})`;
+      
       if (sha && checksumEl) {
         try {
           const shaRes = await fetch(sha.browser_download_url);
@@ -1277,6 +1415,7 @@ async function loadDownloads() {
         } catch (e) {}
       }
     }
+    
     if (beta) {
       betaBtn.href = beta.html_url;
       betaBtn.textContent = `Latest beta (${beta.tag_name})`;
@@ -1284,11 +1423,55 @@ async function loadDownloads() {
       betaBtn.style.display = 'none';
     }
   } catch (e) {
-    console.warn('Using fallback links:', e);
+    console.warn('GitHub API error:', e);
+    if (starCountEl) starCountEl.textContent = '?';
   }
 }
-loadDownloads();
+loadGithubData();
+
+// ===== LIVE DISCORD STATS =====
+const DISCORD_INVITE = 'VMGXExhxxA';
+
+function setDiscordStats(online, members) {
+  document.querySelectorAll('[data-discord-online]').forEach(el => {
+    el.textContent = online.toLocaleString();
+  });
+  document.querySelectorAll('[data-discord-members]').forEach(el => {
+    el.textContent = members.toLocaleString();
+  });
+  document.getElementById('nav-discord-pill')?.classList.remove('loading');
+  document.getElementById('stat-online')?.classList.remove('loading');
+  document.getElementById('stat-members')?.classList.remove('loading');
+}
+
+function setDiscordError() {
+  document.querySelectorAll('[data-discord-online], [data-discord-members]').forEach(el => {
+    el.textContent = '—';
+  });
+  document.getElementById('nav-discord-pill')?.classList.add('loading');
+}
+
+async function loadDiscordStats() {
+  try {
+    const res = await fetch(
+      `https://discord.com/api/v9/invites/${DISCORD_INVITE}?with_counts=true`,
+      { headers: { 'Accept': 'application/json' } }
+    );
+    if (!res.ok) throw new Error('Discord API error ' + res.status);
+    const data = await res.json();
+    const online = Number(data.approximate_presence_count || 0);
+    const members = Number(data.approximate_member_count || 0);
+    if (online === 0 && members === 0) throw new Error('Empty response');
+    setDiscordStats(online, members);
+  } catch (e) {
+    console.warn('Discord stats unavailable:', e);
+    setDiscordError();
+  }
+}
+
+loadDiscordStats();
+setInterval(loadDiscordStats, 60000);
 </script>
 
 </body>
-             </html>
+               </html>
