@@ -1,644 +1,698 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 <title>GlowberryClient — Minecraft Bedrock, Reinvented</title>
 <meta name="description" content="The free Android launcher for Minecraft Bedrock. Native C++ mods, Proximity Voice Chat, built-in Replay, and a full PvP suite." />
-<meta name="theme-color" content="#7C3AED" />
+<meta name="theme-color" content="#0B0518" />
 <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/ChimeraAnt-DEV/Glowberry-Client-LOGO/main/In%20Mod%20Menu%20Icon.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
 <style>
 /* ============================================================
-   THEME TOKENS
+   TOKENS
    ============================================================ */
 :root[data-theme="light"] {
-  --bg: #FBF9FF;
-  --bg-2: #F3EEFF;
-  --bg-3: #FFFFFF;
-  --surface: rgba(255, 255, 255, 0.85);
+  --bg: #F7F4FF;
+  --bg-2: #EFE9FF;
+  --surface: rgba(255,255,255,0.72);
   --surface-solid: #FFFFFF;
-  --border: rgba(124, 58, 237, 0.12);
-  --border-strong: rgba(124, 58, 237, 0.24);
-  --text: #1A0B2E;
-  --text-2: #4B3D66;
+  --surface-2: #F5F0FF;
+  --border: rgba(124,58,237,0.10);
+  --border-strong: rgba(124,58,237,0.22);
+  --text: #14052B;
+  --text-2: #3D2A66;
   --muted: #7A6A94;
   --accent: #7C3AED;
   --accent-2: #A855F7;
   --accent-soft: #EDE4FF;
-  --gold: #F59E0B;
-  --gold-2: #FBBF24;
-  --gold-soft: #FEF3C7;
-  --shadow-sm: 0 1px 2px rgba(124, 58, 237, 0.06), 0 2px 8px rgba(124, 58, 237, 0.04);
-  --shadow-md: 0 4px 12px rgba(124, 58, 237, 0.08), 0 12px 32px rgba(124, 58, 237, 0.06);
-  --shadow-lg: 0 12px 32px rgba(124, 58, 237, 0.12), 0 32px 64px rgba(124, 58, 237, 0.08);
-  --glow: 0 0 60px rgba(124, 58, 237, 0.18);
+  --gold: #E68A00;
+  --gold-2: #F59E0B;
+  --gold-soft: #FFF3D6;
+  --green: #10B981;
+  --discord: #5865F2;
+  --shadow-sm: 0 1px 2px rgba(20,5,43,0.05), 0 2px 10px rgba(124,58,237,0.05);
+  --shadow-md: 0 6px 20px rgba(20,5,43,0.08), 0 16px 40px rgba(124,58,237,0.08);
+  --shadow-lg: 0 24px 60px rgba(124,58,237,0.18), 0 48px 100px rgba(124,58,237,0.10);
+  --glow: 0 0 80px rgba(124,58,237,0.25);
+  --grain: 0.035;
 }
 :root[data-theme="dark"] {
-  --bg: #0B0518;
-  --bg-2: #16082E;
-  --bg-3: #1F0B3D;
-  --surface: rgba(31, 11, 61, 0.7);
-  --surface-solid: #1A0933;
-  --border: rgba(168, 85, 247, 0.16);
-  --border-strong: rgba(168, 85, 247, 0.32);
-  --text: #F5F0FF;
-  --text-2: #D0BFFF;
-  --muted: #9B87C2;
+  --bg: #07030F;
+  --bg-2: #100525;
+  --surface: rgba(24,10,48,0.62);
+  --surface-solid: #14082B;
+  --surface-2: #1B0B38;
+  --border: rgba(168,85,247,0.14);
+  --border-strong: rgba(168,85,247,0.30);
+  --text: #F4EEFF;
+  --text-2: #C8B4F0;
+  --muted: #9181B8;
   --accent: #A855F7;
   --accent-2: #C084FC;
-  --accent-soft: rgba(168, 85, 247, 0.15);
+  --accent-soft: rgba(168,85,247,0.14);
   --gold: #FBBF24;
   --gold-2: #FCD34D;
-  --gold-soft: rgba(251, 191, 36, 0.12);
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
-  --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.5);
-  --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.6);
-  --glow: 0 0 80px rgba(168, 85, 247, 0.35);
+  --gold-soft: rgba(251,191,36,0.12);
+  --green: #34D399;
+  --discord: #5865F2;
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.5);
+  --shadow-md: 0 6px 24px rgba(0,0,0,0.5);
+  --shadow-lg: 0 24px 80px rgba(0,0,0,0.6);
+  --glow: 0 0 100px rgba(168,85,247,0.35);
+  --grain: 0.05;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
 html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
   background: var(--bg);
   color: var(--text);
-  line-height: 1.6;
+  line-height: 1.55;
   overflow-x: hidden;
   position: relative;
-  transition: background 0.4s ease, color 0.4s ease;
   min-height: 100vh;
+  transition: background 0.4s ease, color 0.4s ease;
+  font-feature-settings: "ss01", "cv01";
+}
+h1,h2,h3,h4,.font-display { font-family: 'Space Grotesk', 'Outfit', sans-serif; letter-spacing: -0.02em; }
+.mono { font-family: 'JetBrains Mono', monospace; }
+
+/* Grain overlay */
+body::after {
+  content:''; position: fixed; inset: 0; pointer-events: none; z-index: 1;
+  opacity: var(--grain);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay;
 }
 
 /* ============================================================
-   BACKGROUND LAYERS
+   ANNOUNCEMENT BAR
    ============================================================ */
-.bg-layer {
-  position: fixed; inset: 0; z-index: -2; pointer-events: none;
-  overflow: hidden;
+.announce {
+  position: relative; z-index: 101;
+  padding: 9px 16px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2), var(--gold));
+  background-size: 200% 100%;
+  animation: slideBg 8s linear infinite;
+  color: #fff; font-size: 12.5px; font-weight: 600; letter-spacing: 0.02em;
+  text-align: center;
+  display: flex; align-items: center; justify-content: center; gap: 10px;
 }
-.bg-grid {
-  position: absolute; inset: -1px;
-  background-image:
-    linear-gradient(var(--border) 1px, transparent 1px),
-    linear-gradient(90deg, var(--border) 1px, transparent 1px);
-  background-size: 56px 56px;
-  mask-image: radial-gradient(ellipse at 50% 0%, black 20%, transparent 75%);
-  -webkit-mask-image: radial-gradient(ellipse at 50% 0%, black 20%, transparent 75%);
-  opacity: 0.7;
-}
-.orb {
-  position: absolute; border-radius: 50%; filter: blur(90px);
-  will-change: transform; opacity: 0.55;
-}
-.orb-1 { width: 620px; height: 620px; background: var(--accent); top: -180px; left: -180px; animation: drift1 22s ease-in-out infinite; }
-.orb-2 { width: 480px; height: 480px; background: var(--gold); top: 30%; right: -140px; opacity: 0.28; animation: drift2 26s ease-in-out infinite; }
-.orb-3 { width: 700px; height: 700px; background: var(--accent-2); bottom: -260px; left: 25%; opacity: 0.22; animation: drift3 30s ease-in-out infinite; }
-
-@keyframes drift1 { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(80px, 60px) scale(1.1); } }
-@keyframes drift2 { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(-60px, 80px) scale(1.15); } }
-@keyframes drift3 { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(50px, -70px) scale(0.95); } }
-
-/* ============================================================
-   LAYOUT
-   ============================================================ */
-.container { max-width: 1240px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+.announce .dot { width: 6px; height: 6px; border-radius: 50%; background: #fff; animation: blink 1.6s ease infinite; }
+.announce a { color: #fff; text-decoration: underline; text-underline-offset: 3px; }
+.announce button { position: absolute; right: 12px; background: none; border: none; color: #fff; cursor: pointer; opacity: 0.7; font-size: 16px; line-height: 1; padding: 4px 6px; }
+.announce.hidden { display: none; }
+@keyframes slideBg { to { background-position: 200% 0; } }
+@keyframes blink { 50% { opacity: 0.3; } }
 
 /* ============================================================
    SCROLL PROGRESS
    ============================================================ */
-.scroll-progress {
-  position: fixed; top: 0; left: 0; right: 0; height: 3px; z-index: 999;
-  background: transparent;
-  pointer-events: none;
-}
-.scroll-progress-bar {
-  height: 100%; width: 0%;
-  background: linear-gradient(90deg, var(--accent), var(--gold), var(--accent-2));
-  transition: width 0.1s linear;
-  box-shadow: 0 0 12px var(--accent);
-}
+.scroll-progress { position: fixed; top: 0; left: 0; right: 0; height: 2px; z-index: 999; pointer-events: none; }
+.scroll-progress-bar { height: 100%; width: 0%; background: linear-gradient(90deg, var(--accent), var(--gold)); box-shadow: 0 0 12px var(--accent); }
 
 /* ============================================================
    NAV
    ============================================================ */
 header.nav {
   position: sticky; top: 0; z-index: 100;
-  padding: 14px 0;
-  backdrop-filter: blur(24px) saturate(1.8);
-  -webkit-backdrop-filter: blur(24px) saturate(1.8);
+  padding: 12px 0;
+  backdrop-filter: blur(24px) saturate(1.6);
+  -webkit-backdrop-filter: blur(24px) saturate(1.6);
   background: var(--surface);
   border-bottom: 1px solid var(--border);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: padding 0.3s ease, box-shadow 0.3s ease;
 }
 header.nav.scrolled { padding: 8px 0; box-shadow: var(--shadow-md); }
 .nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
-.brand {
-  display: flex; align-items: center; gap: 12px;
-  font-weight: 800; font-size: 18px; letter-spacing: -0.3px;
-  text-decoration: none; color: var(--text);
-  transition: opacity 0.2s;
-}
-.brand:hover { opacity: 0.8; }
-.brand img { width: 38px; height: 38px; animation: bob 4s ease-in-out infinite; }
-@keyframes bob { 0%,100% { transform: translateY(0) rotate(-2deg); } 50% { transform: translateY(-4px) rotate(2deg); } }
-.nav-links { display: flex; gap: 4px; align-items: center; }
-.nav-links a {
-  color: var(--text-2); text-decoration: none; font-size: 14px; font-weight: 500;
-  padding: 8px 14px; border-radius: 100px;
-  transition: all 0.25s ease;
-  position: relative;
-}
+.brand { display: flex; align-items: center; gap: 11px; font-family: 'Space Grotesk'; font-weight: 700; font-size: 16px; letter-spacing: -0.02em; text-decoration: none; color: var(--text); }
+.brand img { width: 34px; height: 34px; transition: transform 0.3s; }
+.brand:hover img { transform: rotate(-8deg) scale(1.05); }
+.nav-links { display: flex; gap: 2px; align-items: center; }
+.nav-links a { color: var(--text-2); text-decoration: none; font-size: 13.5px; font-weight: 500; padding: 8px 14px; border-radius: 100px; transition: all 0.2s; }
 .nav-links a:hover { color: var(--accent); background: var(--accent-soft); }
-
 .theme-toggle {
-  width: 40px; height: 40px; border-radius: 12px;
+  width: 38px; height: 38px; border-radius: 11px; margin-left: 6px;
   background: var(--surface-solid); border: 1px solid var(--border);
   display: flex; align-items: center; justify-content: center;
-  cursor: pointer; transition: all 0.25s ease;
-  color: var(--text-2);
+  cursor: pointer; transition: all 0.25s; color: var(--text-2);
 }
-.theme-toggle:hover { border-color: var(--accent); color: var(--accent); transform: rotate(15deg); }
-.theme-toggle svg { width: 18px; height: 18px; }
+.theme-toggle:hover { border-color: var(--accent); color: var(--accent); }
+.theme-toggle svg { width: 16px; height: 16px; }
 .theme-toggle .sun { display: none; }
 :root[data-theme="dark"] .theme-toggle .sun { display: block; }
 :root[data-theme="dark"] .theme-toggle .moon { display: none; }
 
 /* ============================================================
+   LAYOUT
+   ============================================================ */
+.container { max-width: 1200px; margin: 0 auto; padding: 0 22px; position: relative; z-index: 2; }
+.orb-bg { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+.orb { position: absolute; border-radius: 50%; filter: blur(100px); opacity: 0.5; }
+.orb-1 { width: 600px; height: 600px; background: var(--accent); top: -200px; left: -150px; animation: float1 24s ease-in-out infinite; }
+.orb-2 { width: 500px; height: 500px; background: var(--gold); top: 40%; right: -200px; opacity: 0.18; animation: float2 28s ease-in-out infinite; }
+.orb-3 { width: 700px; height: 700px; background: var(--accent-2); bottom: -300px; left: 30%; opacity: 0.15; animation: float3 32s ease-in-out infinite; }
+@keyframes float1 { 50% { transform: translate(80px, 60px) scale(1.1); } }
+@keyframes float2 { 50% { transform: translate(-70px, 90px) scale(1.15); } }
+@keyframes float3 { 50% { transform: translate(60px, -80px) scale(0.95); } }
+
+/* ============================================================
    BUTTONS
    ============================================================ */
 .btn {
-  padding: 14px 28px; border-radius: 100px; font-weight: 700; font-size: 15px;
-  text-decoration: none; transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-  border: none; cursor: pointer; display: inline-flex; align-items: center; gap: 10px;
+  padding: 13px 24px; border-radius: 100px; font-weight: 600; font-size: 14px;
+  font-family: inherit; text-decoration: none; transition: all 0.25s cubic-bezier(0.4,0,0.2,1);
+  border: none; cursor: pointer; display: inline-flex; align-items: center; gap: 9px;
   position: relative; overflow: hidden; white-space: nowrap;
-  font-family: inherit;
 }
-.btn svg { width: 18px; height: 18px; flex-shrink: 0; }
-.btn-primary {
-  background: linear-gradient(135deg, var(--accent), var(--accent-2));
-  color: #FFFFFF; box-shadow: var(--shadow-md), 0 0 40px rgba(124, 58, 237, 0.25);
-}
-.btn-primary:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg), 0 0 60px rgba(124, 58, 237, 0.4); }
-.btn-primary::after {
-  content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.35), transparent);
-  transition: left 0.7s ease;
-}
+.btn svg { width: 16px; height: 16px; flex-shrink: 0; }
+.btn-primary { background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #fff; box-shadow: 0 8px 30px rgba(124,58,237,0.35); }
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 14px 40px rgba(124,58,237,0.5); }
+.btn-primary::after { content:''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.35), transparent); transition: left 0.7s; }
 .btn-primary:hover::after { left: 100%; }
-.btn-secondary {
-  background: var(--surface-solid); color: var(--text);
-  border: 1px solid var(--border-strong); backdrop-filter: blur(10px);
-}
-.btn-secondary:hover { transform: translateY(-3px); border-color: var(--accent); color: var(--accent); box-shadow: var(--shadow-md); }
-.btn-gold {
-  background: linear-gradient(135deg, var(--gold), var(--gold-2));
-  color: #4B1F00; box-shadow: var(--shadow-md), 0 0 40px rgba(245, 158, 11, 0.3);
-}
-.btn-gold:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg), 0 0 60px rgba(245, 158, 11, 0.45); }
+.btn-secondary { background: var(--surface-solid); color: var(--text); border: 1px solid var(--border-strong); }
+.btn-secondary:hover { transform: translateY(-2px); border-color: var(--accent); color: var(--accent); }
+.btn-discord { background: var(--discord); color: #fff; box-shadow: 0 8px 30px rgba(88,101,242,0.4); }
+.btn-discord:hover { transform: translateY(-2px); box-shadow: 0 14px 40px rgba(88,101,242,0.6); }
 
 /* ============================================================
    HERO
    ============================================================ */
-.hero { padding: 90px 0 100px; text-align: center; position: relative; }
+.hero { padding: 70px 0 60px; position: relative; }
+.hero-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 60px; align-items: center; }
 .hero-badge {
   display: inline-flex; align-items: center; gap: 8px;
-  padding: 8px 18px; border-radius: 100px;
+  padding: 7px 14px; border-radius: 100px;
   background: var(--accent-soft); color: var(--accent);
-  font-size: 13px; font-weight: 600; letter-spacing: 0.3px;
-  margin-bottom: 32px;
-  border: 1px solid var(--border-strong);
-  animation: fadeUp 0.8s ease forwards;
+  font-size: 12px; font-weight: 600; letter-spacing: 0.02em;
+  margin-bottom: 26px; border: 1px solid var(--border-strong);
 }
-.hero-badge .pulse {
-  width: 8px; height: 8px; border-radius: 50%; background: var(--accent);
-  animation: livePulse 2s ease-in-out infinite;
-}
-@keyframes livePulse { 0%,100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(1.4); } }
-
-.berry-wrap { position: relative; display: inline-block; margin-bottom: 36px; }
-.berry-wrap img {
-  width: 190px; height: 190px; position: relative; z-index: 2;
-  animation: berryFloat 6s ease-in-out infinite;
-  filter: drop-shadow(0 0 60px rgba(245, 158, 11, 0.55));
-}
-.berry-wrap::after {
-  content: ''; position: absolute; inset: -45%; border-radius: 50%;
-  background: radial-gradient(circle, var(--glow) 0%, transparent 60%);
-  animation: pulse 3.5s ease-in-out infinite; z-index: 1;
-}
-@keyframes berryFloat { 0%,100% { transform: translateY(0) rotate(-2deg); } 50% { transform: translateY(-18px) rotate(2deg); } }
-@keyframes pulse { 0%,100% { transform: scale(1); opacity: 0.55; } 50% { transform: scale(1.18); opacity: 0.95; } }
+.hero-badge .live { width: 7px; height: 7px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 4px rgba(16,185,129,0.2); animation: livePulse 2s ease infinite; }
+@keyframes livePulse { 50% { box-shadow: 0 0 0 8px rgba(16,185,129,0.05); } }
 
 .hero h1 {
-  font-size: clamp(42px, 9vw, 96px); font-weight: 900;
-  letter-spacing: -3.5px; line-height: 0.95;
-  background: linear-gradient(135deg, var(--text) 0%, var(--accent) 55%, var(--gold) 100%);
-  background-size: 220% 220%;
+  font-size: clamp(42px, 6.5vw, 82px);
+  font-weight: 700; line-height: 0.98;
+  letter-spacing: -0.045em; margin-bottom: 22px;
+}
+.hero h1 .grad {
+  background: linear-gradient(120deg, var(--accent), var(--gold) 80%);
   -webkit-background-clip: text; -webkit-text-fill-color: transparent;
   background-clip: text;
-  animation: gradientShift 8s ease infinite;
-  margin-bottom: 22px;
 }
-@keyframes gradientShift { 0%,100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+.hero p.lede { font-size: 17px; color: var(--muted); max-width: 520px; margin-bottom: 34px; line-height: 1.6; }
+.hero .cta { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 32px; }
+.hero-meta { display: flex; gap: 22px; flex-wrap: wrap; font-size: 12.5px; color: var(--muted); }
+.hero-meta span { display: inline-flex; align-items: center; gap: 7px; }
+.hero-meta svg { width: 13px; height: 13px; color: var(--accent); }
 
-.hero .tagline {
-  font-size: clamp(14px, 1.8vw, 17px); color: var(--muted);
-  letter-spacing: 7px; font-weight: 600; margin-bottom: 44px;
-  opacity: 0; animation: fadeUp 0.8s ease 0.3s forwards;
+/* PHONE MOCKUP */
+.hero-visual { position: relative; display: flex; justify-content: center; }
+.phone {
+  width: 290px; height: 590px; border-radius: 44px;
+  background: #0a0418;
+  border: 1px solid rgba(255,255,255,0.08);
+  padding: 12px;
+  box-shadow:
+    0 0 0 6px rgba(20,8,43,0.9),
+    0 0 0 8px rgba(168,85,247,0.15),
+    0 40px 80px rgba(124,58,237,0.45),
+    0 80px 160px rgba(124,58,237,0.2);
+  position: relative;
+  transform: rotate(-3deg);
+  transition: transform 0.6s cubic-bezier(0.4,0,0.2,1);
+  animation: phoneFloat 7s ease-in-out infinite;
 }
-.hero .cta {
-  display: inline-flex; gap: 14px; flex-wrap: wrap; justify-content: center;
-  opacity: 0; animation: fadeUp 0.8s ease 0.5s forwards;
+.phone:hover { transform: rotate(0deg) scale(1.03); }
+@keyframes phoneFloat { 50% { transform: rotate(-3deg) translateY(-14px); } }
+.phone::before {
+  content:''; position: absolute; top: 10px; left: 50%; transform: translateX(-50%);
+  width: 90px; height: 22px; background: #0a0418; border-radius: 100px; z-index: 5;
+  border: 1px solid rgba(255,255,255,0.06);
 }
-@keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+.phone-screen {
+  width: 100%; height: 100%; border-radius: 34px;
+  overflow: hidden; position: relative;
+  background: linear-gradient(160deg, #15082e 0%, #0a0418 100%);
+  display: flex; flex-direction: column;
+}
+.ui-status {
+  padding: 14px 22px 6px; display: flex; justify-content: space-between;
+  font-family: 'JetBrains Mono'; font-size: 10.5px; color: rgba(255,255,255,0.7); font-weight: 600;
+}
+.ui-header { padding: 8px 20px 14px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(168,85,247,0.12); }
+.ui-header .title { font-family: 'Space Grotesk'; font-weight: 700; font-size: 15px; color: #F4EEFF; letter-spacing: -0.01em; }
+.ui-header .pill { font-size: 9.5px; padding: 3px 8px; border-radius: 100px; background: rgba(16,185,129,0.15); color: #34D399; font-weight: 700; letter-spacing: 0.06em; }
 
-.hero-hint {
-  margin-top: 28px; font-size: 13px; color: var(--muted);
-  display: flex; align-items: center; justify-content: center; gap: 8px;
-  opacity: 0; animation: fadeUp 0.8s ease 0.7s forwards;
+.ui-players { padding: 12px 16px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+.ui-player {
+  display: grid; grid-template-columns: 34px 1fr auto; gap: 10px; align-items: center;
+  padding: 9px 11px; border-radius: 12px;
+  background: rgba(168,85,247,0.08); border: 1px solid rgba(168,85,247,0.10);
 }
-.hero-hint code {
-  font-family: 'JetBrains Mono', monospace; font-size: 12px;
-  background: var(--accent-soft); color: var(--accent);
-  padding: 3px 10px; border-radius: 6px;
+.ui-avatar {
+  width: 34px; height: 34px; border-radius: 9px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Space Grotesk'; font-weight: 700; font-size: 14px; color: #fff;
 }
+.ui-info { min-width: 0; }
+.ui-name { font-size: 12px; font-weight: 600; color: #F4EEFF; margin-bottom: 4px; display: flex; justify-content: space-between; }
+.ui-name .dist { font-family: 'JetBrains Mono'; font-size: 10px; color: #9181B8; }
+.ui-meter { height: 4px; background: rgba(255,255,255,0.06); border-radius: 100px; overflow: hidden; }
+.ui-meter span { display: block; height: 100%; border-radius: 100px; background: linear-gradient(90deg, #A855F7, #34D399); }
+.ui-mic { width: 26px; height: 26px; border-radius: 7px; background: rgba(16,185,129,0.15); display: flex; align-items: center; justify-content: center; color: #34D399; font-size: 12px; }
+.ui-mic.muted { background: rgba(239,68,68,0.15); color: #EF4444; }
+
+.ui-tabbar {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  padding: 10px 14px 18px; border-top: 1px solid rgba(168,85,247,0.12); gap: 4px;
+}
+.ui-tab { display: flex; flex-direction: column; align-items: center; gap: 3px; font-size: 8.5px; color: #9181B8; font-weight: 600; letter-spacing: 0.04em; }
+.ui-tab.active { color: #A855F7; }
+.ui-tab .ico { width: 22px; height: 22px; border-radius: 6px; background: rgba(168,85,247,0.1); display: flex; align-items: center; justify-content: center; font-size: 10px; }
+.ui-tab.active .ico { background: rgba(168,85,247,0.25); }
+
+/* Floating stat chips near phone */
+.float-chip {
+  position: absolute; padding: 9px 13px; border-radius: 12px;
+  background: var(--surface-solid); border: 1px solid var(--border-strong);
+  box-shadow: var(--shadow-md); font-size: 11.5px; font-weight: 600;
+  display: flex; align-items: center; gap: 7px; z-index: 6;
+  backdrop-filter: blur(10px);
+}
+.float-chip .ico { width: 22px; height: 22px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 11px; }
+.float-chip small { display: block; font-size: 9px; color: var(--muted); font-weight: 500; letter-spacing: 0.04em; }
+.chip-1 { top: 12%; left: -30px; animation: chipFloat 5s ease-in-out infinite; }
+.chip-2 { bottom: 22%; right: -40px; animation: chipFloat 5s ease-in-out infinite 1.2s; }
+.chip-3 { bottom: 8%; left: -10px; animation: chipFloat 5s ease-in-out infinite 2.4s; }
+@keyframes chipFloat { 50% { transform: translateY(-10px); } }
 
 /* ============================================================
-   STATS BAR
+   TECH MARQUEE
    ============================================================ */
-.stats {
-  padding: 44px 0; display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 24px;
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
+.marquee-wrap { padding: 40px 0; overflow: hidden; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); position: relative; }
+.marquee-wrap::before, .marquee-wrap::after {
+  content:''; position: absolute; top: 0; bottom: 0; width: 120px; z-index: 3; pointer-events: none;
 }
-.stat { text-align: center; }
-.stat .num {
-  font-size: 40px; font-weight: 900; letter-spacing: -1.5px;
-  background: linear-gradient(135deg, var(--accent), var(--gold));
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-  background-clip: text;
-  line-height: 1;
+.marquee-wrap::before { left: 0; background: linear-gradient(90deg, var(--bg), transparent); }
+.marquee-wrap::after { right: 0; background: linear-gradient(270deg, var(--bg), transparent); }
+.marquee { display: flex; gap: 60px; animation: scroll 30s linear infinite; width: max-content; }
+.marquee-item {
+  font-family: 'Space Grotesk'; font-size: 20px; font-weight: 600; letter-spacing: -0.02em;
+  color: var(--muted); opacity: 0.55; white-space: nowrap;
+  display: flex; align-items: center; gap: 14px;
+  transition: opacity 0.3s;
 }
-.stat .label {
-  font-size: 11px; color: var(--muted); letter-spacing: 2px;
-  text-transform: uppercase; margin-top: 8px; font-weight: 600;
-}
+.marquee-item:hover { opacity: 1; color: var(--accent); }
+.marquee-item .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+@keyframes scroll { to { transform: translateX(-50%); } }
 
 /* ============================================================
    SECTIONS
    ============================================================ */
-section.sect { padding: 100px 0; }
-section.sect h2 {
-  font-size: clamp(30px, 5vw, 50px); font-weight: 900;
-  letter-spacing: -1.5px; text-align: center; margin-bottom: 16px;
+section.sect { padding: 100px 0; position: relative; }
+.sect-head { max-width: 720px; margin: 0 auto 60px; text-align: center; }
+.sect-head .tag {
+  display: inline-block; font-family: 'JetBrains Mono'; font-size: 11px;
+  letter-spacing: 0.18em; color: var(--accent); text-transform: uppercase;
+  margin-bottom: 14px; font-weight: 600;
 }
-section.sect .sub {
-  text-align: center; color: var(--muted); font-size: 16px;
-  margin-bottom: 60px; max-width: 620px;
-  margin-left: auto; margin-right: auto;
+.sect-head h2 {
+  font-size: clamp(32px, 5vw, 54px); font-weight: 700;
+  letter-spacing: -0.035em; line-height: 1.02; margin-bottom: 16px;
 }
+.sect-head p { color: var(--muted); font-size: 16px; line-height: 1.6; }
 
 /* ============================================================
-   FEATURE GRID
+   BENTO GRID
    ============================================================ */
-.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
-.card {
+.bento { display: grid; grid-template-columns: repeat(6, 1fr); gap: 14px; }
+.bento-card {
   background: var(--surface-solid); border: 1px solid var(--border);
-  border-radius: 24px; padding: 32px;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  position: relative; overflow: hidden;
-  opacity: 0; transform: translateY(30px);
+  border-radius: 22px; padding: 26px; position: relative; overflow: hidden;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.4s ease;
+  opacity: 0; transform: translateY(28px);
+  grid-column: span 2;
+  min-height: 200px;
+  display: flex; flex-direction: column;
+  will-change: transform;
 }
-.card.visible { opacity: 1; transform: translateY(0); }
-.card::before {
-  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+.bento-card.visible { opacity: 1; transform: translateY(0); }
+.bento-card.span-3 { grid-column: span 3; min-height: 260px; }
+.bento-card.span-4 { grid-column: span 4; min-height: 240px; }
+.bento-card.span-2 { grid-column: span 2; }
+.bento-card.span-6 { grid-column: span 6; }
+.bento-card::before {
+  content:''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
   background: linear-gradient(90deg, transparent, var(--accent), transparent);
   opacity: 0; transition: opacity 0.35s;
 }
-.card:hover {
-  border-color: var(--border-strong);
-  transform: translateY(-6px);
-  box-shadow: var(--shadow-lg);
-}
-.card:hover::before { opacity: 1; }
-.card .icon-wrap {
-  width: 56px; height: 56px; border-radius: 16px;
-  display: flex; align-items: center; justify-content: center;
+.bento-card:hover { border-color: var(--border-strong); box-shadow: var(--shadow-lg); }
+.bento-card:hover::before { opacity: 1; }
+.bento-card .ico {
+  width: 44px; height: 44px; border-radius: 12px;
   background: linear-gradient(135deg, var(--accent-soft), var(--gold-soft));
   border: 1px solid var(--border-strong);
-  margin-bottom: 20px;
-  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  color: var(--accent);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--accent); margin-bottom: 16px;
+  transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
 }
-.card:hover .icon-wrap { transform: scale(1.12) rotate(-6deg); }
-.card .icon-wrap svg { width: 26px; height: 26px; }
-.card h3 { font-size: 20px; font-weight: 800; margin-bottom: 10px; letter-spacing: -0.4px; }
-.card p { font-size: 14.5px; color: var(--muted); line-height: 1.65; }
+.bento-card:hover .ico { transform: scale(1.1) rotate(-6deg); }
+.bento-card .ico svg { width: 20px; height: 20px; }
+.bento-card h3 { font-size: 19px; font-weight: 700; margin-bottom: 8px; letter-spacing: -0.015em; }
+.bento-card p { color: var(--muted); font-size: 14px; line-height: 1.6; }
+.bento-card .feature-preview {
+  margin-top: auto; padding-top: 20px;
+}
+
+/* Mini visual previews inside bento */
+.preview-hud {
+  border-radius: 12px; background: linear-gradient(160deg, #15082e, #0a0418);
+  padding: 14px; position: relative; overflow: hidden;
+  border: 1px solid rgba(168,85,247,0.15);
+}
+.preview-hud::before {
+  content:''; position: absolute; inset: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(168,85,247,0.15), transparent 60%);
+}
+.preview-row { display: flex; justify-content: space-between; align-items: center; position: relative; font-family: 'JetBrains Mono'; font-size: 10.5px; margin-bottom: 8px; }
+.preview-row:last-child { margin-bottom: 0; }
+.preview-row .k { color: #9181B8; letter-spacing: 0.05em; }
+.preview-row .v { color: #34D399; font-weight: 600; }
+.preview-row .v.gold { color: #FBBF24; }
+.preview-row .v.purple { color: #C084FC; }
+.preview-bar { height: 3px; background: rgba(255,255,255,0.08); border-radius: 100px; overflow: hidden; margin-top: 5px; }
+.preview-bar span { display: block; height: 100%; background: linear-gradient(90deg, #A855F7, #FBBF24); border-radius: 100px; }
+
+/* Avatar row for voices */
+.voice-row { display: flex; align-items: center; gap: 8px; padding: 7px 10px; border-radius: 10px; background: rgba(168,85,247,0.08); margin-bottom: 6px; border: 1px solid rgba(168,85,247,0.12); }
+.voice-row .av { width: 26px; height: 26px; border-radius: 7px; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; color: #fff; font-family: 'Space Grotesk'; }
+.voice-row .nm { flex: 1; font-size: 11.5px; font-weight: 600; color: #F4EEFF; }
+.voice-row .mt { width: 90px; height: 4px; background: rgba(255,255,255,0.08); border-radius: 100px; overflow: hidden; }
+.voice-row .mt span { display: block; height: 100%; background: linear-gradient(90deg, #A855F7, #34D399); }
+
+/* Replay strip */
+.replay-strip { display: flex; gap: 6px; margin-top: 8px; }
+.replay-thumb { flex: 1; height: 42px; border-radius: 8px; background: linear-gradient(135deg, #2a1152, #15082e); border: 1px solid rgba(168,85,247,0.15); position: relative; overflow: hidden; }
+.replay-thumb::after { content:''; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 60%, rgba(0,0,0,0.5)); }
+.replay-thumb.active { border-color: #A855F7; box-shadow: 0 0 0 1px #A855F7, 0 0 12px rgba(168,85,247,0.5); }
+.replay-thumb .time { position: absolute; bottom: 4px; left: 6px; font-family: 'JetBrains Mono'; font-size: 8.5px; color: #fff; z-index: 2; }
 
 /* ============================================================
-   SHOWCASE
+   SHOWCASE — 3 device mockups
    ============================================================ */
-.showcase {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 60px;
-  align-items: center; margin-bottom: 100px;
+.showcase-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+.showcase-card {
+  background: var(--surface-solid); border: 1px solid var(--border);
+  border-radius: 24px; padding: 26px; position: relative; overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4,0,0.2,1);
+  opacity: 0; transform: translateY(30px);
 }
-.showcase:nth-child(even) .showcase-text { order: 2; }
-.showcase-img {
-  border-radius: 28px; padding: 44px;
-  background: linear-gradient(135deg, var(--accent-soft), var(--surface-solid));
-  border: 1px solid var(--border-strong);
-  aspect-ratio: 1; display: flex; align-items: center; justify-content: center;
-  position: relative; overflow: hidden;
-  box-shadow: var(--shadow-md);
+.showcase-card.visible { opacity: 1; transform: translateY(0); }
+.showcase-card:hover { border-color: var(--border-strong); box-shadow: var(--shadow-lg); transform: translateY(-6px); }
+.showcase-card .sc-visual {
+  border-radius: 18px; aspect-ratio: 4/5; margin-bottom: 20px; position: relative; overflow: hidden;
+  background: linear-gradient(160deg, #180a32, #0a0418);
+  border: 1px solid rgba(168,85,247,0.15);
+  display: flex; flex-direction: column; padding: 14px;
 }
-.showcase-img::before {
-  content: ''; position: absolute; inset: 0;
-  background: radial-gradient(circle at 30% 30%, var(--glow), transparent 65%);
+.sc-visual::before { content:''; position: absolute; inset: 0; background: radial-gradient(circle at 30% 20%, rgba(168,85,247,0.2), transparent 60%); }
+.sc-visual > * { position: relative; z-index: 1; }
+
+/* Replay visual */
+.sc-replay-video {
+  flex: 1; border-radius: 12px; margin-bottom: 10px; position: relative; overflow: hidden;
+  background: linear-gradient(160deg, #3a1d6e, #1a0b38);
+  display: flex; align-items: center; justify-content: center;
 }
-.showcase-img svg {
-  width: 55%; height: 55%; color: var(--accent);
-  position: relative; z-index: 1;
-  filter: drop-shadow(0 0 30px rgba(124, 58, 237, 0.4));
+.sc-replay-video::before {
+  content:''; position: absolute; inset: 0;
+  background:
+    radial-gradient(circle at 30% 40%, rgba(251,191,36,0.35), transparent 40%),
+    radial-gradient(circle at 70% 60%, rgba(168,85,247,0.35), transparent 45%);
 }
-.showcase-text h3 { font-size: 32px; font-weight: 900; letter-spacing: -1px; margin-bottom: 16px; }
-.showcase-text p { color: var(--muted); font-size: 16px; line-height: 1.7; margin-bottom: 22px; }
-.showcase-text ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
-.showcase-text li { display: flex; align-items: center; gap: 10px; color: var(--text-2); font-size: 14.5px; }
-.showcase-text li svg { width: 18px; height: 18px; color: var(--accent); flex-shrink: 0; }
+.sc-play {
+  width: 44px; height: 44px; border-radius: 50%; background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.3);
+  display: flex; align-items: center; justify-content: center; color: #fff;
+  position: relative; z-index: 2;
+}
+.sc-play svg { width: 16px; height: 16px; margin-left: 2px; }
+.sc-timeline { padding: 4px 0; }
+.sc-timeline .bar { height: 4px; background: rgba(255,255,255,0.08); border-radius: 100px; position: relative; }
+.sc-timeline .bar span { display: block; height: 100%; width: 55%; background: linear-gradient(90deg, #A855F7, #FBBF24); border-radius: 100px; }
+.sc-timeline .bar::after { content:''; position: absolute; top: 50%; left: 55%; width: 11px; height: 11px; border-radius: 50%; background: #FBBF24; transform: translate(-50%,-50%); box-shadow: 0 0 0 3px rgba(251,191,36,0.25); }
+.sc-timeline .labels { display: flex; justify-content: space-between; font-family: 'JetBrains Mono'; font-size: 9px; color: #9181B8; margin-top: 6px; }
+
+/* PvP visual */
+.sc-pvp { flex: 1; border-radius: 12px; position: relative; overflow: hidden; background: linear-gradient(160deg, #1f0b3d, #0a0418); }
+.sc-pvp::before { content:''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 80%, rgba(251,191,36,0.15), transparent 50%); }
+.sc-crosshair { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 26px; height: 26px; }
+.sc-crosshair::before, .sc-crosshair::after { content:''; position: absolute; background: #FBBF24; box-shadow: 0 0 6px #FBBF24; }
+.sc-crosshair::before { left: 50%; top: 0; bottom: 0; width: 1.5px; transform: translateX(-50%); }
+.sc-crosshair::after { top: 50%; left: 0; right: 0; height: 1.5px; transform: translateY(-50%); }
+.sc-hud-corner {
+  position: absolute; padding: 6px 9px; border-radius: 8px;
+  background: rgba(10,4,24,0.7); backdrop-filter: blur(8px);
+  border: 1px solid rgba(168,85,247,0.25);
+  font-family: 'JetBrains Mono'; font-size: 9.5px;
+}
+.sc-hud-corner.tl { top: 10px; left: 10px; color: #34D399; }
+.sc-hud-corner.tr { top: 10px; right: 10px; color: #FBBF24; }
+.sc-hud-corner.bl { bottom: 10px; left: 10px; color: #C084FC; }
+.sc-health { position: absolute; bottom: 10px; left: 10px; right: 10px; height: 4px; background: rgba(255,255,255,0.08); border-radius: 100px; }
+.sc-health span { display: block; height: 100%; width: 78%; background: linear-gradient(90deg, #EF4444, #F87171); border-radius: 100px; }
+.sc-health-label { position: absolute; bottom: 20px; left: 10px; font-family: 'JetBrains Mono'; font-size: 9px; color: #F87171; font-weight: 600; }
+
+.showcase-card h3 { font-size: 20px; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 8px; }
+.showcase-card p { font-size: 13.5px; color: var(--muted); line-height: 1.55; }
 
 /* ============================================================
    STEPS
    ============================================================ */
-.steps {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 24px; counter-reset: step;
+.steps-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.step-card {
+  padding: 30px 22px 24px; border-radius: 20px; background: var(--surface-solid);
+  border: 1px solid var(--border); position: relative;
+  transition: all 0.35s; opacity: 0; transform: translateY(24px);
 }
-.step {
-  padding: 36px 24px 28px; border-radius: 22px;
-  background: var(--surface-solid); border: 1px solid var(--border);
-  text-align: center; position: relative;
-  transition: all 0.35s ease;
+.step-card.visible { opacity: 1; transform: translateY(0); }
+.step-card:hover { border-color: var(--accent); transform: translateY(-4px); box-shadow: var(--shadow-md); }
+.step-card .num {
+  position: absolute; top: -16px; left: 22px;
+  font-family: 'Space Grotesk'; font-size: 48px; font-weight: 700;
+  color: var(--accent); opacity: 0.15; line-height: 1; letter-spacing: -0.05em;
 }
-.step:hover { border-color: var(--border-strong); transform: translateY(-4px); box-shadow: var(--shadow-md); }
-.step::before {
-  counter-increment: step; content: counter(step);
-  position: absolute; top: -22px; left: 50%; transform: translateX(-50%);
-  width: 44px; height: 44px; border-radius: 50%;
-  background: linear-gradient(135deg, var(--accent), var(--accent-2));
-  color: #FFFFFF; font-weight: 900; font-size: 16px;
-  display: flex; align-items: center; justify-content: center;
-  box-shadow: 0 8px 24px rgba(124, 58, 237, 0.4);
-}
-.step h4 { font-size: 16px; font-weight: 800; margin-bottom: 8px; margin-top: 8px; }
-.step p { font-size: 13.5px; color: var(--muted); }
+.step-card h4 { font-size: 15px; font-weight: 700; margin-bottom: 8px; margin-top: 10px; }
+.step-card p { font-size: 13px; color: var(--muted); line-height: 1.55; }
 
 /* ============================================================
    DOWNLOAD
    ============================================================ */
-.dl-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; max-width: 860px; margin: 0 auto; }
+.dl-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 20px; max-width: 900px; margin: 0 auto; }
 .dl-card {
-  padding: 44px 32px; border-radius: 28px; text-align: center;
-  background: linear-gradient(135deg, var(--surface-solid), var(--bg-2));
-  border: 1px solid var(--border-strong);
-  transition: all 0.35s ease;
-  position: relative; overflow: hidden;
+  padding: 40px 32px; border-radius: 26px;
+  background: var(--surface-solid); border: 1px solid var(--border);
+  position: relative; overflow: hidden; transition: all 0.35s;
 }
-.dl-card::after {
-  content: ''; position: absolute; top: -50%; right: -50%; width: 200%; height: 200%;
-  background: radial-gradient(circle, var(--glow), transparent 50%);
-  opacity: 0; transition: opacity 0.5s;
+.dl-card.primary {
+  background: linear-gradient(150deg, rgba(124,58,237,0.12), var(--surface-solid) 60%);
+  border-color: var(--border-strong);
 }
-.dl-card:hover::after { opacity: 1; }
-.dl-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); border-color: var(--accent); }
+.dl-card.primary::before {
+  content:''; position: absolute; top: -50%; right: -30%; width: 400px; height: 400px;
+  background: radial-gradient(circle, var(--glow), transparent 60%); pointer-events: none;
+}
 .dl-card > * { position: relative; z-index: 1; }
-.dl-card .dl-icon {
-  width: 76px; height: 76px; border-radius: 22px; margin: 0 auto 22px;
-  display: flex; align-items: center; justify-content: center;
-  background: linear-gradient(135deg, var(--accent-soft), var(--gold-soft));
-  border: 1px solid var(--border-strong);
-  color: var(--accent);
+.dl-card .dl-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: 'JetBrains Mono'; font-size: 10px; letter-spacing: 0.12em;
+  color: var(--accent); text-transform: uppercase; font-weight: 600;
+  padding: 5px 10px; border-radius: 100px; background: var(--accent-soft);
+  border: 1px solid var(--border-strong); margin-bottom: 16px;
 }
-.dl-card .dl-icon svg { width: 36px; height: 36px; }
-.dl-card h3 { font-size: 22px; font-weight: 800; margin-bottom: 8px; }
-.dl-card p { color: var(--muted); font-size: 14px; margin-bottom: 24px; }
-.dl-card .btn { width: 100%; justify-content: center; }
-
+.dl-card h3 { font-size: 26px; font-weight: 700; letter-spacing: -0.03em; margin-bottom: 8px; }
+.dl-card > p { color: var(--muted); font-size: 14px; margin-bottom: 22px; line-height: 1.55; }
+.dl-card .btn { width: 100%; justify-content: center; padding: 15px 24px; font-size: 15px; }
+.dl-meta { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 16px; font-size: 12px; color: var(--muted); }
+.dl-meta span { display: inline-flex; align-items: center; gap: 6px; }
+.dl-meta svg { width: 12px; height: 12px; color: var(--accent); }
 .checksum {
-  margin-top: 16px; padding: 12px 14px;
-  background: var(--bg-2); border: 1px solid var(--border);
-  border-radius: 12px; font-family: 'JetBrains Mono', monospace;
-  font-size: 11px; color: var(--muted);
-  word-break: break-all; line-height: 1.5;
-  display: none; text-align: left;
+  margin-top: 14px; padding: 11px 13px; background: var(--bg-2); border: 1px solid var(--border);
+  border-radius: 10px; font-family: 'JetBrains Mono'; font-size: 10.5px; color: var(--muted);
+  word-break: break-all; line-height: 1.5; display: none;
 }
 .checksum.visible { display: block; }
-.checksum strong {
-  color: var(--gold); display: block; margin-bottom: 4px;
-  font-family: 'Inter', sans-serif; font-size: 10px;
-  letter-spacing: 1.5px; text-transform: uppercase;
-}
+.checksum strong { color: var(--gold); display: block; margin-bottom: 3px; font-family: 'Outfit'; font-size: 9.5px; letter-spacing: 0.14em; text-transform: uppercase; }
+.dl-card.secondary { display: flex; flex-direction: column; justify-content: center; }
 
 /* ============================================================
    TRUST
    ============================================================ */
-.trust-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; max-width: 1020px; margin: 0 auto; }
+.trust-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-bottom: 32px; }
 .trust-card {
-  background: var(--surface-solid); border: 1px solid var(--border);
-  border-radius: 20px; padding: 26px;
-  transition: all 0.3s ease;
-  opacity: 0; transform: translateY(30px);
+  padding: 22px 18px; border-radius: 18px; background: var(--surface-solid);
+  border: 1px solid var(--border); transition: all 0.3s;
+  opacity: 0; transform: translateY(20px);
 }
 .trust-card.visible { opacity: 1; transform: translateY(0); }
-.trust-card:hover { border-color: var(--accent); transform: translateY(-4px); box-shadow: var(--shadow-md); }
-.trust-icon {
-  width: 46px; height: 46px; border-radius: 13px;
-  display: flex; align-items: center; justify-content: center;
-  background: var(--accent-soft); border: 1px solid var(--border-strong);
-  color: var(--accent); font-size: 22px; margin-bottom: 14px;
-}
-.trust-card h4 { font-size: 16px; font-weight: 800; margin-bottom: 8px; }
-.trust-card p { font-size: 13.5px; color: var(--muted); line-height: 1.6; }
-.trust-card p strong { color: var(--text); font-weight: 700; }
+.trust-card:hover { border-color: var(--accent); transform: translateY(-4px); }
+.trust-card .ti { font-size: 22px; margin-bottom: 12px; }
+.trust-card h4 { font-size: 14px; font-weight: 700; margin-bottom: 6px; }
+.trust-card p { font-size: 12px; color: var(--muted); line-height: 1.55; }
+.trust-card p strong { color: var(--text); font-weight: 600; }
 
 .trust-note {
-  max-width: 900px; margin: 44px auto 0; padding: 30px 34px;
-  border-radius: 22px;
+  padding: 30px 34px; border-radius: 22px;
   background: linear-gradient(135deg, var(--accent-soft), var(--surface-solid));
-  border: 1px solid var(--border-strong);
-  text-align: center;
+  border: 1px solid var(--border-strong); text-align: center;
+  max-width: 820px; margin: 0 auto;
 }
-.trust-note p { color: var(--text-2); font-size: 15px; margin-bottom: 14px; line-height: 1.7; }
-.trust-note p strong { color: var(--text); }
-.trust-note a { color: var(--accent); text-decoration: none; font-weight: 700; font-size: 14px; transition: opacity 0.2s; }
-.trust-note a:hover { opacity: 0.75; }
+.trust-note p { color: var(--text-2); font-size: 15px; margin-bottom: 12px; line-height: 1.6; }
+.trust-note p strong { color: var(--text); font-weight: 700; }
+.trust-note a { color: var(--accent); text-decoration: none; font-weight: 700; font-size: 14px; }
+.trust-note a:hover { text-decoration: underline; }
+
+/* ============================================================
+   COMPARE
+   ============================================================ */
+.compare { max-width: 780px; margin: 0 auto; border-radius: 22px; overflow: hidden; border: 1px solid var(--border); background: var(--surface-solid); }
+.compare-row { display: grid; grid-template-columns: 1.5fr 1fr 1fr; padding: 16px 24px; border-bottom: 1px solid var(--border); align-items: center; font-size: 14px; }
+.compare-row:last-child { border-bottom: none; }
+.compare-row.head { background: var(--bg-2); font-weight: 700; font-size: 13px; letter-spacing: 0.02em; }
+.compare-row.head .c { font-family: 'Space Grotesk'; }
+.compare-row .c { display: flex; align-items: center; gap: 8px; }
+.compare-row .c.center { justify-content: center; }
+.compare-row .yes { color: var(--green); font-weight: 700; }
+.compare-row .no { color: var(--muted); opacity: 0.6; font-weight: 500; }
+.compare-row .brand-cell { color: var(--accent); font-weight: 700; }
 
 /* ============================================================
    FAQ
    ============================================================ */
-.faq { max-width: 820px; margin: 0 auto; }
-.faq-item {
-  border-bottom: 1px solid var(--border);
-  padding: 26px 0; cursor: pointer; transition: all 0.3s ease;
-}
+.faq { max-width: 780px; margin: 0 auto; }
+.faq-item { border-bottom: 1px solid var(--border); padding: 22px 0; }
 .faq-item:last-child { border-bottom: none; }
 .faq-item summary {
   list-style: none; display: flex; justify-content: space-between; align-items: center;
-  font-size: 17px; font-weight: 700; cursor: pointer; gap: 16px;
-  color: var(--text);
+  font-size: 16px; font-weight: 600; cursor: pointer; gap: 16px; color: var(--text);
+  font-family: 'Space Grotesk'; letter-spacing: -0.01em;
 }
 .faq-item summary::-webkit-details-marker { display: none; }
 .faq-item summary::after {
-  content: '+'; font-size: 26px; color: var(--accent);
-  font-weight: 300; transition: transform 0.3s ease; line-height: 1;
+  content: '+'; font-size: 24px; color: var(--accent); font-weight: 300; line-height: 1;
+  transition: transform 0.3s;
 }
 .faq-item[open] summary::after { transform: rotate(45deg); }
-.faq-item p { margin-top: 16px; color: var(--muted); font-size: 15px; line-height: 1.7; }
+.faq-item p { margin-top: 14px; color: var(--muted); font-size: 14.5px; line-height: 1.65; }
 
 /* ============================================================
    DISCORD
    ============================================================ */
 .discord-card {
-  max-width: 720px; margin: 0 auto; padding: 56px 40px;
-  border-radius: 32px; text-align: center;
-  position: relative; overflow: hidden;
-  background: linear-gradient(135deg, rgba(88, 101, 242, 0.15), var(--surface-solid), var(--accent-soft));
-  border: 1px solid rgba(88, 101, 242, 0.35);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  max-width: 780px; margin: 0 auto; padding: 50px 40px; border-radius: 28px;
+  position: relative; overflow: hidden; text-align: center;
+  background: linear-gradient(150deg, rgba(88,101,242,0.15), var(--surface-solid) 65%);
+  border: 1px solid rgba(88,101,242,0.3);
+  transition: all 0.4s;
 }
-.discord-card:hover {
-  transform: translateY(-6px);
-  border-color: rgba(88, 101, 242, 0.7);
-  box-shadow: 0 30px 80px rgba(88, 101, 242, 0.25);
-}
-.discord-glow {
-  position: absolute; inset: 0; z-index: 0; pointer-events: none;
-  background: radial-gradient(circle at 50% 0%, rgba(88, 101, 242, 0.35), transparent 60%);
-  animation: discordPulse 5s ease-in-out infinite;
-}
-@keyframes discordPulse { 0%,100% { opacity: 0.55; transform: scale(1); } 50% { opacity: 1; transform: scale(1.1); } }
-.discord-content { position: relative; z-index: 1; }
-.discord-icon {
-  width: 88px; height: 88px; border-radius: 24px; margin: 0 auto 24px;
-  display: flex; align-items: center; justify-content: center;
-  background: linear-gradient(135deg, #5865F2, #4752C4);
-  color: #FFFFFF; box-shadow: 0 16px 40px rgba(88, 101, 242, 0.5);
-  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-.discord-card:hover .discord-icon { transform: scale(1.08) rotate(-6deg); }
-.discord-icon svg { width: 46px; height: 46px; }
-.discord-card h3 { font-size: 30px; font-weight: 900; letter-spacing: -1px; margin-bottom: 14px; }
-.discord-card > .discord-content > p {
-  color: var(--muted); font-size: 16px; max-width: 480px;
-  margin: 0 auto 32px; line-height: 1.7;
-}
-.btn-discord {
-  background: linear-gradient(135deg, #5865F2, #4752C4);
-  color: #FFFFFF; box-shadow: 0 12px 40px rgba(88, 101, 242, 0.45);
-  padding: 16px 38px; font-size: 16px;
-}
-.btn-discord:hover { transform: translateY(-3px); box-shadow: 0 20px 60px rgba(88, 101, 242, 0.65); }
-.discord-meta {
-  display: flex; align-items: center; justify-content: center; gap: 10px;
-  margin-top: 28px; font-size: 13px; color: var(--muted);
-}
-.live-dot {
-  width: 8px; height: 8px; border-radius: 50%; background: #3BA55D;
-  box-shadow: 0 0 0 4px rgba(59, 165, 93, 0.2);
-  animation: livePulse2 2s ease-in-out infinite;
-}
-@keyframes livePulse2 { 0%,100% { box-shadow: 0 0 0 4px rgba(59, 165, 93, 0.2); } 50% { box-shadow: 0 0 0 8px rgba(59, 165, 93, 0.05); } }
-
-/* ============================================================
-   FINAL CTA
-   ============================================================ */
-.final-cta {
-  padding: 100px 40px; text-align: center;
-  border-radius: 32px; margin: 40px auto 80px;
-  background: linear-gradient(135deg, var(--accent-soft), var(--surface-solid));
-  border: 1px solid var(--border-strong);
-  position: relative; overflow: hidden;
-  max-width: 1000px;
-}
-.final-cta::before {
-  content: ''; position: absolute; inset: 0;
-  background: radial-gradient(circle at 50% 100%, var(--glow), transparent 60%);
-}
-.final-cta > * { position: relative; }
-.final-cta h2 { font-size: clamp(28px, 4vw, 44px); font-weight: 900; letter-spacing: -1.2px; margin-bottom: 16px; }
-.final-cta p { color: var(--muted); margin-bottom: 32px; font-size: 16px; }
+.discord-card:hover { transform: translateY(-6px); border-color: rgba(88,101,242,0.6); box-shadow: 0 30px 80px rgba(88,101,242,0.25); }
+.discord-card::before { content:''; position: absolute; top: -50%; left: 50%; transform: translateX(-50%); width: 600px; height: 600px; background: radial-gradient(circle, rgba(88,101,242,0.25), transparent 60%); animation: pulse 5s ease-in-out infinite; }
+.discord-card > * { position: relative; z-index: 1; }
+@keyframes pulse { 50% { opacity: 0.5; transform: translateX(-50%) scale(1.1); } }
+.discord-icon { width: 76px; height: 76px; border-radius: 22px; margin: 0 auto 22px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #5865F2, #4752C4); color: #fff; box-shadow: 0 16px 40px rgba(88,101,242,0.5); }
+.discord-icon svg { width: 40px; height: 40px; }
+.discord-card h3 { font-size: 28px; font-weight: 700; letter-spacing: -0.03em; margin-bottom: 12px; }
+.discord-card p { color: var(--muted); font-size: 15px; max-width: 460px; margin: 0 auto 28px; line-height: 1.6; }
+.discord-meta { display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 22px; font-size: 12.5px; color: var(--muted); }
+.live-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 4px rgba(16,185,129,0.2); animation: livePulse 2s ease infinite; }
 
 /* ============================================================
    FOOTER
    ============================================================ */
-footer {
-  padding: 80px 0 40px; border-top: 1px solid var(--border);
-  display: flex; flex-direction: column; align-items: center; gap: 24px;
-}
-footer .brand-row { display: flex; align-items: center; gap: 12px; font-weight: 800; letter-spacing: 1px; font-size: 15px; }
-footer .brand-row img { width: 34px; height: 34px; }
-footer .links { display: flex; gap: 28px; flex-wrap: wrap; justify-content: center; }
-footer .links a { color: var(--muted); text-decoration: none; font-size: 14px; transition: color 0.2s; }
-footer .links a:hover { color: var(--accent); }
-footer .copy { color: var(--muted); font-size: 12px; letter-spacing: 0.5px; opacity: 0.7; }
-
-/* ============================================================
-   RESPONSIVE
-   ============================================================ */
-@media (max-width: 900px) {
-  .showcase { grid-template-columns: 1fr; gap: 32px; }
-  .showcase:nth-child(even) .showcase-text { order: 0; }
-}
-@media (max-width: 720px) {
-  .nav-links a { display: none; }
-  .nav-links a.mobile-show { display: block; }
-  section.sect { padding: 64px 0; }
-  .hero { padding: 56px 0 72px; }
-  .berry-wrap img { width: 140px; height: 140px; }
-  .stats { gap: 28px; padding: 32px 0; }
-  .stat .num { font-size: 32px; }
-  .final-cta { padding: 60px 24px; }
-  .discord-card { padding: 40px 24px; }
-  .discord-card h3 { font-size: 24px; }
-  .discord-icon { width: 72px; height: 72px; }
-  .discord-icon svg { width: 38px; height: 38px; }
-}
-
-/* ============================================================
-   REVEAL
-   ============================================================ */
-.reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
-.reveal.visible { opacity: 1; transform: translateY(0); }
+footer { padding: 70px 0 40px; border-top: 1px solid var(--border); position: relative; z-index: 2; }
+.foot-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 50px; }
+.foot-brand { display: flex; align-items: center; gap: 11px; font-family: 'Space Grotesk'; font-weight: 700; font-size: 16px; margin-bottom: 12px; }
+.foot-brand img { width: 32px; height: 32px; }
+.foot-col p { font-size: 13px; color: var(--muted); line-height: 1.6; max-width: 300px; }
+.foot-col h5 { font-family: 'JetBrains Mono'; font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 16px; font-weight: 600; }
+.foot-col a { display: block; color: var(--text-2); text-decoration: none; font-size: 14px; padding: 5px 0; transition: color 0.2s; }
+.foot-col a:hover { color: var(--accent); }
+.foot-bottom { padding-top: 30px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; font-size: 12.5px; color: var(--muted); }
+.foot-bottom .socials { display: flex; gap: 12px; }
+.foot-bottom .socials a { width: 34px; height: 34px; border-radius: 10px; background: var(--surface-solid); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; color: var(--muted); transition: all 0.2s; }
+.foot-bottom .socials a:hover { color: var(--accent); border-color: var(--accent); transform: translateY(-2px); }
+.foot-bottom .socials svg { width: 16px; height: 16px; }
 
 /* ============================================================
    BACK TO TOP
    ============================================================ */
 #back-top {
-  position: fixed; bottom: 24px; right: 24px; z-index: 90;
-  width: 46px; height: 46px; border-radius: 14px;
+  position: fixed; bottom: 22px; right: 22px; z-index: 90;
+  width: 42px; height: 42px; border-radius: 12px;
   background: var(--surface-solid); border: 1px solid var(--border-strong);
-  display: flex; align-items: center; justify-content: center;
-  cursor: pointer; color: var(--accent);
-  opacity: 0; visibility: hidden; transform: translateY(12px);
-  transition: all 0.3s ease; box-shadow: var(--shadow-md);
+  display: flex; align-items: center; justify-content: center; cursor: pointer;
+  color: var(--accent); opacity: 0; visibility: hidden; transform: translateY(10px);
+  transition: all 0.3s; box-shadow: var(--shadow-md);
 }
 #back-top.visible { opacity: 1; visibility: visible; transform: translateY(0); }
-#back-top:hover { border-color: var(--accent); transform: translateY(-3px); box-shadow: var(--shadow-lg); }
-#back-top svg { width: 20px; height: 20px; }
+#back-top:hover { border-color: var(--accent); transform: translateY(-3px); }
+#back-top svg { width: 18px; height: 18px; }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 1000px) {
+  .hero-grid { grid-template-columns: 1fr; gap: 60px; text-align: center; }
+  .hero p.lede { margin-left: auto; margin-right: auto; }
+  .hero .cta, .hero-meta { justify-content: center; }
+  .bento { grid-template-columns: repeat(4, 1fr); }
+  .bento-card.span-3 { grid-column: span 4; }
+  .bento-card.span-4 { grid-column: span 4; }
+  .bento-card.span-2 { grid-column: span 2; }
+  .showcase-grid { grid-template-columns: 1fr 1fr; }
+  .trust-grid { grid-template-columns: repeat(3, 1fr); }
+  .steps-grid { grid-template-columns: repeat(2, 1fr); }
+  .foot-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 720px) {
+  .nav-links a { display: none; }
+  section.sect { padding: 68px 0; }
+  .hero { padding: 46px 0 40px; }
+  .bento { grid-template-columns: 1fr; }
+  .bento-card, .bento-card.span-2, .bento-card.span-3, .bento-card.span-4 { grid-column: span 1; min-height: 0; }
+  .showcase-grid { grid-template-columns: 1fr; }
+  .trust-grid { grid-template-columns: 1fr 1fr; }
+  .steps-grid { grid-template-columns: 1fr; }
+  .dl-grid { grid-template-columns: 1fr; }
+  .foot-grid { grid-template-columns: 1fr; gap: 28px; }
+  .phone { width: 250px; height: 510px; transform: rotate(-2deg); }
+  .float-chip { display: none; }
+  .compare-row { grid-template-columns: 1.3fr 1fr 1fr; padding: 14px 16px; font-size: 12.5px; }
+  .foot-bottom { justify-content: center; text-align: center; }
+  .marquee-item { font-size: 16px; }
+}
 </style>
 </head>
 <body>
 
+<!-- Announcement -->
+<div class="announce" id="announce">
+  <span class="dot"></span>
+  <span>GlowberryClient v2.0 is out — new Voice Chat rooms &amp; Replay export</span>
+  <a href="#download">Download →</a>
+  <button onclick="document.getElementById('announce').classList.add('hidden')" aria-label="Dismiss">✕</button>
+</div>
+
 <!-- Scroll progress -->
 <div class="scroll-progress"><div class="scroll-progress-bar" id="scroll-bar"></div></div>
 
-<!-- Background -->
-<div class="bg-layer">
-  <div class="bg-grid"></div>
+<!-- Orb background -->
+<div class="orb-bg">
   <div class="orb orb-1"></div>
   <div class="orb orb-2"></div>
   <div class="orb orb-3"></div>
@@ -649,7 +703,7 @@ footer .copy { color: var(--muted); font-size: 12px; letter-spacing: 0.5px; opac
   <div class="container nav-inner">
     <a href="#" class="brand">
       <img src="https://raw.githubusercontent.com/ChimeraAnt-DEV/Glowberry-Client-LOGO/main/In%20Mod%20Menu%20Icon.png" alt="GlowberryClient" />
-      GLOWBERRYCLIENT
+      GlowberryClient
     </a>
     <nav class="nav-links">
       <a href="#features">Features</a>
@@ -669,76 +723,207 @@ footer .copy { color: var(--muted); font-size: 12px; letter-spacing: 0.5px; opac
 <!-- Hero -->
 <section class="hero">
   <div class="container">
-    <div class="hero-badge">
-      <span class="pulse"></span>
-      <span>Free · Open Source · Android 8.0+</span>
-    </div>
-    <div class="berry-wrap">
-      <img src="https://raw.githubusercontent.com/ChimeraAnt-DEV/Glowberry-Client-LOGO/main/In%20Mod%20Menu%20Icon.png" alt="GlowberryClient" />
-    </div>
-    <h1>GLOWBERRYCLIENT</h1>
-    <p class="tagline">MINECRAFT BEDROCK. REINVENTED.</p>
-    <div class="cta">
-      <a class="btn btn-primary" href="#download">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        Download Now
-      </a>
-      <a class="btn btn-secondary" href="https://github.com/ChimeraAnt-DEV/GlowberryClient">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56v-2c-3.2.7-3.88-1.54-3.88-1.54-.52-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.71.08-.71 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.68 0-1.25.45-2.28 1.19-3.08-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18.92-.26 1.91-.39 2.89-.39.98 0 1.97.13 2.89.39 2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.8 1.19 1.83 1.19 3.08 0 4.41-2.69 5.38-5.25 5.67.41.35.78 1.05.78 2.12v3.14c0 .31.21.67.8.56C20.22 21.39 23.5 17.08 23.5 12 23.5 5.65 18.35.5 12 .5z"/></svg>
-        View on GitHub
-      </a>
-    </div>
-    <div class="hero-hint">
-      Open source · <code>github.com/ChimeraAnt-DEV</code>
+    <div class="hero-grid">
+      <div>
+        <div class="hero-badge">
+          <span class="live"></span>
+          <span>Free · Open Source · Android 8.0+</span>
+        </div>
+        <h1>Minecraft Bedrock,<br/><span class="grad">reinvented for mobile.</span></h1>
+        <p class="lede">Native C++ mods, distance-based voice chat, a built-in replay editor, and a full PvP HUD — all in one free Android launcher.</p>
+        <div class="cta">
+          <a class="btn btn-primary" href="#download">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Download for Android
+          </a>
+          <a class="btn btn-secondary" href="https://github.com/ChimeraAnt-DEV/GlowberryClient">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56v-2c-3.2.7-3.88-1.54-3.88-1.54-.52-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.71.08-.71 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.68 0-1.25.45-2.28 1.19-3.08-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18.92-.26 1.91-.39 2.89-.39.98 0 1.97.13 2.89.39 2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.8 1.19 1.83 1.19 3.08 0 4.41-2.69 5.38-5.25 5.67.41.35.78 1.05.78 2.12v3.14c0 .31.21.67.8.56C20.22 21.39 23.5 17.08 23.5 12 23.5 5.65 18.35.5 12 .5z"/></svg>
+            View on GitHub
+          </a>
+        </div>
+        <div class="hero-meta">
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> No account</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> No telemetry</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> 100% free</span>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="float-chip chip-1">
+          <div class="ico" style="background: rgba(52,211,153,0.15); color:#34D399;">🎤</div>
+          <div>Voice chat<small>12 players live</small></div>
+        </div>
+        <div class="float-chip chip-2">
+          <div class="ico" style="background: rgba(251,191,36,0.15); color:#FBBF24;">⚡</div>
+          <div>60 FPS<small>Stable on ARM64</small></div>
+        </div>
+        <div class="float-chip chip-3">
+          <div class="ico" style="background: rgba(168,85,247,0.15); color:#A855F7;">🧩</div>
+          <div>4 languages<small>C++ · Lua · Java · Kt</small></div>
+        </div>
+
+        <div class="phone">
+          <div class="phone-screen">
+            <div class="ui-status"><span>9:41</span><span>◐ ▮▮▮</span></div>
+            <div class="ui-header">
+              <div class="title">Proximity Voice</div>
+              <div class="pill">LIVE</div>
+            </div>
+            <div class="ui-players">
+              <div class="ui-player">
+                <div class="ui-avatar" style="background: linear-gradient(135deg,#A855F7,#7C3AED)">A</div>
+                <div class="ui-info">
+                  <div class="ui-name"><span>Alex_MC</span><span class="dist">3.2m</span></div>
+                  <div class="ui-meter"><span style="width:82%"></span></div>
+                </div>
+                <div class="ui-mic">🎤</div>
+              </div>
+              <div class="ui-player">
+                <div class="ui-avatar" style="background: linear-gradient(135deg,#FBBF24,#F59E0B)">S</div>
+                <div class="ui-info">
+                  <div class="ui-name"><span>Steve_B</span><span class="dist">7.8m</span></div>
+                  <div class="ui-meter"><span style="width:55%"></span></div>
+                </div>
+                <div class="ui-mic">🎤</div>
+              </div>
+              <div class="ui-player">
+                <div class="ui-avatar" style="background: linear-gradient(135deg,#34D399,#10B981)">C</div>
+                <div class="ui-info">
+                  <div class="ui-name"><span>Creeper_X</span><span class="dist">1.1m</span></div>
+                  <div class="ui-meter"><span style="width:96%"></span></div>
+                </div>
+                <div class="ui-mic">🎤</div>
+              </div>
+              <div class="ui-player">
+                <div class="ui-avatar" style="background: linear-gradient(135deg,#60A5FA,#3B82F6)">N</div>
+                <div class="ui-info">
+                  <div class="ui-name"><span>Notch</span><span class="dist">14.5m</span></div>
+                  <div class="ui-meter"><span style="width:22%"></span></div>
+                </div>
+                <div class="ui-mic muted">🔇</div>
+              </div>
+            </div>
+            <div class="ui-tabbar">
+              <div class="ui-tab active"><div class="ico">🏠</div>HOME</div>
+              <div class="ui-tab"><div class="ico">🎤</div>VOICE</div>
+              <div class="ui-tab"><div class="ico">⚔️</div>PVP</div>
+              <div class="ui-tab"><div class="ico">⚙️</div>SET</div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- Stats -->
-<div class="container">
-  <div class="stats reveal">
-    <div class="stat"><div class="num" data-count="6">0</div><div class="label">Core Features</div></div>
-    <div class="stat"><div class="num" data-count="500" data-suffix="+">0</div><div class="label">Cosmetics</div></div>
-    <div class="stat"><div class="num" data-count="4">0</div><div class="label">Mod Languages</div></div>
-    <div class="stat"><div class="num" data-count="0">0</div><div class="label">Data Collected</div></div>
+<!-- Tech marquee -->
+<div class="marquee-wrap">
+  <div class="marquee">
+    <div class="marquee-item"><span class="dot"></span>Native C++ Mods</div>
+    <div class="marquee-item"><span class="dot"></span>Proximity Voice</div>
+    <div class="marquee-item"><span class="dot"></span>Replay Editor</div>
+    <div class="marquee-item"><span class="dot"></span>PvP HUD</div>
+    <div class="marquee-item"><span class="dot"></span>JavaBridge</div>
+    <div class="marquee-item"><span class="dot"></span>Lua · Java · Kotlin</div>
+    <div class="marquee-item"><span class="dot"></span>ARM64</div>
+    <div class="marquee-item"><span class="dot"></span>.AntEgg Mods</div>
+    <!-- duplicate for seamless loop -->
+    <div class="marquee-item"><span class="dot"></span>Native C++ Mods</div>
+    <div class="marquee-item"><span class="dot"></span>Proximity Voice</div>
+    <div class="marquee-item"><span class="dot"></span>Replay Editor</div>
+    <div class="marquee-item"><span class="dot"></span>PvP HUD</div>
+    <div class="marquee-item"><span class="dot"></span>JavaBridge</div>
+    <div class="marquee-item"><span class="dot"></span>Lua · Java · Kotlin</div>
+    <div class="marquee-item"><span class="dot"></span>ARM64</div>
+    <div class="marquee-item"><span class="dot"></span>.AntEgg Mods</div>
   </div>
 </div>
 
-<!-- Features -->
+<!-- Features (Bento) -->
 <section class="sect" id="features">
   <div class="container">
-    <h2 class="reveal">Built Different</h2>
-    <p class="sub reveal">Everything the official Bedrock launcher should have had years ago — running on your phone.</p>
-    <div class="grid">
-      <div class="card reveal">
-        <div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg></div>
+    <div class="sect-head">
+      <div class="tag">Features</div>
+      <h2>Everything Bedrock<br/>should have shipped with.</h2>
+      <p>Six flagship systems, all running natively on your phone. No subscription, no ads, no compromise.</p>
+    </div>
+
+    <div class="bento">
+      <!-- Voice Chat — big -->
+      <div class="bento-card span-3">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg></div>
         <h3>Proximity Voice Chat</h3>
-        <p>Hear players based on in-game distance. Mic icons above heads. No server required, no external app.</p>
+        <p>Hear players based on in-game distance. Live mic icons above every head, automatic volume falloff, zero server required.</p>
+        <div class="feature-preview">
+          <div class="voice-row"><div class="av" style="background:linear-gradient(135deg,#A855F7,#7C3AED)">A</div><div class="nm">Alex_MC · 3.2m</div><div class="mt"><span style="width:82%"></span></div></div>
+          <div class="voice-row"><div class="av" style="background:linear-gradient(135deg,#34D399,#10B981)">C</div><div class="nm">Creeper_X · 1.1m</div><div class="mt"><span style="width:96%"></span></div></div>
+          <div class="voice-row" style="margin-bottom:0"><div class="av" style="background:linear-gradient(135deg,#60A5FA,#3B82F6)">N</div><div class="nm">Notch · 14.5m</div><div class="mt"><span style="width:22%"></span></div></div>
+        </div>
       </div>
-      <div class="card reveal">
-        <div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg></div>
+
+      <!-- PvP HUD -->
+      <div class="bento-card span-3">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
+        <h3>PvP Suite HUD</h3>
+        <p>Combo counter, reach indicator, hit prediction, kill effects. 100% client-side — server anti-cheats can't see a thing.</p>
+        <div class="feature-preview">
+          <div class="preview-hud">
+            <div class="preview-row"><span class="k">COMBO</span><span class="v">×7</span></div>
+            <div class="preview-bar"><span style="width:70%"></span></div>
+            <div class="preview-row" style="margin-top:10px"><span class="k">REACH</span><span class="v gold">3.02m</span></div>
+            <div class="preview-row"><span class="k">HIT %</span><span class="v purple">94.2%</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Replay -->
+      <div class="bento-card span-2">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg></div>
         <h3>Built-in Replay</h3>
-        <p>Record, trim, and export PvP clips without leaving the launcher. Your best combos, saved forever.</p>
+        <p>Record, trim, export. No third-party recorder.</p>
+        <div class="feature-preview">
+          <div class="replay-strip">
+            <div class="replay-thumb"><span class="time">0:04</span></div>
+            <div class="replay-thumb active"><span class="time">0:12</span></div>
+            <div class="replay-thumb"><span class="time">0:23</span></div>
+            <div class="replay-thumb"><span class="time">0:41</span></div>
+          </div>
+        </div>
       </div>
-      <div class="card reveal">
-        <div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
-        <h3>PvP Suite</h3>
-        <p>Combo counter, reach indicator, hit prediction, kill effects, and more. Client-side, zero lag.</p>
-      </div>
-      <div class="card reveal">
-        <div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C8 2 5 5 5 9c0 3 2 5 2 8 0 2 1 3 2 3h6c1 0 2-1 2-3 0-3 2-5 2-8 0-4-3-7-7-7z"/><path d="M12 2v18"/></svg></div>
+
+      <!-- .AntEgg -->
+      <div class="bento-card span-2">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C8 2 5 5 5 9c0 3 2 5 2 8 0 2 1 3 2 3h6c1 0 2-1 2-3 0-3 2-5 2-8 0-4-3-7-7-7z"/><path d="M12 2v18"/></svg></div>
         <h3>.AntEgg Mods</h3>
-        <p>A brand new mod format built for Bedrock Android. Supports C++, Lua, Java, and Kotlin.</p>
+        <p>A new mod format built for Bedrock Android.</p>
+        <div class="feature-preview">
+          <div class="preview-hud">
+            <div class="preview-row"><span class="k">C++</span><span class="v">native.so</span></div>
+            <div class="preview-row"><span class="k">LUA</span><span class="v gold">script.lua</span></div>
+            <div class="preview-row"><span class="k">JAVA</span><span class="v purple">bridge.jar</span></div>
+          </div>
+        </div>
       </div>
-      <div class="card reveal">
-        <div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+
+      <!-- JavaBridge -->
+      <div class="bento-card span-2">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
         <h3>JavaBridge</h3>
-        <p>Auto-port Java Edition mods to Bedrock with AI-assisted rewriting. Your old favorites, reborn.</p>
+        <p>AI-assisted porting of Java Edition mods to Bedrock. Your old favorites, reborn.</p>
       </div>
-      <div class="card reveal">
-        <div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
-        <h3>Native C++ Loader</h3>
-        <p>Powered by ApexAntLamina. Loads native .so mods on ARM64 Android with real performance.</p>
+
+      <!-- Perf bar -->
+      <div class="bento-card span-6">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+        <h3>Powered by ApexAntLamina</h3>
+        <p>Native ARM64 loader that runs mods with real performance — not a shim, not an emulator, native machine code.</p>
+        <div class="feature-preview">
+          <div class="preview-hud">
+            <div class="preview-row"><span class="k">DEVICE</span><span class="v">ARM64 · Android 8+</span></div>
+            <div class="preview-row"><span class="k">LOAD TIME</span><span class="v gold">&lt; 120ms</span></div>
+            <div class="preview-bar"><span style="width:92%"></span></div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -747,48 +932,62 @@ footer .copy { color: var(--muted); font-size: 12px; letter-spacing: 0.5px; opac
 <!-- Showcase -->
 <section class="sect" id="showcase">
   <div class="container">
-    <div class="showcase reveal">
-      <div class="showcase-img">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/></svg>
-      </div>
-      <div class="showcase-text">
-        <h3>Talk like you're there.</h3>
-        <p>Proximity Voice Chat turns every session into an actual conversation. Walk away, they get quieter. Walk closer, they get louder. It's the way Minecraft was always meant to be played.</p>
-        <ul>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Distance-based audio falloff</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Live mic icons on nametags</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> No dedicated server needed</li>
-        </ul>
-      </div>
+    <div class="sect-head">
+      <div class="tag">Showcase</div>
+      <h2>See it in action.</h2>
+      <p>Three flagship systems, rendered exactly how they appear on your phone.</p>
     </div>
 
-    <div class="showcase reveal">
-      <div class="showcase-img">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+    <div class="showcase-grid">
+      <!-- Voice -->
+      <div class="showcase-card">
+        <div class="sc-visual">
+          <div style="font-family:'Space Grotesk';font-weight:700;font-size:12px;color:#F4EEFF;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center;">Voice Chat<span style="font-size:9px;color:#34D399;background:rgba(52,211,153,0.15);padding:2px 7px;border-radius:100px;">LIVE</span></div>
+          <div style="flex:1;display:flex;flex-direction:column;gap:6px;">
+            <div class="voice-row"><div class="av" style="background:linear-gradient(135deg,#A855F7,#7C3AED)">A</div><div class="nm">Alex_MC</div><div class="mt"><span style="width:82%"></span></div></div>
+            <div class="voice-row"><div class="av" style="background:linear-gradient(135deg,#34D399,#10B981)">C</div><div class="nm">Creeper_X</div><div class="mt"><span style="width:96%"></span></div></div>
+            <div class="voice-row"><div class="av" style="background:linear-gradient(135deg,#FBBF24,#F59E0B)">S</div><div class="nm">Steve_B</div><div class="mt"><span style="width:58%"></span></div></div>
+            <div class="voice-row" style="margin-bottom:0"><div class="av" style="background:linear-gradient(135deg,#60A5FA,#3B82F6)">N</div><div class="nm">Notch</div><div class="mt"><span style="width:22%"></span></div></div>
+          </div>
+        </div>
+        <h3>Proximity Voice</h3>
+        <p>Distance-based audio falloff with live mic indicators. Talk like you're actually there.</p>
       </div>
-      <div class="showcase-text">
-        <h3>Every combo, saved.</h3>
-        <p>The Replay system runs entirely inside the launcher. Record the last minute, trim it down, and export it straight to Discord or YouTube. No third-party screen recorder, no lag, no watermark.</p>
-        <ul>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> One-tap start and stop</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> In-app trim and share</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Built for Android, zero FPS loss</li>
-        </ul>
-      </div>
-    </div>
 
-    <div class="showcase reveal">
-      <div class="showcase-img">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+      <!-- Replay -->
+      <div class="showcase-card">
+        <div class="sc-visual">
+          <div class="sc-replay-video">
+            <div class="sc-play"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"/></svg></div>
+          </div>
+          <div class="sc-timeline">
+            <div class="bar"><span></span></div>
+            <div class="labels"><span>00:00</span><span>00:12</span><span>00:23</span></div>
+          </div>
+          <div style="display:flex;gap:4px;margin-top:8px;">
+            <div style="flex:1;height:22px;border-radius:6px;background:rgba(168,85,247,0.15);border:1px solid rgba(168,85,247,0.25);display:flex;align-items:center;justify-content:center;font-size:9px;font-family:'JetBrains Mono';color:#C084FC;">TRIM</div>
+            <div style="flex:1;height:22px;border-radius:6px;background:rgba(251,191,36,0.15);border:1px solid rgba(251,191,36,0.25);display:flex;align-items:center;justify-content:center;font-size:9px;font-family:'JetBrains Mono';color:#FBBF24;">SAVE</div>
+            <div style="flex:1;height:22px;border-radius:6px;background:rgba(88,101,242,0.15);border:1px solid rgba(88,101,242,0.25);display:flex;align-items:center;justify-content:center;font-size:9px;font-family:'JetBrains Mono';color:#818CF8;">SHARE</div>
+          </div>
+        </div>
+        <h3>Replay Editor</h3>
+        <p>Record, trim, and export PvP clips straight to Discord or YouTube — no watermark, no lag.</p>
       </div>
-      <div class="showcase-text">
-        <h3>Win more fights.</h3>
-        <p>The PvP Suite gives you the info you need without cheating. Know your reach. Predict your hits. Track your combo. Every module is client-side and undetectable by servers.</p>
-        <ul>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Combo counter and reach display</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Hit prediction and trajectory</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> 100% client-side, zero server flags</li>
-        </ul>
+
+      <!-- PvP -->
+      <div class="showcase-card">
+        <div class="sc-visual">
+          <div class="sc-pvp">
+            <div class="sc-hud-corner tl">COMBO ×7</div>
+            <div class="sc-hud-corner tr">REACH 3.02m</div>
+            <div class="sc-hud-corner bl">HIT 94.2%</div>
+            <div class="sc-crosshair"></div>
+            <div class="sc-health"><span></span></div>
+            <div class="sc-health-label">❤ 16.4 / 20</div>
+          </div>
+        </div>
+        <h3>PvP HUD</h3>
+        <p>Combo counter, reach display, hit prediction. Client-side only — completely server-invisible.</p>
       </div>
     </div>
   </div>
@@ -797,13 +996,16 @@ footer .copy { color: var(--muted); font-size: 12px; letter-spacing: 0.5px; opac
 <!-- Steps -->
 <section class="sect">
   <div class="container">
-    <h2 class="reveal">Get Started in Minutes</h2>
-    <p class="sub reveal">No setup guides. No tutorials. Just download and play.</p>
-    <div class="steps">
-      <div class="step reveal"><h4>Download the APK</h4><p>Grab the latest release from GitHub. No account, no ads, no tracking.</p></div>
-      <div class="step reveal"><h4>Install & Launch</h4><p>Install the APK, open GlowberryClient, and import your Minecraft version.</p></div>
-      <div class="step reveal"><h4>Customize</h4><p>Toggle modules, set your controller bind, enable Voice Chat, tune the HUD.</p></div>
-      <div class="step reveal"><h4>Play</h4><p>Hit Play. Everything runs at max FPS with every feature ready to go.</p></div>
+    <div class="sect-head">
+      <div class="tag">Setup</div>
+      <h2>Ready in under 2 minutes.</h2>
+      <p>No account. No setup wizard. No "sign up to continue".</p>
+    </div>
+    <div class="steps-grid">
+      <div class="step-card"><div class="num">01</div><h4>Download the APK</h4><p>Grab the latest release from GitHub. No ads, no tracking, no nonsense.</p></div>
+      <div class="step-card"><div class="num">02</div><h4>Install &amp; launch</h4><p>Install the APK, open GlowberryClient, and import your Minecraft version.</p></div>
+      <div class="step-card"><div class="num">03</div><h4>Customize</h4><p>Toggle modules, set your controller bind, enable Voice Chat, tune the HUD.</p></div>
+      <div class="step-card"><div class="num">04</div><h4>Play</h4><p>Hit Play. Everything runs at max FPS with every feature ready to go.</p></div>
     </div>
   </div>
 </section>
@@ -811,21 +1013,36 @@ footer .copy { color: var(--muted); font-size: 12px; letter-spacing: 0.5px; opac
 <!-- Download -->
 <section class="sect" id="download">
   <div class="container">
-    <h2 class="reveal">Download GlowberryClient</h2>
-    <p class="sub reveal">Free forever. Open source. No account required.</p>
+    <div class="sect-head">
+      <div class="tag">Download</div>
+      <h2>Get GlowberryClient.</h2>
+      <p>Free forever. Open source. No account required.</p>
+    </div>
+
     <div class="dl-grid">
-      <div class="dl-card reveal">
-        <div class="dl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></div>
-        <h3>Latest Stable</h3>
-        <p>The newest tested build. Everything works. Everything's fast.</p>
-        <a class="btn btn-primary" id="download-stable" href="https://github.com/ChimeraAnt-DEV/GlowberryClient/releases/latest">Download APK</a>
+      <div class="dl-card primary">
+        <div class="dl-badge"><span class="live-dot"></span> Latest stable</div>
+        <h3>Download the APK</h3>
+        <p>The newest tested build with every feature working. Recommended for most users.</p>
+        <a class="btn btn-primary" id="download-stable" href="https://github.com/ChimeraAnt-DEV/GlowberryClient/releases/latest">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download APK
+        </a>
+        <div class="dl-meta">
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> ARM64</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Android 8.0+</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> ~18 MB</span>
+        </div>
         <div class="checksum" id="checksum-display"></div>
       </div>
-      <div class="dl-card reveal">
-        <div class="dl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6v4H9z"/><path d="M10 3V1h4v2"/><path d="M5 7h14l-1 15H6L5 7z"/><path d="M10 11v7"/><path d="M14 11v7"/></svg></div>
-        <h3>Beta Builds</h3>
-        <p>Early access to features before they ship. Expect rough edges.</p>
-        <a class="btn btn-secondary" id="download-beta" href="https://github.com/ChimeraAnt-DEV/GlowberryClient/releases">View Beta Releases</a>
+
+      <div class="dl-card secondary">
+        <div class="dl-badge" style="background: rgba(251,191,36,0.14); color: var(--gold); border-color: rgba(251,191,36,0.3);">Beta channel</div>
+        <h3>Beta builds</h3>
+        <p>Early access to features before they ship. Expect rough edges and rapid updates.</p>
+        <a class="btn btn-secondary" id="download-beta" href="https://github.com/ChimeraAnt-DEV/GlowberryClient/releases">
+          View beta releases
+        </a>
       </div>
     </div>
   </div>
@@ -834,18 +1051,47 @@ footer .copy { color: var(--muted); font-size: 12px; letter-spacing: 0.5px; opac
 <!-- Trust -->
 <section class="sect" id="trust">
   <div class="container">
-    <h2 class="reveal">Trust &amp; Security</h2>
-    <p class="sub reveal">Sideloading an APK requires trust. Here's exactly what GlowberryClient asks for and why.</p>
-    <div class="trust-grid">
-      <div class="trust-card reveal"><div class="trust-icon">🎬</div><h4>Screen Recording</h4><p>Used <strong>only</strong> when you tap Record. Powers the Replay system. Stops the instant you stop recording.</p></div>
-      <div class="trust-card reveal"><div class="trust-icon">🎙️</div><h4>Microphone</h4><p>Used <strong>only</strong> when you enable Proximity Voice Chat. Audio is peer-to-peer — never touches our servers.</p></div>
-      <div class="trust-card reveal"><div class="trust-icon">🌐</div><h4>Network Access</h4><p>For Voice Chat connections and update checks. <strong>No analytics, no telemetry, no tracking.</strong></p></div>
-      <div class="trust-card reveal"><div class="trust-icon">📁</div><h4>Storage</h4><p><strong>Rarely requested.</strong> Only when you import a Minecraft version or save a replay. Files stay on your device.</p></div>
-      <div class="trust-card reveal"><div class="trust-icon">🔔</div><h4>Notifications</h4><p>Optional. Only used for release alerts. You can disable it any time in Settings.</p></div>
+    <div class="sect-head">
+      <div class="tag">Security</div>
+      <h2>Every permission, explained.</h2>
+      <p>Sideloading an APK requires trust. Here's exactly what GlowberryClient asks for and why.</p>
     </div>
-    <div class="trust-note reveal">
-      <p><strong>We don't collect anything.</strong> No accounts, no analytics, no telemetry, no remote logging. Everything happens on your device, and nothing is ever uploaded without your action.</p>
+
+    <div class="trust-grid">
+      <div class="trust-card"><div class="ti">🎬</div><h4>Screen Recording</h4><p>Used <strong>only</strong> when you tap Record. Powers Replay.</p></div>
+      <div class="trust-card"><div class="ti">🎙️</div><h4>Microphone</h4><p>Used <strong>only</strong> when Voice Chat is enabled. Peer-to-peer only.</p></div>
+      <div class="trust-card"><div class="ti">🌐</div><h4>Network</h4><p>For voice connections &amp; update checks. <strong>No telemetry.</strong></p></div>
+      <div class="trust-card"><div class="ti">📁</div><h4>Storage</h4><p>Only to import versions or save replays. <strong>Never uploaded.</strong></p></div>
+      <div class="trust-card"><div class="ti">🔔</div><h4>Notifications</h4><p>Optional release alerts only. Disable anytime.</p></div>
+    </div>
+
+    <div class="trust-note">
+      <p><strong>We collect nothing.</strong> No accounts, no analytics, no telemetry, no remote logging. Everything runs on your device and nothing is uploaded without your explicit action.</p>
       <a href="privacy.html">Read the full Privacy Policy →</a>
+    </div>
+  </div>
+</section>
+
+<!-- Compare -->
+<section class="sect">
+  <div class="container">
+    <div class="sect-head">
+      <div class="tag">Comparison</div>
+      <h2>Vanilla vs. GlowberryClient.</h2>
+    </div>
+
+    <div class="compare">
+      <div class="compare-row head">
+        <div class="c">Feature</div>
+        <div class="c center">Vanilla Bedrock</div>
+        <div class="c center brand-cell">GlowberryClient</div>
+      </div>
+      <div class="compare-row"><div class="c">Proximity voice chat</div><div class="c center no">—</div><div class="c center yes">✓</div></div>
+      <div class="compare-row"><div class="c">Built-in replay</div><div class="c center no">—</div><div class="c center yes">✓</div></div>
+      <div class="compare-row"><div class="c">PvP HUD</div><div class="c center no">—</div><div class="c center yes">✓</div></div>
+      <div class="compare-row"><div class="c">Native C++ mods</div><div class="c center no">—</div><div class="c center yes">✓</div></div>
+      <div class="compare-row"><div class="c">Lua / Java / Kotlin mods</div><div class="c center no">—</div><div class="c center yes">✓</div></div>
+      <div class="compare-row"><div class="c">Free &amp; open source</div><div class="c center no">Proprietary</div><div class="c center yes">✓ MIT</div></div>
     </div>
   </div>
 </section>
@@ -853,33 +1099,18 @@ footer .copy { color: var(--muted); font-size: 12px; letter-spacing: 0.5px; opac
 <!-- FAQ -->
 <section class="sect" id="faq">
   <div class="container">
-    <h2 class="reveal">Frequently Asked</h2>
-    <p class="sub reveal">Everything you need to know before you download.</p>
-    <div class="faq reveal">
-      <details class="faq-item">
-        <summary>Is GlowberryClient free?</summary>
-        <p>Yes. Completely free, forever. Open source on GitHub — no ads, no subscriptions, no paid tiers.</p>
-      </details>
-      <details class="faq-item">
-        <summary>Is it a cheat client?</summary>
-        <p>No. GlowberryClient is a launcher, not a cheat tool. Every module in the PvP Suite is client-side — it shows info on your own screen but never sends anything to the server that would give you an unfair advantage.</p>
-      </details>
-      <details class="faq-item">
-        <summary>Will it get me banned from servers?</summary>
-        <p>Every module is visual-only. Server anti-cheats cannot detect features that only render on your screen. That said, always follow the rules of the servers you play on.</p>
-      </details>
-      <details class="faq-item">
-        <summary>What Android versions are supported?</summary>
-        <p>Android 8.0 and up on ARM64 devices. If your device runs Minecraft Bedrock, it can run GlowberryClient.</p>
-      </details>
-      <details class="faq-item">
-        <summary>Do I need a server for Proximity Voice Chat?</summary>
-        <p>No. Voice Chat works directly between devices — no relay, no hosting, no monthly fee.</p>
-      </details>
-      <details class="faq-item">
-        <summary>How do I make my own mods?</summary>
-        <p>GlowberryClient supports .AntEgg mods written in C++, Lua, Java, or Kotlin. Documentation is on the GitHub repository.</p>
-      </details>
+    <div class="sect-head">
+      <div class="tag">FAQ</div>
+      <h2>Questions, answered.</h2>
+    </div>
+
+    <div class="faq">
+      <details class="faq-item"><summary>Is GlowberryClient free?</summary><p>Yes. Completely free, forever. Open source on GitHub — no ads, no subscriptions, no paid tiers.</p></details>
+      <details class="faq-item"><summary>Is it a cheat client?</summary><p>No. GlowberryClient is a launcher, not a cheat tool. Every PvP module is client-side and never sends anything to the server that would give you an unfair advantage.</p></details>
+      <details class="faq-item"><summary>Will it get me banned?</summary><p>Every module is visual-only. Server anti-cheats cannot detect features that only render on your own screen. That said, always follow the rules of the servers you play on.</p></details>
+      <details class="faq-item"><summary>What Android versions are supported?</summary><p>Android 8.0 and up on ARM64 devices. If your phone runs Bedrock, it runs GlowberryClient.</p></details>
+      <details class="faq-item"><summary>Do I need a server for Voice Chat?</summary><p>No. Voice chat connects devices directly — no relay, no hosting, no monthly fee.</p></details>
+      <details class="faq-item"><summary>How do I make my own mods?</summary><p>GlowberryClient supports .AntEgg mods written in C++, Lua, Java, or Kotlin. Documentation is on the GitHub repository.</p></details>
     </div>
   </div>
 </section>
@@ -887,69 +1118,81 @@ footer .copy { color: var(--muted); font-size: 12px; letter-spacing: 0.5px; opac
 <!-- Discord -->
 <section class="sect" id="discord">
   <div class="container">
-    <h2 class="reveal">Join the Community</h2>
-    <p class="sub reveal">Get help, report bugs, share clips, and hang out with other GlowberryClient users.</p>
-    <div class="discord-card reveal">
-      <div class="discord-glow"></div>
-      <div class="discord-content">
-        <div class="discord-icon">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
-        </div>
-        <h3>GlowberryClient Discord</h3>
-        <p>Talk to the dev team, test beta builds, share feedback, and find people to play with. No invite expiration — this link works forever.</p>
-        <a class="btn btn-discord" href="https://discord.gg/VMGXExhxxA" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
-          Join the Server
-        </a>
-        <div class="discord-meta">
-          <span class="live-dot"></span>
-          <span>Active community · Free forever · No invite expiry</span>
-        </div>
+    <div class="sect-head">
+      <div class="tag">Community</div>
+      <h2>Join the Discord.</h2>
+      <p>Get help, report bugs, share clips, and hang out with other GlowberryClient users.</p>
+    </div>
+
+    <div class="discord-card">
+      <div class="discord-icon">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+      </div>
+      <h3>GlowberryClient Discord</h3>
+      <p>Talk to the dev team, test beta builds, share feedback, and find people to play with. No invite expiration — this link works forever.</p>
+      <a class="btn btn-discord" href="https://discord.gg/VMGXExhxxA" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+        Join the server
+      </a>
+      <div class="discord-meta">
+        <span class="live-dot"></span>
+        <span>Active community · Free forever · No invite expiry</span>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Final CTA -->
-<div class="container">
-  <div class="final-cta reveal">
-    <h2>Ready to play?</h2>
-    <p>Download GlowberryClient and see what Bedrock on Android can actually do.</p>
-    <a class="btn btn-primary" href="https://github.com/ChimeraAnt-DEV/GlowberryClient/releases/latest">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-      Download Now
-    </a>
-  </div>
-</div>
-
 <!-- Footer -->
 <footer>
   <div class="container">
-    <div class="brand-row">
-      <img src="https://raw.githubusercontent.com/ChimeraAnt-DEV/Glowberry-Client-LOGO/main/In%20Mod%20Menu%20Icon.png" alt="GlowberryClient" />
-      GLOWBERRYCLIENT
+    <div class="foot-grid">
+      <div class="foot-col">
+        <div class="foot-brand">
+          <img src="https://raw.githubusercontent.com/ChimeraAnt-DEV/Glowberry-Client-LOGO/main/In%20Mod%20Menu%20Icon.png" alt="GlowberryClient" />
+          GlowberryClient
+        </div>
+        <p>The free, open-source Android launcher for Minecraft Bedrock. Built on phones. Runs on everything.</p>
+      </div>
+      <div class="foot-col">
+        <h5>Product</h5>
+        <a href="#features">Features</a>
+        <a href="#showcase">Showcase</a>
+        <a href="#download">Download</a>
+        <a href="#faq">FAQ</a>
+      </div>
+      <div class="foot-col">
+        <h5>Developer</h5>
+        <a href="https://github.com/ChimeraAnt-DEV">GitHub org</a>
+        <a href="https://github.com/ChimeraAnt-DEV/GlowberryClient/releases">Releases</a>
+        <a href="https://github.com/ChimeraAnt-DEV/GlowberryClient/issues">Issues</a>
+        <a href="privacy.html">Privacy</a>
+      </div>
+      <div class="foot-col">
+        <h5>Community</h5>
+        <a href="https://discord.gg/VMGXExhxxA">Discord</a>
+        <a href="https://github.com/ChimeraAnt-DEV">Contribute</a>
+        <a href="#trust">Security</a>
+      </div>
     </div>
-    <div class="links">
-      <a href="https://github.com/ChimeraAnt-DEV">GitHub</a>
-      <a href="https://github.com/ChimeraAnt-DEV/GlowberryClient/releases">Releases</a>
-      <a href="https://github.com/ChimeraAnt-DEV/GlowberryClient/issues">Issues</a>
-      <a href="privacy.html">Privacy</a>
-      <a href="https://discord.gg/VMGXExhxxA">Discord</a>
+    <div class="foot-bottom">
+      <div>© 2026 ChimeraAnt-DEV · Built on phones. Runs on everything.</div>
+      <div class="socials">
+        <a href="https://github.com/ChimeraAnt-DEV" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56v-2c-3.2.7-3.88-1.54-3.88-1.54-.52-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.71.08-.71 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.68 0-1.25.45-2.28 1.19-3.08-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18.92-.26 1.91-.39 2.89-.39.98 0 1.97.13 2.89.39 2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.8 1.19 1.83 1.19 3.08 0 4.41-2.69 5.38-5.25 5.67.41.35.78 1.05.78 2.12v3.14c0 .31.21.67.8.56C20.22 21.39 23.5 17.08 23.5 12 23.5 5.65 18.35.5 12 .5z"/></svg></a>
+        <a href="https://discord.gg/VMGXExhxxA" aria-label="Discord"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg></a>
+      </div>
     </div>
-    <div class="copy">© 2026 ChimeraAnt-DEV · Built on phones. Runs on everything.</div>
   </div>
 </footer>
 
-<!-- Back to top -->
 <button id="back-top" aria-label="Back to top">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
 </button>
 
 <script>
-// ===== Theme toggle =====
+// ===== Theme =====
 const root = document.documentElement;
 const themeBtn = document.getElementById('theme-btn');
-const savedTheme = localStorage.getItem('gc-theme') || 'light';
+const savedTheme = localStorage.getItem('gc-theme') || 'dark';
 root.setAttribute('data-theme', savedTheme);
 themeBtn.addEventListener('click', () => {
   const next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
@@ -957,33 +1200,31 @@ themeBtn.addEventListener('click', () => {
   localStorage.setItem('gc-theme', next);
 });
 
-// ===== Nav shrink + scroll progress + back to top =====
+// ===== Scroll =====
 const navbar = document.getElementById('navbar');
 const scrollBar = document.getElementById('scroll-bar');
 const backTop = document.getElementById('back-top');
 window.addEventListener('scroll', () => {
   const y = window.scrollY;
-  if (y > 40) navbar.classList.add('scrolled'); else navbar.classList.remove('scrolled');
+  navbar.classList.toggle('scrolled', y > 40);
   const h = document.documentElement.scrollHeight - window.innerHeight;
   scrollBar.style.width = (h > 0 ? (y / h) * 100 : 0) + '%';
-  if (y > 600) backTop.classList.add('visible'); else backTop.classList.remove('visible');
+  backTop.classList.toggle('visible', y > 600);
 }, { passive: true });
-
 backTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
-// ===== Scroll reveal =====
-const reveals = document.querySelectorAll('.reveal, .card, .trust-card, .step');
+// ===== Reveal =====
 const io = new IntersectionObserver((entries) => {
-  entries.forEach((entry, i) => {
-    if (entry.isIntersecting) {
-      setTimeout(() => entry.target.classList.add('visible'), i * 55);
-      io.unobserve(entry.target);
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 45);
+      io.unobserve(e.target);
     }
   });
-}, { threshold: 0.12, rootMargin: '0px 0px -80px 0px' });
-reveals.forEach(el => io.observe(el));
+}, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+document.querySelectorAll('.bento-card, .showcase-card, .step-card, .trust-card').forEach(el => io.observe(el));
 
-// ===== Smooth anchor scroll =====
+// ===== Smooth anchors =====
 document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener('click', (e) => {
     const t = document.querySelector(a.getAttribute('href'));
@@ -991,35 +1232,28 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
   });
 });
 
-// ===== Counter animation =====
-const counters = document.querySelectorAll('.stat .num[data-count]');
-const cio = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (!entry.isIntersecting) return;
-    const el = entry.target;
-    const target = parseInt(el.dataset.count, 10);
-    const suffix = el.dataset.suffix || '';
-    const duration = 1400;
-    const start = performance.now();
-    function tick(now) {
-      const p = Math.min((now - start) / duration, 1);
-      const eased = 1 - Math.pow(1 - p, 3);
-      el.textContent = Math.round(target * eased) + suffix;
-      if (p < 1) requestAnimationFrame(tick);
-    }
-    requestAnimationFrame(tick);
-    cio.unobserve(el);
+// ===== 3D tilt (desktop only) =====
+if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+  document.querySelectorAll('.bento-card, .showcase-card').forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const r = card.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width - 0.5;
+      const y = (e.clientY - r.top) / r.height - 0.5;
+      card.style.transform = `translateY(-4px) perspective(900px) rotateY(${x * 6}deg) rotateX(${-y * 6}deg)`;
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = '';
+    });
   });
-}, { threshold: 0.5 });
-counters.forEach(c => cio.observe(c));
+}
 
-// ===== Dynamic download buttons =====
+// ===== Dynamic downloads =====
 const REPO = 'ChimeraAnt-DEV/GlowberryClient';
-async function loadDownloadButtons() {
+async function loadDownloads() {
   const stableBtn = document.getElementById('download-stable');
   const betaBtn = document.getElementById('download-beta');
   const checksumEl = document.getElementById('checksum-display');
-  if (!stableBtn || !betaBtn) return;
+  if (!stableBtn) return;
   try {
     const res = await fetch(`https://api.github.com/repos/${REPO}/releases?per_page=30`);
     if (!res.ok) throw new Error('API failed');
@@ -1030,7 +1264,7 @@ async function loadDownloadButtons() {
       const apk = stable.assets.find(a => a.name.toLowerCase().endsWith('.apk'));
       const sha = stable.assets.find(a => /\.(sha256|sha256sum|sha256\.txt)$/i.test(a.name));
       stableBtn.href = apk ? apk.browser_download_url : stable.html_url;
-      stableBtn.textContent = `Download APK (${stable.tag_name})`;
+      stableBtn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Download APK (${stable.tag_name})`;
       if (sha && checksumEl) {
         try {
           const shaRes = await fetch(sha.browser_download_url);
@@ -1040,21 +1274,21 @@ async function loadDownloadButtons() {
             checksumEl.innerHTML = `<strong>SHA-256</strong>${hash}`;
             checksumEl.classList.add('visible');
           }
-        } catch (e) { console.warn('Checksum fetch failed:', e); }
+        } catch (e) {}
       }
     }
     if (beta) {
       betaBtn.href = beta.html_url;
-      betaBtn.textContent = `Latest Beta (${beta.tag_name})`;
+      betaBtn.textContent = `Latest beta (${beta.tag_name})`;
     } else {
       betaBtn.style.display = 'none';
     }
   } catch (e) {
-    console.warn('Download buttons using fallback links:', e);
+    console.warn('Using fallback links:', e);
   }
 }
-loadDownloadButtons();
+loadDownloads();
 </script>
 
 </body>
-  </html>
+             </html>
