@@ -3,15 +3,15 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-<title>GlowberryClient — Minecraft Bedrock, Reinvented</title>
-<meta name="description" content="The free Android launcher for Minecraft Bedrock. Native C++ mods, Proximity Voice Chat, built-in Replay, and a full PvP suite." />
-<meta name="theme-color" content="#0B0518" />
-<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/ChimeraAnt-DEV/Glowberry-Client-LOGO/main/In%20Mod%20Menu%20Icon.png" />
+<title>CaramelClient — The Future of Bedrock.</title>
+<meta name="description" content="The most advanced Android launcher for Minecraft Bedrock. Native C++ .universe mods, .singularity world gen, BetterRenderDragon, and a premium glassmorphic UI." />
+<meta name="theme-color" content="#0A0705" />
+<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/ChimeraAnt-DEV/ChimeraAnt-Dev.github.io/main/Assets/caramel_apple_icon_512.png" />
 
 <!-- OpenGraph (Discord embed) -->
-<meta property="og:title" content="GlowberryClient — Minecraft Bedrock, Reinvented" />
-<meta property="og:description" content="Free Android launcher with Native C++ mods, Proximity Voice Chat, Replay, and a full PvP suite." />
-<meta property="og:image" content="https://raw.githubusercontent.com/ChimeraAnt-DEV/Glowberry-Client-LOGO/main/In%20Mod%20Menu%20Icon.png" />
+<meta property="og:title" content="CaramelClient — The Future of Bedrock." />
+<meta property="og:description" content="Free Android launcher with Native C++ .universe mods, .singularity world gen, and a full PvP suite." />
+<meta property="og:image" content="https://raw.githubusercontent.com/ChimeraAnt-DEV/ChimeraAnt-Dev.github.io/main/Assets/caramelclient_banner.png" />
 <meta property="og:url" content="https://chimeraant-dev.github.io/" />
 <meta property="og:type" content="website" />
 <meta name="twitter:card" content="summary_large_image" />
@@ -21,28 +21,28 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
 <style>
 :root[data-theme="light"] {
-  --bg: #F7F4FF; --bg-2: #EFE9FF; --surface: rgba(255,255,255,0.72);
-  --surface-solid: #FFFFFF; --surface-2: #F5F0FF;
-  --border: rgba(124,58,237,0.10); --border-strong: rgba(124,58,237,0.22);
-  --text: #14052B; --text-2: #3D2A66; --muted: #7A6A94;
-  --accent: #7C3AED; --accent-2: #A855F7; --accent-soft: #EDE4FF;
-  --gold: #E68A00; --gold-2: #F59E0B; --gold-soft: #FFF3D6;
+  --bg: #FFFDF7; --bg-2: #FEF7E7; --surface: rgba(255,255,255,0.72);
+  --surface-solid: #FFFFFF; --surface-2: #FFF9EC;
+  --border: rgba(245,158,11,0.15); --border-strong: rgba(245,158,11,0.30);
+  --text: #1A1108; --text-2: #4A3521; --muted: #8B7355;
+  --accent: #D97706; --accent-2: #F59E0B; --accent-soft: #FEF3C7;
+  --gold: #B45309; --gold-2: #D97706; --gold-soft: #FFEDD5;
   --green: #10B981; --discord: #5865F2;
-  --shadow-sm: 0 1px 2px rgba(20,5,43,0.05), 0 2px 10px rgba(124,58,237,0.05);
-  --shadow-md: 0 6px 20px rgba(20,5,43,0.08), 0 16px 40px rgba(124,58,237,0.08);
-  --shadow-lg: 0 24px 60px rgba(124,58,237,0.18), 0 48px 100px rgba(124,58,237,0.10);
-  --glow: 0 0 80px rgba(124,58,237,0.25); --grain: 0.035;
+  --shadow-sm: 0 1px 2px rgba(26,17,8,0.05), 0 2px 10px rgba(245,158,11,0.05);
+  --shadow-md: 0 6px 20px rgba(26,17,8,0.08), 0 16px 40px rgba(245,158,11,0.08);
+  --shadow-lg: 0 24px 60px rgba(245,158,11,0.15), 0 48px 100px rgba(245,158,11,0.10);
+  --glow: 0 0 80px rgba(245,158,11,0.25); --grain: 0.035;
 }
 :root[data-theme="dark"] {
-  --bg: #07030F; --bg-2: #100525; --surface: rgba(24,10,48,0.62);
-  --surface-solid: #14082B; --surface-2: #1B0B38;
-  --border: rgba(168,85,247,0.14); --border-strong: rgba(168,85,247,0.30);
-  --text: #F4EEFF; --text-2: #C8B4F0; --muted: #9181B8;
-  --accent: #A855F7; --accent-2: #C084FC; --accent-soft: rgba(168,85,247,0.14);
-  --gold: #FBBF24; --gold-2: #FCD34D; --gold-soft: rgba(251,191,36,0.12);
+  --bg: #0A0705; --bg-2: #1A110A; --surface: rgba(30,20,15,0.62);
+  --surface-solid: #140D08; --surface-2: #1C120A;
+  --border: rgba(245,158,11,0.14); --border-strong: rgba(245,158,11,0.30);
+  --text: #FFF8F0; --text-2: #D6C4B0; --muted: #9C8A76;
+  --accent: #F59E0B; --accent-2: #FCD34D; --accent-soft: rgba(245,158,11,0.14);
+  --gold: #FCD34D; --gold-2: #FBBF24; --gold-soft: rgba(251,191,36,0.12);
   --green: #34D399; --discord: #5865F2;
   --shadow-sm: 0 1px 2px rgba(0,0,0,0.5); --shadow-md: 0 6px 24px rgba(0,0,0,0.5);
-  --shadow-lg: 0 24px 80px rgba(0,0,0,0.6); --glow: 0 0 100px rgba(168,85,247,0.35); --grain: 0.05;
+  --shadow-lg: 0 24px 80px rgba(0,0,0,0.6); --glow: 0 0 100px rgba(245,158,11,0.35); --grain: 0.05;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
@@ -64,7 +64,7 @@ body::after {
 
 /* Announcement */
 .announce { position: relative; z-index: 101; padding: 9px 16px;
-  background: linear-gradient(90deg, var(--accent), var(--accent-2), var(--gold));
+  background: linear-gradient(90deg, var(--accent), var(--gold), var(--accent-2));
   background-size: 200% 100%; animation: slideBg 8s linear infinite;
   color: #fff; font-size: 12.5px; font-weight: 600; letter-spacing: 0.02em;
   text-align: center; display: flex; align-items: center; justify-content: center; gap: 10px; }
@@ -86,7 +86,7 @@ header.nav { position: sticky; top: 0; z-index: 100; padding: 12px 0;
 header.nav.scrolled { padding: 8px 0; box-shadow: var(--shadow-md); }
 .nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
 .brand { display: flex; align-items: center; gap: 11px; font-family: 'Space Grotesk'; font-weight: 700; font-size: 16px; letter-spacing: -0.02em; text-decoration: none; color: var(--text); }
-.brand img { width: 34px; height: 34px; transition: transform 0.3s; }
+.brand img { width: 34px; height: 34px; transition: transform 0.3s; border-radius: 8px; }
 .brand:hover img { transform: rotate(-8deg) scale(1.05); }
 .nav-links { display: flex; gap: 2px; align-items: center; }
 .nav-links a { color: var(--text-2); text-decoration: none; font-size: 13.5px; font-weight: 500; padding: 8px 14px; border-radius: 100px; transition: all 0.2s; }
@@ -118,8 +118,8 @@ header.nav.scrolled { padding: 8px 0; box-shadow: var(--shadow-md); }
 /* Buttons */
 .btn { padding: 13px 24px; border-radius: 100px; font-weight: 600; font-size: 14px; font-family: inherit; text-decoration: none; transition: all 0.25s cubic-bezier(0.4,0,0.2,1); border: none; cursor: pointer; display: inline-flex; align-items: center; gap: 9px; position: relative; overflow: hidden; white-space: nowrap; }
 .btn svg { width: 16px; height: 16px; flex-shrink: 0; }
-.btn-primary { background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #fff; box-shadow: 0 8px 30px rgba(124,58,237,0.35); }
-.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 14px 40px rgba(124,58,237,0.5); }
+.btn-primary { background: linear-gradient(135deg, var(--accent), var(--gold)); color: #0A0705; box-shadow: 0 8px 30px rgba(245,158,11,0.35); }
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 14px 40px rgba(245,158,11,0.5); }
 .btn-primary::after { content:''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.35), transparent); transition: left 0.7s; }
 .btn-primary:hover::after { left: 100%; }
 .btn-secondary { background: var(--surface-solid); color: var(--text); border: 1px solid var(--border-strong); }
@@ -128,7 +128,7 @@ header.nav.scrolled { padding: 8px 0; box-shadow: var(--shadow-md); }
 .btn-discord:hover { transform: translateY(-2px); box-shadow: 0 14px 40px rgba(88,101,242,0.6); }
 
 /* Hero */
-.hero { padding: 70px 0 60px; position: relative; }
+.hero { padding: 60px 0 60px; position: relative; }
 .hero-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 60px; align-items: center; }
 .hero-badge { display: inline-flex; align-items: center; gap: 8px; padding: 7px 14px; border-radius: 100px; background: var(--accent-soft); color: var(--accent); font-size: 12px; font-weight: 600; letter-spacing: 0.02em; margin-bottom: 26px; border: 1px solid var(--border-strong); }
 .hero-badge .live { width: 7px; height: 7px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 4px rgba(16,185,129,0.2); animation: livePulse 2s ease infinite; }
@@ -148,117 +148,41 @@ header.nav.scrolled { padding: 8px 0; box-shadow: var(--shadow-md); }
 .star-progress-bar span { display: block; height: 100%; width: 0%; background: linear-gradient(90deg, var(--accent), var(--gold)); border-radius: 100px; transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 0 12px var(--gold); }
 
 /* Device showcase */
-.hero-visual { position: relative; display: flex; justify-content: center; align-items: center; min-height: 620px; }
-.device-stage { position: relative; display: flex; align-items: center; justify-content: center; gap: 0; }
-
-/* Phone */
-.phone {
-  width: 270px; height: 560px; border-radius: 40px;
-  background: #1a1425;
-  border: 3px solid #2d2540;
-  padding: 10px;
-  box-shadow: 0 0 0 1px rgba(255,255,255,0.04), 0 40px 80px rgba(0,0,0,0.6), 0 0 100px rgba(124,58,237,0.15);
-  position: relative; z-index: 3;
-}
-.phone::before { content:''; position: absolute; top: 12px; left: 50%; transform: translateX(-50%); width: 80px; height: 20px; background: #1a1425; border-radius: 100px; z-index: 5; border: 1px solid rgba(255,255,255,0.06); }
-.phone::after { content:''; position: absolute; bottom: 6px; left: 50%; transform: translateX(-50%); width: 100px; height: 4px; background: rgba(255,255,255,0.15); border-radius: 100px; }
-
-.phone-screen {
-  width: 100%; height: 100%; border-radius: 30px; overflow: hidden;
-  background: #0a0414; display: flex; flex-direction: column;
-  font-family: 'Outfit', sans-serif;
-}
-
-/* Client UI */
-.client-topbar { display: flex; align-items: center; justify-content: space-between; padding: 6px 14px 0; font-family: 'JetBrains Mono'; font-size: 9px; color: rgba(255,255,255,0.5); }
-.client-topbar .right { display: flex; gap: 6px; align-items: center; }
-
-.client-nav { display: flex; align-items: center; padding: 10px 14px 8px; gap: 4px; border-bottom: 1px solid rgba(255,255,255,0.04); }
-.client-nav .logo { width: 18px; height: 18px; border-radius: 5px; margin-right: 6px; }
-.client-tab { font-size: 9px; font-weight: 600; color: rgba(255,255,255,0.4); padding: 5px 8px; border-radius: 100px; white-space: nowrap; }
-.client-tab.active { color: #A855F7; background: rgba(168,85,247,0.12); }
-.client-tab svg { width: 10px; height: 10px; vertical-align: -2px; margin-right: 3px; }
-
-.client-body { flex: 1; padding: 12px 14px; overflow: hidden; display: flex; flex-direction: column; gap: 10px; }
-
-/* Instance card */
-.instance-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 14px; padding: 14px; position: relative; }
-.instance-card .label { font-size: 8px; color: rgba(255,255,255,0.4); font-family: 'JetBrains Mono'; letter-spacing: 0.08em; text-transform: uppercase; }
-.instance-card .top-row { display: flex; justify-content: space-between; margin-bottom: 10px; }
-.instance-card .top-row .right { font-size: 8px; color: rgba(255,255,255,0.35); }
-.instance-card .instance-main { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
-.instance-card .mc-logo { width: 34px; height: 34px; border-radius: 8px; background: linear-gradient(135deg, #2d1a4f, #1a0b2e); display: flex; align-items: center; justify-content: center; font-size: 16px; }
-.instance-card .instance-name { font-size: 13px; font-weight: 700; color: #F4EEFF; }
-.instance-card .instance-ver { font-size: 9px; color: rgba(255,255,255,0.4); margin-top: 2px; display: flex; gap: 4px; align-items: center; }
-.instance-card .ver-badge { font-size: 7px; padding: 1px 5px; border-radius: 100px; background: rgba(168,85,247,0.2); color: #C084FC; font-weight: 600; }
-.instance-card .stats-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; border-top: 1px solid rgba(255,255,255,0.04); padding-top: 10px; }
-.instance-card .stat { text-align: center; }
-.instance-card .stat .v { font-size: 13px; font-weight: 700; color: #F4EEFF; font-family: 'Space Grotesk'; }
-.instance-card .stat .k { font-size: 7px; color: rgba(255,255,255,0.35); text-transform: uppercase; letter-spacing: 0.06em; margin-top: 1px; }
-
-/* Quick actions */
-.quick-label { font-size: 9px; font-weight: 600; color: rgba(255,255,255,0.5); padding: 0 2px; display: flex; align-items: center; gap: 5px; }
-.quick-label svg { width: 11px; height: 11px; color: #A855F7; }
-.quick-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
-.quick-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; padding: 10px 8px; }
-.quick-card .q-icon { width: 22px; height: 22px; border-radius: 6px; display: flex; align-items: center; justify-content: center; margin-bottom: 8px; }
-.quick-card .q-icon svg { width: 12px; height: 12px; }
-.quick-card .q-title { font-size: 9px; font-weight: 700; color: #F4EEFF; margin-bottom: 2px; }
-.quick-card .q-sub { font-size: 7.5px; color: rgba(255,255,255,0.35); }
-
-/* Content library */
-.content-row { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; padding: 10px 12px; display: flex; align-items: center; gap: 9px; }
-.content-row .c-icon { width: 22px; height: 22px; border-radius: 6px; background: rgba(168,85,247,0.15); display: flex; align-items: center; justify-content: center; }
-.content-row .c-icon svg { width: 12px; height: 12px; color: #A855F7; }
-.content-row .c-title { font-size: 10px; font-weight: 700; color: #F4EEFF; }
-.content-row .c-sub { font-size: 7.5px; color: rgba(255,255,255,0.35); }
-
-/* Play button */
-.play-wrap { margin-top: auto; padding: 6px 0 2px; }
-.play-btn { width: 100%; padding: 11px; border-radius: 12px; background: linear-gradient(135deg, #3B82F6, #2563EB); color: #fff; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 6px; box-shadow: 0 6px 20px rgba(59,130,246,0.4); letter-spacing: 0.02em; }
-.play-btn svg { width: 13px; height: 13px; }
+.hero-visual { position: relative; display: flex; justify-content: center; align-items: center; min-height: 500px; }
+.device-stage { position: relative; display: flex; align-items: center; justify-content: center; width: 100%; }
 
 /* Tablet */
 .tablet {
-  width: 400px; height: 280px; border-radius: 18px;
-  background: #1a1425; border: 3px solid #2d2540;
-  padding: 8px; box-shadow: 0 0 0 1px rgba(255,255,255,0.04), 0 30px 60px rgba(0,0,0,0.6), 0 0 80px rgba(124,58,237,0.1);
+  width: 100%; max-width: 540px; aspect-ratio: 16/10; border-radius: 24px;
+  background: #1A110A; border: 4px solid #2D1F14;
+  padding: 8px; box-shadow: 0 0 0 1px rgba(245,158,11,0.1), 0 30px 60px rgba(0,0,0,0.6), 0 0 80px rgba(245,158,11,0.15);
   position: relative; z-index: 2;
-  margin-left: -30px;
-  transform: translateY(20px);
+  transform: perspective(1000px) rotateY(-5deg) rotateX(2deg);
+  transition: transform 0.4s ease;
 }
-.tablet::before { content:''; position: absolute; top: 4px; left: 50%; transform: translateX(-50%); width: 8px; height: 8px; background: #1a1425; border-radius: 50%; border: 1px solid rgba(255,255,255,0.08); }
-.tablet-screen { width: 100%; height: 100%; border-radius: 12px; overflow: hidden; background: #0a0414; display: flex; flex-direction: column; font-family: 'Outfit', sans-serif; }
-.tablet .client-nav { padding: 8px 12px 6px; }
-.tablet .client-tab { font-size: 8px; padding: 4px 7px; }
-.tablet .client-body { padding: 10px 12px; gap: 8px; }
-.tablet .instance-card { padding: 10px; }
-.tablet .instance-card .mc-logo { width: 28px; height: 28px; font-size: 13px; }
-.tablet .instance-card .instance-name { font-size: 11px; }
-.tablet .instance-card .stat .v { font-size: 11px; }
-.tablet .quick-row { grid-template-columns: 1fr 1fr 1fr; gap: 6px; }
-.tablet .quick-card { padding: 8px 6px; }
-.tablet .quick-card .q-title { font-size: 8px; }
-.tablet .quick-card .q-sub { font-size: 6.5px; }
-.tablet .content-row { padding: 8px 10px; }
-.tablet .play-btn { padding: 8px; font-size: 9px; border-radius: 10px; }
+.tablet:hover {
+  transform: perspective(1000px) rotateY(0deg) rotateX(0deg);
+}
+.tablet::before { content:''; position: absolute; top: 4px; left: 50%; transform: translateX(-50%); width: 6px; height: 6px; background: #1A110A; border-radius: 50%; border: 1px solid rgba(255,255,255,0.08); z-index: 5; }
+.tablet-screen { width: 100%; height: 100%; border-radius: 16px; overflow: hidden; background: #000; display: flex; position: relative;}
+.tablet-screen img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
 /* Floating chips */
 .float-chip { position: absolute; padding: 9px 13px; border-radius: 12px; background: var(--surface-solid); border: 1px solid var(--border-strong); box-shadow: var(--shadow-md); font-size: 11.5px; font-weight: 600; display: flex; align-items: center; gap: 7px; z-index: 6; backdrop-filter: blur(10px); }
 .float-chip .ico { width: 22px; height: 22px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 11px; }
 .float-chip small { display: block; font-size: 9px; color: var(--muted); font-weight: 500; letter-spacing: 0.04em; }
-.chip-1 { top: 8%; left: -40px; animation: chipFloat 5s ease-in-out infinite; }
-.chip-2 { bottom: 24%; right: -50px; animation: chipFloat 5s ease-in-out infinite 1.2s; }
-.chip-3 { bottom: 6%; left: -20px; animation: chipFloat 5s ease-in-out infinite 2.4s; }
+.chip-1 { top: -5%; left: 0; animation: chipFloat 5s ease-in-out infinite; }
+.chip-2 { bottom: 10%; right: -5%; animation: chipFloat 5s ease-in-out infinite 1.2s; }
+.chip-3 { bottom: -5%; left: 10%; animation: chipFloat 5s ease-in-out infinite 2.4s; }
 @keyframes chipFloat { 50% { transform: translateY(-10px); } }
 
 /* Marquee */
-.marquee-wrap { padding: 40px 0; overflow: hidden; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); position: relative; }
+.marquee-wrap { padding: 30px 0; overflow: hidden; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); position: relative; background: var(--bg-2); }
 .marquee-wrap::before, .marquee-wrap::after { content:''; position: absolute; top: 0; bottom: 0; width: 120px; z-index: 3; pointer-events: none; }
-.marquee-wrap::before { left: 0; background: linear-gradient(90deg, var(--bg), transparent); }
-.marquee-wrap::after { right: 0; background: linear-gradient(270deg, var(--bg), transparent); }
+.marquee-wrap::before { left: 0; background: linear-gradient(90deg, var(--bg-2), transparent); }
+.marquee-wrap::after { right: 0; background: linear-gradient(270deg, var(--bg-2), transparent); }
 .marquee { display: flex; gap: 60px; animation: scroll 30s linear infinite; width: max-content; }
-.marquee-item { font-family: 'Space Grotesk'; font-size: 20px; font-weight: 600; letter-spacing: -0.02em; color: var(--muted); opacity: 0.55; white-space: nowrap; display: flex; align-items: center; gap: 14px; transition: opacity 0.3s; }
+.marquee-item { font-family: 'Space Grotesk'; font-size: 18px; font-weight: 600; letter-spacing: -0.02em; color: var(--muted); opacity: 0.7; white-space: nowrap; display: flex; align-items: center; gap: 14px; transition: opacity 0.3s; }
 .marquee-item:hover { opacity: 1; color: var(--accent); }
 .marquee-item .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
 @keyframes scroll { to { transform: translateX(-50%); } }
@@ -288,49 +212,24 @@ section.sect { padding: 100px 0; position: relative; }
 .bento-card p { color: var(--muted); font-size: 14px; line-height: 1.6; }
 .bento-card .feature-preview { margin-top: auto; padding-top: 20px; }
 
-.preview-hud { border-radius: 12px; background: linear-gradient(160deg, #15082e, #0a0418); padding: 14px; position: relative; overflow: hidden; border: 1px solid rgba(168,85,247,0.15); }
-.preview-hud::before { content:''; position: absolute; inset: 0; background: radial-gradient(circle at 50% 50%, rgba(168,85,247,0.15), transparent 60%); }
+.preview-hud { border-radius: 12px; background: linear-gradient(160deg, #1A110A, #0A0705); padding: 14px; position: relative; overflow: hidden; border: 1px solid rgba(245,158,11,0.15); }
+.preview-hud::before { content:''; position: absolute; inset: 0; background: radial-gradient(circle at 50% 50%, rgba(245,158,11,0.15), transparent 60%); }
 .preview-row { display: flex; justify-content: space-between; align-items: center; position: relative; font-family: 'JetBrains Mono'; font-size: 10.5px; margin-bottom: 8px; }
 .preview-row:last-child { margin-bottom: 0; }
-.preview-row .k { color: #9181B8; letter-spacing: 0.05em; }
+.preview-row .k { color: #9C8A76; letter-spacing: 0.05em; }
 .preview-row .v { color: #34D399; font-weight: 600; }
-.preview-row .v.gold { color: #FBBF24; }
+.preview-row .v.gold { color: #FCD34D; }
 .preview-row .v.purple { color: #C084FC; }
 .preview-bar { height: 3px; background: rgba(255,255,255,0.08); border-radius: 100px; overflow: hidden; margin-top: 5px; }
-.preview-bar span { display: block; height: 100%; background: linear-gradient(90deg, #A855F7, #FBBF24); border-radius: 100px; }
-
-/* Avatar CSS - properly crops the head from the full skin layout */
-.voice-row { display: flex; align-items: center; gap: 8px; padding: 7px 10px; border-radius: 10px; background: rgba(168,85,247,0.08); margin-bottom: 6px; border: 1px solid rgba(168,85,247,0.12); }
-.voice-row .nm { flex: 1; font-size: 11.5px; font-weight: 600; color: #F4EEFF; }
-.voice-row .mt { width: 90px; height: 4px; background: rgba(255,255,255,0.08); border-radius: 100px; overflow: hidden; }
-.voice-row .mt span { display: block; height: 100%; background: linear-gradient(90deg, #A855F7, #34D399); }
-
-.ui-avatar, .av {
-  object-fit: none; /* Stop standard squishing */
-  image-rendering: pixelated; /* Keeps the blocky Minecraft look */
-  transform-origin: top left; /* Scale from the top-left corner */
-  background: rgba(255,255,255,0.05); /* Fallback if image fails */
-  border: 1px solid rgba(255,255,255,0.1);
-}
-/* Phone mockup avatar sizes */
-.ui-avatar {
-  width: 34px; height: 34px; border-radius: 9px;
-  transform: scale(4.25); /* 34px ÷ 8px head = 4.25x scale */
-  clip-path: inset(0 87.5% 87.5% 0 round 9px); /* Crops the top-left 12.5% (the face) */
-}
-/* Smaller avatars (bento / showcase cards) */
-.av {
-  width: 26px; height: 26px; border-radius: 7px;
-  transform: scale(3.25); /* 26px ÷ 8px head = 3.25x scale */
-  clip-path: inset(0 87.5% 87.5% 0 round 7px); /* Crops the face and rounds it */
-}
+.preview-bar span { display: block; height: 100%; background: linear-gradient(90deg, #F59E0B, #FCD34D); border-radius: 100px; }
 
 /* Showcase */
 .showcase-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
 .showcase-card { background: var(--surface-solid); border: 1px solid var(--border); border-radius: 24px; padding: 26px; position: relative; overflow: hidden; transition: all 0.4s cubic-bezier(0.4,0,0.2,1); opacity: 0; transform: translateY(30px); }
 .showcase-card.visible { opacity: 1; transform: translateY(0); }
 .showcase-card:hover { border-color: var(--border-strong); box-shadow: var(--shadow-lg); transform: translateY(-6px); }
-.showcase-card .sc-visual { border-radius: 18px; aspect-ratio: 4/5; margin-bottom: 20px; position: relative; overflow: hidden; background: linear-gradient(160deg, #180a32, #0a0418); border: 1px solid rgba(168,85,247,0.15); display: flex; flex-direction: column; padding: 14px; }
+.showcase-card .sc-visual { border-radius: 18px; aspect-ratio: 4/5; margin-bottom: 20px; position: relative; overflow: hidden; background: #0A0705; border: 1px solid rgba(245,158,11,0.15); display: flex; align-items: center; justify-content: center;}
+.showcase-card .sc-visual img { width: 100%; height: 100%; object-fit: contain; }
 .showcase-card h3 { font-size: 20px; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 8px; }
 .showcase-card p { font-size: 13.5px; color: var(--muted); line-height: 1.55; }
 
@@ -346,7 +245,7 @@ section.sect { padding: 100px 0; position: relative; }
 /* Download */
 .dl-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 20px; max-width: 900px; margin: 0 auto; }
 .dl-card { padding: 40px 32px; border-radius: 26px; background: var(--surface-solid); border: 1px solid var(--border); position: relative; overflow: hidden; transition: all 0.35s; }
-.dl-card.primary { background: linear-gradient(150deg, rgba(124,58,237,0.12), var(--surface-solid) 60%); border-color: var(--border-strong); }
+.dl-card.primary { background: linear-gradient(150deg, rgba(245,158,11,0.12), var(--surface-solid) 60%); border-color: var(--border-strong); }
 .dl-card.primary::before { content:''; position: absolute; top: -50%; right: -30%; width: 400px; height: 400px; background: radial-gradient(circle, var(--glow), transparent 60%); pointer-events: none; }
 .dl-card > * { position: relative; z-index: 1; }
 .dl-card .dl-badge { display: inline-flex; align-items: center; gap: 6px; font-family: 'JetBrains Mono'; font-size: 10px; letter-spacing: 0.12em; color: var(--accent); text-transform: uppercase; font-weight: 600; padding: 5px 10px; border-radius: 100px; background: var(--accent-soft); border: 1px solid var(--border-strong); margin-bottom: 16px; }
@@ -424,7 +323,7 @@ section.sect { padding: 100px 0; position: relative; }
 footer { padding: 70px 0 40px; border-top: 1px solid var(--border); position: relative; z-index: 2; }
 .foot-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 50px; }
 .foot-brand { display: flex; align-items: center; gap: 11px; font-family: 'Space Grotesk'; font-weight: 700; font-size: 16px; margin-bottom: 12px; }
-.foot-brand img { width: 32px; height: 32px; }
+.foot-brand img { width: 32px; height: 32px; border-radius: 8px; }
 .foot-col p { font-size: 13px; color: var(--muted); line-height: 1.6; max-width: 300px; }
 .foot-col h5 { font-family: 'JetBrains Mono'; font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 16px; font-weight: 600; }
 .foot-col a { display: block; color: var(--text-2); text-decoration: none; font-size: 14px; padding: 5px 0; transition: color 0.2s; }
@@ -442,17 +341,18 @@ footer { padding: 70px 0 40px; border-top: 1px solid var(--border); position: re
 
 /* Responsive */
 @media (max-width: 1100px) {
-  .tablet { width: 340px; height: 240px; margin-left: -20px; }
+  .bento { grid-template-columns: repeat(4, 1fr); }
+  .bento-card.span-3 { grid-column: span 4; }
+  .bento-card.span-4 { grid-column: span 4; }
+  .bento-card.span-2 { grid-column: span 2; }
 }
 @media (max-width: 1000px) {
   .hero-grid { grid-template-columns: 1fr; gap: 60px; text-align: center; }
   .hero p.lede { margin-left: auto; margin-right: auto; }
   .hero .cta, .hero-meta, .star-progress-wrap { justify-content: center; margin-left: auto; margin-right: auto; }
-  .hero-visual { min-height: 500px; }
-  .bento { grid-template-columns: repeat(4, 1fr); }
-  .bento-card.span-3 { grid-column: span 4; }
-  .bento-card.span-4 { grid-column: span 4; }
-  .bento-card.span-2 { grid-column: span 2; }
+  .hero-visual { min-height: 400px; margin-top: 20px;}
+  .tablet { transform: none; }
+  .tablet:hover { transform: translateY(-5px); }
   .showcase-grid { grid-template-columns: 1fr 1fr; }
   .trust-grid { grid-template-columns: repeat(3, 1fr); }
   .steps-grid { grid-template-columns: repeat(2, 1fr); }
@@ -465,10 +365,6 @@ footer { padding: 70px 0 40px; border-top: 1px solid var(--border); position: re
   .nav-links a { display: none; }
   section.sect { padding: 68px 0; }
   .hero { padding: 46px 0 40px; }
-  .hero-visual { min-height: 400px; flex-direction: column; gap: 30px; }
-  .device-stage { flex-direction: column; }
-  .phone { width: 230px; height: 480px; }
-  .tablet { width: 280px; height: 200px; margin-left: 0; transform: none; margin-top: 20px; }
   .float-chip { display: none; }
   .bento { grid-template-columns: 1fr; }
   .bento-card, .bento-card.span-2, .bento-card.span-3, .bento-card.span-4 { grid-column: span 1; min-height: 0; }
@@ -492,7 +388,7 @@ footer { padding: 70px 0 40px; border-top: 1px solid var(--border); position: re
 
 <div class="announce" id="announce">
   <span class="dot"></span>
-  <span>GlowberryClient v2.0 is out — new Voice Chat rooms &amp; Replay export</span>
+  <span>CaramelClient rebrand complete — .universe engine is here</span>
   <a href="#download">Download →</a>
   <button onclick="document.getElementById('announce').classList.add('hidden')" aria-label="Dismiss">✕</button>
 </div>
@@ -508,8 +404,8 @@ footer { padding: 70px 0 40px; border-top: 1px solid var(--border); position: re
 <header class="nav" id="navbar">
   <div class="container nav-inner">
     <a href="#" class="brand">
-      <img src="https://raw.githubusercontent.com/ChimeraAnt-DEV/Glowberry-Client-LOGO/main/In%20Mod%20Menu%20Icon.png" alt="GlowberryClient" />
-      GlowberryClient
+      <img src="https://raw.githubusercontent.com/ChimeraAnt-DEV/ChimeraAnt-Dev.github.io/main/Assets/caramel_apple_icon_512.png" alt="CaramelClient" />
+      CaramelClient
     </a>
     <nav class="nav-links">
       <a href="#features">Features</a>
@@ -517,7 +413,7 @@ footer { padding: 70px 0 40px; border-top: 1px solid var(--border); position: re
       <a href="#download">Download</a>
       <a href="#trust">Security</a>
       <a href="#faq">FAQ</a>
-      <a class="nav-discord loading" id="nav-discord-pill" href="https://discord.gg/VMGXExhxxA" target="_blank" rel="noopener" aria-label="Discord server">
+      <a class="nav-discord loading" id="nav-discord-pill" href="https://discord.gg/qAKpyKM3GP" target="_blank" rel="noopener" aria-label="Discord server">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
         <span class="live-dot-sm"></span>
         <span class="num" data-discord-online>—</span>
@@ -539,14 +435,14 @@ footer { padding: 70px 0 40px; border-top: 1px solid var(--border); position: re
           <span class="live"></span>
           <span>Free · Open Source · Android 9.0+ (64-bit)</span>
         </div>
-        <h1>Minecraft Bedrock,<br/><span class="grad">reinvented for mobile.</span></h1>
-        <p class="lede">Native C++ mods via Preloader, distance-based voice chat, a built-in replay editor, and a full PvP HUD — all in one free Android launcher with its own .AntEgg mod format.</p>
+        <h1>The future of Bedrock,<br/><span class="grad">sweetly engineered.</span></h1>
+        <p class="lede">The most advanced Android launcher for Minecraft Bedrock. Native C++ <strong>.universe</strong> mods, <strong>.singularity</strong> world generation, BetterRenderDragon, and a premium glassmorphic UI built from the ground up.</p>
         <div class="cta">
           <a class="btn btn-primary" href="#download">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
             Download for Android
           </a>
-          <a class="btn btn-secondary" href="https://github.com/ChimeraAnt-DEV/GlowberryClient">
+          <a class="btn btn-secondary" href="https://github.com/ChimeraAnt-DEV/CaramelClient">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56v-2c-3.2.7-3.88-1.54-3.88-1.54-.52-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.71.08-.71 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.68 0-1.25.45-2.28 1.19-3.08-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18.92-.26 1.91-.39 2.89-.39.98 0 1.97.13 2.89.39 2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.8 1.19 1.83 1.19 3.08 0 4.41-2.69 5.38-5.25 5.67.41.35.78 1.05.78 2.12v3.14c0 .31.21.67.8.56C20.22 21.39 23.5 17.08 23.5 12 23.5 5.65 18.35.5 12 .5z"/></svg>
             View on GitHub
           </a>
@@ -568,11 +464,11 @@ footer { padding: 70px 0 40px; border-top: 1px solid var(--border); position: re
       <div class="hero-visual">
         <div class="float-chip chip-1">
           <div class="ico" style="background: rgba(52,211,153,0.15); color:#34D399;">🎤</div>
-          <div>Voice chat<small>12 players live</small></div>
+          <div>Voice chat<small>Built-in</small></div>
         </div>
         <div class="float-chip chip-2">
           <div class="ico" style="background: rgba(251,191,36,0.15); color:#FBBF24;">⚡</div>
-          <div>60 FPS<small>Stable on ARM64</small></div>
+          <div>Rust Engine<small>0 FPS drop</small></div>
         </div>
         <div class="float-chip chip-3">
           <div class="ico" style="background: rgba(88,101,242,0.15); color:#5865F2;">💬</div>
@@ -580,173 +476,10 @@ footer { padding: 70px 0 40px; border-top: 1px solid var(--border); position: re
         </div>
 
         <div class="device-stage">
-          <!-- PHONE -->
-          <div class="phone">
-            <div class="phone-screen">
-              <div class="client-topbar">
-                <span>9:41</span>
-                <span class="right">◐ ▮▮▮ ▮</span>
-              </div>
-              <div class="client-nav">
-                <img class="logo" src="https://raw.githubusercontent.com/ChimeraAnt-DEV/Glowberry-Client-LOGO/main/In%20Mod%20Menu%20Icon.png" alt="" />
-                <div class="client-tab active">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 3l14 9-14 9V3z"/></svg>Launch
-                </div>
-                <div class="client-tab">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>Instances
-                </div>
-                <div class="client-tab">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2v20M2 12h20"/></svg>
-                </div>
-              </div>
-              <div class="client-body">
-                <div class="instance-card">
-                  <div class="top-row">
-                    <span class="label">Last played</span>
-                    <span class="right">Tap to launch</span>
-                  </div>
-                  <div class="instance-main">
-                    <div class="mc-logo">⛏</div>
-                    <div>
-                      <div class="instance-name">Minecraft</div>
-                      <div class="instance-ver">1.26.33.1 <span class="ver-badge">64-bit</span></div>
-                    </div>
-                  </div>
-                  <div class="stats-row">
-                    <div class="stat"><div class="v">1</div><div class="k">Instances</div></div>
-                    <div class="stat"><div class="v">0</div><div class="k">Active</div></div>
-                    <div class="stat"><div class="v">1h 56m</div><div class="k">Playtime</div></div>
-                  </div>
-                </div>
-
-                <div class="quick-label">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-                  Quick Actions
-                </div>
-                <div class="quick-row">
-                  <div class="quick-card">
-                    <div class="q-icon" style="background: rgba(168,85,247,0.15); color:#A855F7;">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2C8 2 5 5 5 9c0 3 2 5 2 8 0 2 1 3 2 3h6c1 0 2-1 2-3 0-3 2-5 2-8 0-4-3-7-7-7z"/><path d="M12 2v18"/></svg>
-                    </div>
-                    <div class="q-title">AntEgg Mod Packs</div>
-                    <div class="q-sub">No mod packs installed</div>
-                  </div>
-                  <div class="quick-card">
-                    <div class="q-icon" style="background: rgba(16,185,129,0.15); color:#34D399;">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/></svg>
-                    </div>
-                    <div class="q-title">Voice Chat</div>
-                    <div class="q-sub">Off</div>
-                  </div>
-                  <div class="quick-card">
-                    <div class="q-icon" style="background: rgba(251,191,36,0.15); color:#FBBF24;">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
-                    </div>
-                    <div class="q-title">Replays</div>
-                    <div class="q-sub">No clips yet</div>
-                  </div>
-                </div>
-
-                <div class="content-row">
-                  <div class="c-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
-                  </div>
-                  <div>
-                    <div class="c-title">Content Library</div>
-                    <div class="c-sub">Worlds, packs, skins</div>
-                  </div>
-                </div>
-
-                <div class="play-wrap">
-                  <div class="play-btn">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 3l14 9-14 9V3z"/></svg>
-                    PLAY MINECRAFT
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- TABLET -->
+          <!-- TABLET ONLY -->
           <div class="tablet">
             <div class="tablet-screen">
-              <div class="client-topbar">
-                <span>9:41</span>
-                <span class="right">◐ ▮▮▮ ▮</span>
-              </div>
-              <div class="client-nav">
-                <img class="logo" src="https://raw.githubusercontent.com/ChimeraAnt-DEV/Glowberry-Client-LOGO/main/In%20Mod%20Menu%20Icon.png" alt="" />
-                <div class="client-tab active">Launch</div>
-                <div class="client-tab">Instances</div>
-                <div class="client-tab">Install</div>
-                <div class="client-tab">Mods</div>
-                <div class="client-tab">Customize</div>
-              </div>
-              <div class="client-body">
-                <div class="instance-card">
-                  <div class="top-row">
-                    <span class="label">Last played</span>
-                    <span class="right">Tap to launch</span>
-                  </div>
-                  <div class="instance-main">
-                    <div class="mc-logo">⛏</div>
-                    <div>
-                      <div class="instance-name">Minecraft</div>
-                      <div class="instance-ver">1.26.33.1 <span class="ver-badge">64-bit</span></div>
-                    </div>
-                  </div>
-                  <div class="stats-row">
-                    <div class="stat"><div class="v">1</div><div class="k">Instances</div></div>
-                    <div class="stat"><div class="v">0</div><div class="k">Active</div></div>
-                    <div class="stat"><div class="v">1h 56m</div><div class="k">Playtime</div></div>
-                  </div>
-                </div>
-
-                <div class="quick-label">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-                  Quick Actions
-                </div>
-                <div class="quick-row">
-                  <div class="quick-card">
-                    <div class="q-icon" style="background: rgba(168,85,247,0.15); color:#A855F7;">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2C8 2 5 5 5 9c0 3 2 5 2 8 0 2 1 3 2 3h6c1 0 2-1 2-3 0-3 2-5 2-8 0-4-3-7-7-7z"/><path d="M12 2v18"/></svg>
-                    </div>
-                    <div class="q-title">AntEgg Mod Packs</div>
-                    <div class="q-sub">No mod packs installed</div>
-                  </div>
-                  <div class="quick-card">
-                    <div class="q-icon" style="background: rgba(16,185,129,0.15); color:#34D399;">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/></svg>
-                    </div>
-                    <div class="q-title">Voice Chat</div>
-                    <div class="q-sub">Off</div>
-                  </div>
-                  <div class="quick-card">
-                    <div class="q-icon" style="background: rgba(251,191,36,0.15); color:#FBBF24;">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
-                    </div>
-                    <div class="q-title">Replays</div>
-                    <div class="q-sub">No clips yet</div>
-                  </div>
-                </div>
-
-                <div class="content-row">
-                  <div class="c-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
-                  </div>
-                  <div>
-                    <div class="c-title">Content Library</div>
-                    <div class="c-sub">Worlds, packs, skins</div>
-                  </div>
-                </div>
-
-                <div class="play-wrap">
-                  <div class="play-btn">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 3l14 9-14 9V3z"/></svg>
-                    PLAY MINECRAFT
-                  </div>
-                </div>
-              </div>
+              <img src="https://raw.githubusercontent.com/ChimeraAnt-DEV/ChimeraAnt-Dev.github.io/main/Assets/01_home.png" alt="CaramelClient Home UI" />
             </div>
           </div>
         </div>
@@ -758,23 +491,23 @@ footer { padding: 70px 0 40px; border-top: 1px solid var(--border); position: re
 <!-- Marquee -->
 <div class="marquee-wrap">
   <div class="marquee">
-    <div class="marquee-item"><span class="dot"></span>Native C++ Mods</div>
-    <div class="marquee-item"><span class="dot"></span>Preloader API</div>
-    <div class="marquee-item"><span class="dot"></span>.AntEgg Mod Packs</div>
+    <div class="marquee-item"><span class="dot"></span>Native C++ .universe Mods</div>
+    <div class="marquee-item"><span class="dot"></span>.singularity World Gen</div>
+    <div class="marquee-item"><span class="dot"></span>BetterRenderDragon</div>
     <div class="marquee-item"><span class="dot"></span>Proximity Voice Chat</div>
     <div class="marquee-item"><span class="dot"></span>Replay Editor</div>
     <div class="marquee-item"><span class="dot"></span>PvP HUD</div>
-    <div class="marquee-item"><span class="dot"></span>JavaBridge</div>
-    <div class="marquee-item"><span class="dot"></span>Lua · Java · Kotlin</div>
+    <div class="marquee-item"><span class="dot"></span>Java Shaders</div>
+    <div class="marquee-item"><span class="dot"></span>Rust Core</div>
     <div class="marquee-item"><span class="dot"></span>ARM64 · Android 9+</div>
-    <div class="marquee-item"><span class="dot"></span>Native C++ Mods</div>
-    <div class="marquee-item"><span class="dot"></span>Preloader API</div>
-    <div class="marquee-item"><span class="dot"></span>.AntEgg Mod Packs</div>
+    <div class="marquee-item"><span class="dot"></span>Native C++ .universe Mods</div>
+    <div class="marquee-item"><span class="dot"></span>.singularity World Gen</div>
+    <div class="marquee-item"><span class="dot"></span>BetterRenderDragon</div>
     <div class="marquee-item"><span class="dot"></span>Proximity Voice Chat</div>
     <div class="marquee-item"><span class="dot"></span>Replay Editor</div>
     <div class="marquee-item"><span class="dot"></span>PvP HUD</div>
-    <div class="marquee-item"><span class="dot"></span>JavaBridge</div>
-    <div class="marquee-item"><span class="dot"></span>Lua · Java · Kotlin</div>
+    <div class="marquee-item"><span class="dot"></span>Java Shaders</div>
+    <div class="marquee-item"><span class="dot"></span>Rust Core</div>
     <div class="marquee-item"><span class="dot"></span>ARM64 · Android 9+</div>
   </div>
 </div>
@@ -792,49 +525,21 @@ footer { padding: 70px 0 40px; border-top: 1px solid var(--border); position: re
         <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg></div>
         <h3>Proximity Voice Chat</h3>
         <p>Hear players based on in-game distance. Live mic icons above every head, automatic volume falloff, zero server required.</p>
-        <div class="feature-preview">
-          <div class="voice-row"><img class="av" src="avatars/skin1.png" alt="" /><div class="nm">Alex_MC · 3.2m</div><div class="mt"><span style="width:82%"></span></div></div>
-          <div class="voice-row"><img class="av" src="avatars/skin4.png" alt="" /><div class="nm">Creeper_X · 1.1m</div><div class="mt"><span style="width:96%"></span></div></div>
-          <div class="voice-row" style="margin-bottom:0"><img class="av" src="avatars/skin7.png" alt="" /><div class="nm">Notch · 14.5m</div><div class="mt"><span style="width:22%"></span></div></div>
-        </div>
       </div>
       <div class="bento-card span-3">
         <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
         <h3>PvP Suite HUD</h3>
         <p>Four overlay-only visual modules: Reach Indicator, Trajectory Prediction, Hit Prediction, and Custom Kill Effects. Client-side only.</p>
-        <div class="feature-preview">
-          <div class="preview-hud">
-            <div class="preview-row"><span class="k">REACH</span><span class="v gold">3.02m</span></div>
-            <div class="preview-bar"><span style="width:70%"></span></div>
-            <div class="preview-row" style="margin-top:10px"><span class="k">HIT PREDICTION</span><span class="v">94.2%</span></div>
-            <div class="preview-row"><span class="k">TRAJECTORY</span><span class="v purple">Active</span></div>
-          </div>
-        </div>
       </div>
       <div class="bento-card span-2">
         <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg></div>
         <h3>Built-in Replay</h3>
         <p>Record, trim, export. No third-party recorder.</p>
-        <div class="feature-preview">
-          <div class="replay-strip">
-            <div class="replay-thumb"><span class="time">0:04</span></div>
-            <div class="replay-thumb active"><span class="time">0:12</span></div>
-            <div class="replay-thumb"><span class="time">0:23</span></div>
-            <div class="replay-thumb"><span class="time">0:41</span></div>
-          </div>
-        </div>
       </div>
       <div class="bento-card span-2">
         <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C8 2 5 5 5 9c0 3 2 5 2 8 0 2 1 3 2 3h6c1 0 2-1 2-3 0-3 2-5 2-8 0-4-3-7-7-7z"/><path d="M12 2v18"/></svg></div>
-        <h3>.AntEgg Mods</h3>
-        <p>ZIP-based mod format with validated manifest, sandboxed extraction, and atomic install. Supports C++ and Lua.</p>
-        <div class="feature-preview">
-          <div class="preview-hud">
-            <div class="preview-row"><span class="k">C++</span><span class="v">native.so</span></div>
-            <div class="preview-row"><span class="k">LUA</span><span class="v gold">script.lua</span></div>
-            <div class="preview-row"><span class="k">CHIMERAPACK</span><span class="v purple">.chimerapack</span></div>
-          </div>
-        </div>
+        <h3>.universe Mods</h3>
+        <p>Native C++ overhauls. Ragdolls, custom shaders, Homestead mechanics, and more.</p>
       </div>
       <div class="bento-card span-2">
         <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
@@ -843,8 +548,8 @@ footer { padding: 70px 0 40px; border-top: 1px solid var(--border); position: re
       </div>
       <div class="bento-card span-6">
         <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
-        <h3>Powered by Preloader &amp; ApexAntLamina</h3>
-        <p>Native ARM64 loader that runs external SO modules with a Preloader input/output pipeline, hook installation, patches, and keyboard/gamepad input callbacks.</p>
+        <h3>Powered by .singularity &amp; BerryAPI</h3>
+        <p>Native ARM64 loader that runs external SO modules with a custom Rust world-generation engine. Infinite procedural terrain, custom fluids, and physics overrides.</p>
         <div class="feature-preview">
           <div class="preview-hud">
             <div class="preview-row"><span class="k">DEVICE</span><span class="v">ARM64 · Android 9+</span></div>
@@ -868,54 +573,24 @@ footer { padding: 70px 0 40px; border-top: 1px solid var(--border); position: re
     <div class="showcase-grid">
       <div class="showcase-card">
         <div class="sc-visual">
-          <div style="font-family:'Space Grotesk';font-weight:700;font-size:12px;color:#F4EEFF;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center;">Voice Chat<span style="font-size:9px;color:#34D399;background:rgba(52,211,153,0.15);padding:2px 7px;border-radius:100px;">LIVE</span></div>
-          <div style="flex:1;display:flex;flex-direction:column;gap:6px;">
-            <div class="voice-row"><img class="av" src="avatars/skin1.png" alt="" /><div class="nm">Alex_MC</div><div class="mt"><span style="width:82%"></span></div></div>
-            <div class="voice-row"><img class="av" src="avatars/skin3.png" alt="" /><div class="nm">Steve_B</div><div class="mt"><span style="width:58%"></span></div></div>
-            <div class="voice-row"><img class="av" src="avatars/skin4.png" alt="" /><div class="nm">Creeper_X</div><div class="mt"><span style="width:96%"></span></div></div>
-            <div class="voice-row" style="margin-bottom:0"><img class="av" src="avatars/skin7.png" alt="" /><div class="nm">Notch</div><div class="mt"><span style="width:22%"></span></div></div>
-          </div>
+          <img src="https://raw.githubusercontent.com/ChimeraAnt-DEV/ChimeraAnt-Dev.github.io/main/Assets/01_mods.png" alt="CaramelClient Mod Menu" />
         </div>
-        <h3>Proximity Voice</h3>
-        <p>Distance-based audio falloff with live mic indicators. Talk like you're actually there.</p>
+        <h3>The Mod Menu</h3>
+        <p>A stunning, glassmorphic interface with every category, toggle, and setting perfectly organized.</p>
       </div>
       <div class="showcase-card">
         <div class="sc-visual">
-          <div style="flex:1;border-radius:12px;margin-bottom:10px;position:relative;overflow:hidden;background:linear-gradient(160deg,#3a1d6e,#1a0b38);display:flex;align-items:center;justify-content:center;">
-            <div style="width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,0.15);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.3);display:flex;align-items:center;justify-content:center;color:#fff;">
-              <svg viewBox="0 0 24 24" fill="currentColor" style="width:16px;height:16px;margin-left:2px;"><polygon points="6 4 20 12 6 20 6 4"/></svg>
-            </div>
-          </div>
-          <div style="padding:4px 0;">
-            <div style="height:4px;background:rgba(255,255,255,0.08);border-radius:100px;position:relative;">
-              <div style="display:block;height:100%;width:55%;background:linear-gradient(90deg,#A855F7,#FBBF24);border-radius:100px;"></div>
-            </div>
-            <div style="display:flex;justify-content:space-between;font-family:'JetBrains Mono';font-size:9px;color:#9181B8;margin-top:6px;"><span>00:00</span><span>00:12</span><span>00:23</span></div>
-          </div>
-          <div style="display:flex;gap:4px;margin-top:8px;">
-            <div style="flex:1;height:22px;border-radius:6px;background:rgba(168,85,247,0.15);border:1px solid rgba(168,85,247,0.25);display:flex;align-items:center;justify-content:center;font-size:9px;font-family:'JetBrains Mono';color:#C084FC;">TRIM</div>
-            <div style="flex:1;height:22px;border-radius:6px;background:rgba(251,191,36,0.15);border:1px solid rgba(251,191,36,0.25);display:flex;align-items:center;justify-content:center;font-size:9px;font-family:'JetBrains Mono';color:#FBBF24;">SAVE</div>
-            <div style="flex:1;height:22px;border-radius:6px;background:rgba(88,101,242,0.15);border:1px solid rgba(88,101,242,0.25);display:flex;align-items:center;justify-content:center;font-size:9px;font-family:'JetBrains Mono';color:#818CF8;">SHARE</div>
-          </div>
+          <img src="https://raw.githubusercontent.com/ChimeraAnt-DEV/ChimeraAnt-Dev.github.io/main/Assets/06_tab_mods.png" alt="CaramelClient Mod Tab" />
         </div>
-        <h3>Replay Editor</h3>
-        <p>Record, trim, and export PvP clips straight to Discord or YouTube — no watermark, no lag.</p>
+        <h3>Mod Tab UI</h3>
+        <p>Manage your .universe mods, configure settings, and update with a single click.</p>
       </div>
       <div class="showcase-card">
-        <div class="sc-visual">
-          <div style="flex:1;border-radius:12px;position:relative;overflow:hidden;background:linear-gradient(160deg,#1f0b3d,#0a0418);">
-            <div style="position:absolute;top:10px;left:10px;padding:6px 9px;border-radius:8px;background:rgba(10,4,24,0.7);backdrop-filter:blur(8px);border:1px solid rgba(168,85,247,0.25);font-family:'JetBrains Mono';font-size:9.5px;color:#34D399;">COMBO ×7</div>
-            <div style="position:absolute;top:10px;right:10px;padding:6px 9px;border-radius:8px;background:rgba(10,4,24,0.7);backdrop-filter:blur(8px);border:1px solid rgba(168,85,247,0.25);font-family:'JetBrains Mono';font-size:9.5px;color:#FBBF24;">REACH 3.02m</div>
-            <div style="position:absolute;bottom:10px;left:10px;padding:6px 9px;border-radius:8px;background:rgba(10,4,24,0.7);backdrop-filter:blur(8px);border:1px solid rgba(168,85,247,0.25);font-family:'JetBrains Mono';font-size:9.5px;color:#C084FC;">HIT 94.2%</div>
-            <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:26px;height:26px;">
-              <div style="position:absolute;left:50%;top:0;bottom:0;width:1.5px;background:#FBBF24;transform:translateX(-50%);box-shadow:0 0 6px #FBBF24;"></div>
-              <div style="position:absolute;top:50%;left:0;right:0;height:1.5px;background:#FBBF24;transform:translateY(-50%);box-shadow:0 0 6px #FBBF24;"></div>
-            </div>
-            <div style="position:absolute;bottom:10px;left:10px;right:10px;height:4px;background:rgba(255,255,255,0.08);border-radius:100px;"><div style="display:block;height:100%;width:78%;background:linear-gradient(90deg,#EF4444,#F87171);border-radius:100px;"></div></div>
-          </div>
+        <div class="sc-visual" style="background: linear-gradient(160deg, #1A110A, #0A0705); display: flex; align-items: center; justify-content: center; padding: 20px;">
+          <img src="https://raw.githubusercontent.com/ChimeraAnt-DEV/ChimeraAnt-Dev.github.io/main/Assets/caramelclient_banner.png" alt="CaramelClient Banner" style="width: 100%; height: auto; object-fit: contain; border-radius: 12px; border: 1px solid rgba(245,158,11,0.2);" />
         </div>
-        <h3>PvP HUD</h3>
-        <p>Combo counter, reach display, hit prediction. Client-side only — completely server-invisible.</p>
+        <h3>Official Branding</h3>
+        <p>The new CaramelClient identity. Sweet, simple, and undeniably premium.</p>
       </div>
     </div>
   </div>
@@ -943,7 +618,7 @@ footer { padding: 70px 0 40px; border-top: 1px solid var(--border); position: re
   <div class="container">
     <div class="sect-head">
       <div class="tag">Download</div>
-      <h2>Get GlowberryClient.</h2>
+      <h2>Get CaramelClient.</h2>
       <p>Free forever. Open source. No account required.</p>
     </div>
     <div class="dl-grid">
@@ -951,7 +626,7 @@ footer { padding: 70px 0 40px; border-top: 1px solid var(--border); position: re
         <div class="dl-badge"><span class="live-dot"></span> Latest stable</div>
         <h3>Download the APK</h3>
         <p>The newest tested build with every feature working. Recommended for most users.</p>
-        <a class="btn btn-primary" id="download-stable" href="https://github.com/ChimeraAnt-DEV/GlowberryClient/releases/latest">
+        <a class="btn btn-primary" id="download-stable" href="https://github.com/ChimeraAnt-DEV/CaramelClient/releases/latest">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
           Download APK
         </a>
@@ -966,7 +641,7 @@ footer { padding: 70px 0 40px; border-top: 1px solid var(--border); position: re
         <div class="dl-badge" style="background: rgba(251,191,36,0.14); color: var(--gold); border-color: rgba(251,191,36,0.3);">Beta channel</div>
         <h3>Beta builds</h3>
         <p>Early access to features before they ship. Expect rough edges and rapid updates.</p>
-        <a class="btn btn-secondary" id="download-beta" href="https://github.com/ChimeraAnt-DEV/GlowberryClient/releases">
+        <a class="btn btn-secondary" id="download-beta" href="https://github.com/ChimeraAnt-DEV/CaramelClient/releases">
           View beta releases
         </a>
       </div>
@@ -980,7 +655,7 @@ footer { padding: 70px 0 40px; border-top: 1px solid var(--border); position: re
     <div class="sect-head">
       <div class="tag">Security</div>
       <h2>Every permission, explained.</h2>
-      <p>Sideloading an APK requires trust. Here's exactly what GlowberryClient asks for and why.</p>
+      <p>Sideloading an APK requires trust. Here's exactly what CaramelClient asks for and why.</p>
     </div>
     <div class="trust-grid">
       <div class="trust-card"><div class="ti">🎬</div><h4>Screen Recording</h4><p>Used <strong>only</strong> when you tap Record. Powers Replay.</p></div>
@@ -1001,19 +676,19 @@ footer { padding: 70px 0 40px; border-top: 1px solid var(--border); position: re
   <div class="container">
     <div class="sect-head">
       <div class="tag">Comparison</div>
-      <h2>Vanilla vs. GlowberryClient.</h2>
+      <h2>Vanilla vs. CaramelClient.</h2>
     </div>
     <div class="compare">
       <div class="compare-row head">
         <div class="c">Feature</div>
         <div class="c center">Vanilla Bedrock</div>
-        <div class="c center brand-cell">GlowberryClient</div>
+        <div class="c center brand-cell">CaramelClient</div>
       </div>
       <div class="compare-row"><div class="c">Proximity voice chat</div><div class="c center no">—</div><div class="c center yes">✓</div></div>
       <div class="compare-row"><div class="c">Built-in replay</div><div class="c center no">—</div><div class="c center yes">✓</div></div>
       <div class="compare-row"><div class="c">PvP HUD</div><div class="c center no">—</div><div class="c center yes">✓</div></div>
       <div class="compare-row"><div class="c">Native C++ mods</div><div class="c center no">—</div><div class="c center yes">✓</div></div>
-      <div class="compare-row"><div class="c">.AntEgg mod packs</div><div class="c center no">—</div><div class="c center yes">✓</div></div>
+      <div class="compare-row"><div class="c">.universe mod packs</div><div class="c center no">—</div><div class="c center yes">✓</div></div>
       <div class="compare-row"><div class="c">Free &amp; open source</div><div class="c center no">Proprietary</div><div class="c center yes">✓ MIT</div></div>
     </div>
   </div>
@@ -1027,12 +702,12 @@ footer { padding: 70px 0 40px; border-top: 1px solid var(--border); position: re
       <h2>Questions, answered.</h2>
     </div>
     <div class="faq">
-      <details class="faq-item"><summary>Is GlowberryClient free?</summary><p>Yes. Completely free, forever. Open source on GitHub — no ads, no subscriptions, no paid tiers.</p></details>
-      <details class="faq-item"><summary>Is it a cheat client?</summary><p>No. GlowberryClient is a launcher, not a cheat tool. Every PvP module is client-side and never sends anything to the server that would give you an unfair advantage.</p></details>
+      <details class="faq-item"><summary>Is CaramelClient free?</summary><p>Yes. Completely free, forever. Open source on GitHub — no ads, no subscriptions, no paid tiers.</p></details>
+      <details class="faq-item"><summary>Is it a cheat client?</summary><p>No. CaramelClient is a launcher, not a cheat tool. Every PvP module is client-side and never sends anything to the server that would give you an unfair advantage.</p></details>
       <details class="faq-item"><summary>Will it get me banned?</summary><p>Every module is visual-only. Server anti-cheats cannot detect features that only render on your own screen. That said, always follow the rules of the servers you play on.</p></details>
-      <details class="faq-item"><summary>What Android versions are supported?</summary><p>Android 9.0 (API 28) or higher on 64-bit (arm64-v8a) devices. If your phone runs Bedrock, it runs GlowberryClient.</p></details>
+      <details class="faq-item"><summary>What Android versions are supported?</summary><p>Android 9.0 (API 28) or higher on 64-bit (arm64-v8a) devices. If your phone runs Bedrock, it runs CaramelClient.</p></details>
       <details class="faq-item"><summary>Do I need a server for Voice Chat?</summary><p>No. Voice chat connects devices directly — no relay, no hosting, no monthly fee.</p></details>
-      <details class="faq-item"><summary>How do I make my own mods?</summary><p>GlowberryClient supports .AntEgg mods written in C++ or Lua. Documentation is on the GitHub repository.</p></details>
+      <details class="faq-item"><summary>How do I make my own mods?</summary><p>CaramelClient supports .universe mods written in C++. Documentation is on the GitHub repository.</p></details>
     </div>
   </div>
 </section>
@@ -1043,13 +718,13 @@ footer { padding: 70px 0 40px; border-top: 1px solid var(--border); position: re
     <div class="sect-head">
       <div class="tag">Community</div>
       <h2>Join the Discord.</h2>
-      <p>Get help, report bugs, share clips, and hang out with other GlowberryClient users.</p>
+      <p>Get help, report bugs, share clips, and hang out with other CaramelClient users.</p>
     </div>
     <div class="discord-card">
       <div class="discord-icon">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
       </div>
-      <h3>GlowberryClient Discord</h3>
+      <h3>CaramelClient Discord</h3>
       <p>Talk to the dev team, test beta builds, share feedback, and find people to play with. No invite expiration — this link works forever.</p>
       <div class="discord-stats">
         <div class="discord-stat loading" id="stat-online">
@@ -1063,7 +738,7 @@ footer { padding: 70px 0 40px; border-top: 1px solid var(--border); position: re
           <span class="value" data-discord-members>—</span>
         </div>
       </div>
-      <a class="btn btn-discord" href="https://discord.gg/VMGXExhxxA" target="_blank" rel="noopener">
+      <a class="btn btn-discord" href="https://discord.gg/qAKpyKM3GP" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
         Join the server
       </a>
@@ -1080,8 +755,8 @@ footer { padding: 70px 0 40px; border-top: 1px solid var(--border); position: re
     <div class="foot-grid">
       <div class="foot-col">
         <div class="foot-brand">
-          <img src="https://raw.githubusercontent.com/ChimeraAnt-DEV/Glowberry-Client-LOGO/main/In%20Mod%20Menu%20Icon.png" alt="GlowberryClient" />
-          GlowberryClient
+          <img src="https://raw.githubusercontent.com/ChimeraAnt-DEV/ChimeraAnt-Dev.github.io/main/Assets/caramel_apple_icon_512.png" alt="CaramelClient" />
+          CaramelClient
         </div>
         <p>The free, open-source Android launcher for Minecraft Bedrock. Built on phones. Runs on everything.</p>
       </div>
@@ -1095,13 +770,13 @@ footer { padding: 70px 0 40px; border-top: 1px solid var(--border); position: re
       <div class="foot-col">
         <h5>Developer</h5>
         <a href="https://github.com/ChimeraAnt-DEV">GitHub org</a>
-        <a href="https://github.com/ChimeraAnt-DEV/GlowberryClient/releases">Releases</a>
-        <a href="https://github.com/ChimeraAnt-DEV/GlowberryClient/issues">Issues</a>
+        <a href="https://github.com/ChimeraAnt-DEV/CaramelClient/releases">Releases</a>
+        <a href="https://github.com/ChimeraAnt-DEV/CaramelClient/issues">Issues</a>
         <a href="privacy.html">Privacy</a>
       </div>
       <div class="foot-col">
         <h5>Community</h5>
-        <a href="https://discord.gg/VMGXExhxxA">Discord</a>
+        <a href="https://discord.gg/qAKpyKM3GP">Discord</a>
         <a href="https://github.com/ChimeraAnt-DEV">Contribute</a>
         <a href="#trust">Security</a>
       </div>
@@ -1110,7 +785,7 @@ footer { padding: 70px 0 40px; border-top: 1px solid var(--border); position: re
       <div>© 2026 ChimeraAnt-DEV · Built on phones. Runs on everything.</div>
       <div class="socials">
         <a href="https://github.com/ChimeraAnt-DEV" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56v-2c-3.2.7-3.88-1.54-3.88-1.54-.52-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.71.08-.71 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.68 0-1.25.45-2.28 1.19-3.08-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18.92-.26 1.91-.39 2.89-.39.98 0 1.97.13 2.89.39 2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.8 1.19 1.83 1.19 3.08 0 4.41-2.69 5.38-5.25 5.67.41.35.78 1.05.78 2.12v3.14c0 .31.21.67.8.56C20.22 21.39 23.5 17.08 23.5 12 23.5 5.65 18.35.5 12 .5z"/></svg></a>
-        <a href="https://discord.gg/VMGXExhxxA" aria-label="Discord"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg></a>
+        <a href="https://discord.gg/qAKpyKM3GP" aria-label="Discord"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg></a>
       </div>
     </div>
   </div>
@@ -1165,7 +840,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
 });
 
 // GitHub data
-const REPO = 'ChimeraAnt-DEV/GlowberryClient';
+const REPO = 'ChimeraAnt-DEV/CaramelClient';
 const STAR_GOAL = 16;
 async function loadGithubData() {
   const stableBtn = document.getElementById('download-stable');
@@ -1220,7 +895,7 @@ async function loadGithubData() {
 loadGithubData();
 
 // Discord stats
-const DISCORD_INVITE = 'VMGXExhxxA';
+const DISCORD_INVITE = 'qAKpyKM3GP';
 function setDiscordStats(online, members) {
   document.querySelectorAll('[data-discord-online]').forEach(el => { el.textContent = online.toLocaleString(); });
   document.querySelectorAll('[data-discord-members]').forEach(el => { el.textContent = members.toLocaleString(); });
@@ -1251,4 +926,7 @@ setInterval(loadDiscordStats, 60000);
 </script>
 
 </body>
-  </html>
+</html>
+```
+
+
