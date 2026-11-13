@@ -3,107 +3,371 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Privacy Policy — GlowberryClient</title>
-  <meta name="description" content="GlowberryClient collects nothing. Read the full privacy policy." />
-  <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/ChimeraAnt-DEV/Glowberry-Client-LOGO/main/In%20Mod%20Menu%20Icon.png" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <title>Privacy Policy — CaramelClient</title>
+  <meta name="description" content="CaramelClient collects absolutely nothing. Read our full, transparent privacy policy." />
+  <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/ChimeraAnt-DEV/ChimeraAnt-Dev.github.io/main/Assets/caramel_apple_icon_512.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg: #0F0322; --accent: #5B2BA8; --gold: #F5A623;
-      --text: #F5F0FF; --muted: rgba(245,240,255,0.65);
-      --border: rgba(255,255,255,0.08); --card-bg: rgba(255,255,255,0.04);
+      --bg: #0A0705;
+      --surface: #140D08;
+      --surface-hover: #1C120A;
+      --accent: #F59E0B;
+      --gold: #FCD34D;
+      --text: #FFF8F0;
+      --muted: #9C8A76;
+      --border: rgba(245,158,11,0.15);
+      --border-strong: rgba(245,158,11,0.30);
+      --green: #34D399;
+      --discord: #5865F2;
     }
+    
     * { box-sizing: border-box; margin: 0; padding: 0; }
+    
     body {
-      font-family: 'Inter', sans-serif;
-      background: radial-gradient(circle at 50% 10%, #2D0D4A 0%, var(--bg) 60%);
-      color: var(--text); line-height: 1.7; min-height: 100vh; padding: 40px 0;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
     }
-    .wrap { max-width: 820px; margin: 0 auto; padding: 0 24px; }
+
+    /* Subtle background glow */
+    body::before {
+      content: '';
+      position: fixed;
+      top: -20%; left: 50%;
+      transform: translateX(-50%);
+      width: 100vw; height: 60vh;
+      background: radial-gradient(circle, rgba(245,158,11,0.08) 0%, transparent 60%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .wrap {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 60px 24px 100px;
+      position: relative;
+      z-index: 1;
+    }
+
     .back {
-      display: inline-flex; align-items: center; gap: 8px;
-      color: var(--muted); text-decoration: none; font-size: 14px; font-weight: 600;
-      padding: 8px 16px; border-radius: 100px; margin-bottom: 40px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: 100px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      margin-bottom: 40px;
       transition: all 0.2s;
     }
-    .back:hover { color: var(--text); background: var(--card-bg); }
-    h1 { font-size: clamp(32px, 6vw, 52px); font-weight: 900; letter-spacing: -1.5px; margin-bottom: 12px; }
-    .sub { color: var(--muted); font-size: 15px; margin-bottom: 48px; }
-    h2 { font-size: 22px; font-weight: 800; margin-top: 40px; margin-bottom: 12px; letter-spacing: -0.5px; }
-    p, li { color: var(--muted); font-size: 15.5px; }
-    ul { padding-left: 22px; margin-top: 10px; }
-    li { margin-bottom: 8px; }
-    strong { color: var(--text); }
-    a { color: var(--gold); text-decoration: none; }
-    a:hover { text-decoration: underline; }
-    .callout {
-      background: linear-gradient(135deg, rgba(59,165,93,0.12), rgba(91,43,168,0.15));
-      border: 1px solid rgba(59,165,93,0.3);
-      border-radius: 18px; padding: 24px 26px; margin: 32px 0;
+    .back:hover {
+      color: var(--accent);
+      border-color: var(--border-strong);
+      transform: translateX(-3px);
     }
-    .callout p { color: var(--text); font-weight: 600; font-size: 16px; }
-    .updated { color: rgba(245,240,255,0.4); font-size: 13px; margin-top: 60px; padding-top: 24px; border-top: 1px solid var(--border); }
+
+    h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(36px, 6vw, 56px);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      margin-bottom: 12px;
+      background: linear-gradient(120deg, var(--text), var(--muted));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .sub {
+      color: var(--muted);
+      font-size: 15px;
+      font-family: 'JetBrains Mono', monospace;
+      margin-bottom: 48px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .sub::before {
+      content: '';
+      display: block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 10px var(--accent);
+    }
+
+    h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 24px;
+      font-weight: 700;
+      margin-top: 48px;
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    h2::before {
+      content: '#';
+      color: var(--accent);
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 400;
+      opacity: 0.5;
+    }
+
+    p, li {
+      color: #D6C4B0;
+      font-size: 15.5px;
+      margin-bottom: 16px;
+    }
+
+    ul {
+      padding-left: 24px;
+      margin-top: 12px;
+      margin-bottom: 24px;
+    }
+
+    li {
+      margin-bottom: 12px;
+      position: relative;
+    }
+
+    li::marker {
+      color: var(--accent);
+    }
+
+    strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    a {
+      color: var(--gold);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    a:hover {
+      color: var(--accent);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .callout {
+      background: linear-gradient(135deg, rgba(245,158,11,0.1), rgba(20,13,8,0.8));
+      border: 1px solid var(--border-strong);
+      border-left: 4px solid var(--accent);
+      border-radius: 12px;
+      padding: 24px 28px;
+      margin: 40px 0;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+
+    .callout p {
+      color: var(--text);
+      font-weight: 500;
+      font-size: 16.5px;
+      margin-bottom: 0;
+      line-height: 1.6;
+    }
+
+    .highlight-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin: 24px 0;
+    }
+
+    .highlight-box h4 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 16px;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .highlight-box p {
+      font-size: 14px;
+      margin-bottom: 0;
+      color: var(--muted);
+    }
+
+    .updated {
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 80px;
+      padding-top: 30px;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* Grid layout for specific sections */
+    .policy-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      margin-top: 24px;
+    }
+
+    .policy-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      transition: border-color 0.2s;
+    }
+
+    .policy-card:hover {
+      border-color: var(--border-strong);
+    }
+
+    .policy-card h4 {
+      color: var(--accent);
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 16px;
+      margin-bottom: 8px;
+    }
+
+    .policy-card p {
+      font-size: 14.5px;
+      margin-bottom: 0;
+      color: #B8A594;
+    }
+
+    @media (min-width: 768px) {
+      .policy-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
   </style>
 </head>
 <body>
   <div class="wrap">
-    <a href="index.html" class="back">← Back to GlowberryClient</a>
+    <a href="index.html" class="back">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+      Back to CaramelClient
+    </a>
 
     <h1>Privacy Policy</h1>
-    <p class="sub">Last updated: October 2026</p>
+    <p class="sub">Last updated: November 2026 · Version 1.0</p>
 
     <div class="callout">
-      <p>TL;DR — GlowberryClient does not collect, store, or transmit any personal data. Everything runs on your device.</p>
+      <p>TL;DR — CaramelClient does not collect, store, track, or transmit any personal data. There are no accounts, no telemetry, no hidden analytics, and no remote logging. Everything you do stays on your device.</p>
     </div>
 
-    <h2>What we collect</h2>
-    <p><strong>Nothing.</strong> GlowberryClient has no accounts, no sign-up, no analytics, no telemetry, and no remote logging. We do not know who you are, how often you use the app, or what you do inside it.</p>
+    <h2>Introduction</h2>
+    <p>CaramelClient is a free, open-source Minecraft Bedrock launcher developed by <strong>ChimeraTeam</strong>. We built this platform to give players full control over their game without compromising their privacy. This policy explains exactly what happens to your data when you use the app and this website.</p>
+    <p>By using CaramelClient, you agree to the practices described below. Because we collect zero data, there is nothing to opt out of.</p>
 
-    <h2>What stays on your device</h2>
+    <h2>Information We Collect</h2>
+    <p><strong>Absolutely nothing.</strong> We do not collect, harvest, or sell any information. Specifically, we do not collect:</p>
     <ul>
-      <li>Launcher settings and preferences</li>
-      <li>Imported Minecraft versions</li>
-      <li>Mods you install (.AntEgg, .so, .levipack)</li>
-      <li>Replay clips you record</li>
-      <li>Screenshots and any files you create through the launcher</li>
+      <li>Personal identifiers (names, email addresses, phone numbers).</li>
+      <li>Device identifiers (IMEI, MAC addresses, Android Ad ID).</li>
+      <li>Location data (GPS or IP-derived).</li>
+      <li>Usage statistics or behavioral analytics.</li>
+      <li>Crash logs or diagnostic reports (unless you manually choose to share them in our Discord).</li>
     </ul>
-    <p style="margin-top:12px">None of this is uploaded anywhere. If you uninstall the app, it's gone.</p>
+    <p>We do not require you to create an account, sign in, or provide an email address to use the launcher.</p>
 
-    <h2>Network connections</h2>
-    <p>GlowberryClient makes network requests in two cases:</p>
+    <h2>Data Stored on Your Device</h2>
+    <p>For CaramelClient to function, it must save certain data locally on your device. This data is stored in the app's private sandbox directory (inaccessible to other apps) and is <strong>never uploaded to any server</strong>.</p>
+    
+    <div class="policy-grid">
+      <div class="policy-card">
+        <h4>Settings & Preferences</h4>
+        <p>UI themes, module toggles, keybinds, and account tokens are saved locally to remember your setup.</p>
+      </div>
+      <div class="policy-card">
+        <h4>Imported Versions</h4>
+        <p>Your Minecraft APKs are extracted and stored locally so you can launch them seamlessly.</p>
+      </div>
+      <div class="policy-card">
+        <h4>Mods & Scripts</h4>
+        <p>Your downloaded <code>.universe</code>, <code>.singularity</code>, and <code>.so</code> files remain strictly on your device storage.</p>
+      </div>
+      <div class="policy-card">
+        <h4>Replay & Media</h4>
+        <p>Any replay clips, screenshots, or recordings you create are saved to your local storage only.</p>
+      </div>
+    </div>
+    <p style="margin-top: 20px;"><strong>Data Deletion:</strong> If you uninstall CaramelClient, or clear the app data through Android settings, all of the above data is permanently deleted. We hold no backups.</p>
+
+    <h2>Network Connections</h2>
+    <p>CaramelClient requires an internet connection for only a few specific tasks. Here is exactly what happens:</p>
+    
+    <div class="highlight-box">
+      <h4>1. Update Checks (GitHub API)</h4>
+      <p>The launcher occasionally pings the public GitHub API to check if a newer version of CaramelClient is available. This sends your IP address to GitHub (the same as visiting any GitHub page). No identifying information is attached.</p>
+    </div>
+    
+    <div class="highlight-box">
+      <h4>2. Proximity Voice Chat (P2P)</h4>
+      <p>When you enable Voice Chat, your device connects directly to other players' devices over UDP (Peer-to-Peer). The audio is encrypted and routed directly between players. <strong>It never passes through ChimeraTeam servers.</strong></p>
+    </div>
+
+    <div class="highlight-box">
+      <h4>3. Caramel Network (Friends System)</h4>
+      <p>If you opt-in to the Friends System, your Xbox XUID and Gamertag are hashed and stored on our secure backend to facilitate friend requests. This is entirely optional, requires your explicit action, and can be deleted at any time.</p>
+    </div>
+
+    <h2>Permissions & Why We Need Them</h2>
+    <p>Android requires apps to declare permissions before accessing sensitive hardware. Here is our complete list and why we use them:</p>
     <ul>
-      <li><strong>Update checks</strong> — the launcher and this website query GitHub's public API to see if a newer release exists. This sends your IP address to GitHub (the same as visiting any GitHub page). No identifying information is attached.</li>
-      <li><strong>Proximity Voice Chat</strong> — when you enable Voice Chat, your device connects directly to other devices over UDP. Audio is peer-to-peer and never passes through our servers. There are no GlowberryClient servers carrying your voice.</li>
+      <li><strong>Microphone:</strong> Required for Proximity Voice Chat. We only access the mic when you are actively in a voice channel.</li>
+      <li><strong>Screen Recording (MediaProjection):</strong> Required to power the built-in Replay Mod. We only capture the screen when you press the Record button.</li>
+      <li><strong>Storage (Read/Write):</strong> Required to import your Minecraft APK, read mod files, and save replay clips to your gallery.</li>
+      <li><strong>Network Access:</strong> Required for update checks, the Friends System, and P2P voice chat.</li>
+      <li><strong>Notifications:</strong> Optional. Used only to alert you to new releases or friend requests.</li>
     </ul>
 
-    <h2>Permissions and why we ask for them</h2>
+    <h2>Open Source Transparency</h2>
+    <p>We don't just ask you to trust us; we give you the tools to verify it. CaramelClient is fully open-source. Anyone can inspect the Kotlin, C++, and Rust code on our <a href="https://github.com/ChimeraAnt-DEV/CaramelClient" target="_blank">GitHub repository</a> to verify that no telemetry or tracking SDKs exist.</p>
+    <p>Our build pipelines are public. You can see exactly how the APK is compiled and signed. If you find any suspicious behavior, you can open an issue or submit a pull request.</p>
+
+    <h2>Third-Party Services</h2>
+    <p>While CaramelClient itself contains no trackers, it interfaces with a few third-party platforms to function. These platforms have their own privacy policies:</p>
     <ul>
-      <li><strong>Screen recording (MediaProjection)</strong> — only when you tap Record. Powers Replay.</li>
-      <li><strong>Microphone</strong> — only when Voice Chat is enabled. Audio is peer-to-peer.</li>
-      <li><strong>Network access</strong> — for update checks and voice chat.</li>
-      <li><strong>Storage</strong> — rarely requested. Only needed if you import a Minecraft version or save a replay clip. Your files never leave your device.</li>
-      <li><strong>Notifications</strong> — optional, only for release alerts.</li>
+      <li><strong>GitHub:</strong> Hosts our source code, releases, and update manifests. (GitHub Privacy Policy)</li>
+      <li><strong>Discord:</strong> Hosts our community server. If you join the Discord, Discord collects your email and IP. (Discord Privacy Policy)</li>
+      <li><strong>Google Fonts:</strong> This website loads fonts from Google's CDN. (Google Privacy Policy)</li>
     </ul>
+    <p>We do not integrate ad networks, tracking SDKs, or analytics platforms (like Firebase, Mixpanel, or Facebook SDK).</p>
 
-    <h2>Third-party services</h2>
-    <p>GlowberryClient does not integrate any third-party analytics, ad networks, or tracking SDKs. It uses the following public services directly:</p>
+    <h2>Children's Privacy</h2>
+    <p>CaramelClient does not collect any data from anyone, regardless of age. Because we collect no personal information, we are fully compliant with the Children's Online Privacy Protection Act (COPPA) and the General Data Protection Regulation (GDPR).</p>
+
+    <h2>Changes to This Policy</h2>
+    <p>If we ever decide to change how we handle data (for example, if we introduce a cloud sync feature), we will update this page and notify users via our Discord. Since our code is open source, any code changes related to data collection would be publicly visible in the commit history.</p>
+
+    <h2>Contact Us</h2>
+    <p>If you have questions about this policy, or if you find a security vulnerability, please reach out:</p>
     <ul>
-      <li><strong>GitHub</strong> — for source code, releases, and update checks.</li>
-      <li><strong>GitHub Pages</strong> — to host this website.</li>
-      <li><strong>Google Fonts</strong> — to load the Inter typeface on this site.</li>
+      <li>Join our <a href="https://discord.gg/qAKpyKM3GP" target="_blank">Discord Server</a>.</li>
+      <li>Open an issue on <a href="https://github.com/ChimeraAnt-DEV/CaramelClient/issues" target="_blank">GitHub</a>.</li>
+      <li>Email us at <a href="mailto:GlowberryClient@protonmail.com">CaramelClient@protonmail.com</a>.</li>
     </ul>
-    <p style="margin-top:12px">Each of these has its own privacy policy. GlowberryClient does not control what they log.</p>
 
-    <h2>Children</h2>
-    <p>GlowberryClient does not knowingly collect data from anyone. Since we collect no data at all, this applies to users of every age.</p>
-
-    <h2>Changes to this policy</h2>
-    <p>If this policy changes, the "last updated" date at the top will change. The source for both the app and this site is public on <a href="https://github.com/ChimeraAnt-DEV" target="_blank" rel="noopener">GitHub</a>, so any change is visible in the commit history.</p>
-
-    <h2>Contact</h2>
-    <p>Questions? Open an issue on <a href="https://github.com/ChimeraAnt-DEV/GlowberryClient/issues" target="_blank" rel="noopener">GitHub</a> or ask in our <a href="https://discord.gg/VMGXExhxxA" target="_blank" rel="noopener">Discord</a>.</p>
-
-    <p class="updated">© 2026 ChimeraAnt-DEV · GlowberryClient is free and open source software.</p>
+    <p class="updated">© 2026 ChimeraTeam · CaramelClient is free and open-source software. Built on phones. Runs on everything.</p>
   </div>
 </body>
-  </html>
+</html>
+```
+
+
